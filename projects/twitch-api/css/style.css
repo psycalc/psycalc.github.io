@@ -1,0 +1,46 @@
+body {
+background: url(http://bgfons.com/upload/carbon_texture1873.jpg);
+  color: #00ff00;
+  font-family: 'Titillium Web', sans-serif;
+}
+ul {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: black;
+  border-radius: 20px;
+  border:solid 5px #00ff00;
+  box-shadow: 5px 5px 5px black;
+}
+ul li {
+  border-left: 10px solid grey;
+  padding-bottom: 60px;
+  list-style-type: none;
+  margin-bottom: 10px;
+}
+ul li img {
+  height: 100px;
+  border-radius: 20px;
+}
+.online {
+  color: green;
+  border-left: solid 5px #00ff00;
+}
+.offline {
+  color: red;
+  border-left: solid 5px red;
+  border-radius: 5px;
+}
+.online, .offline {
+  line-height: 50px;
+  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+}
+#redlabel {
+  color: #ff0000;
+}
+.widget {
+    margin-left: 6%;
+  margin-right: 6%;
+}
