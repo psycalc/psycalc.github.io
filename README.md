@@ -1,2 +1,2 @@
 # designofhumanity.github.io
-my site
+My cv site
