@@ -4,7 +4,7 @@ a {
 
 iframe {
   display:inline-block;
-  transition: width 3s, height 3s;
+  transition: width 3s, height 3s linear;
 }
 iframe:hover {
   width: 200%;
