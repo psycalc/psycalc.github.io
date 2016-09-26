@@ -5,8 +5,9 @@ a {
 iframe {
   display:inline-block;
   transition: width 3s, height 3s linear;
+  transition: width height 3s;
 }
 iframe:hover {
-  width: 200%;
-  height: 200%;
+  width: 2em;
+  height: 2em;
 }
