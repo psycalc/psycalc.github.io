@@ -5,7 +5,7 @@ a {
 iframe {
   display:inline-block;
   transition: width 3s, height 3s linear;
-  transition: width height 3s;
+  transition: width 3s, height 3s;
 }
 iframe:hover {
   width: 2em;
