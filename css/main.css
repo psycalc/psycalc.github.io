@@ -4,8 +4,8 @@ a {
 
 iframe {
   display:inline-block;
-  transition: width 3s, height 3s linear;
-  border-radius: 50%
+  transition: all 3s;
+  border-radius: 50%;
 }
 iframe:hover {
   width: 2em;
