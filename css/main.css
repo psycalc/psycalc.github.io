@@ -5,6 +5,15 @@
   height: 300px;
   color: white;
 }
+@media print {
+  .ps-body-window {
+    font-family: "Lucida Console";
+    background-color: #012456;
+    overflow-y: auto;
+    height: initial;
+    color: white;
+  }
+}
 .my-text-success {
   color: green;
 }
