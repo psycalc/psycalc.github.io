@@ -1,13 +1,30 @@
-a {
-  display:inline-block;
+.ps-body-window {
+  font-family: "Lucida Console";
+  background-color: #012456;
+  overflow-y: auto;
+  height: 300px;
+  color: white;
 }
-
-iframe {
-  display:inline-block;
-  transition: all 3s;
-  border-radius: 50%;
+.my-text-success {
+  color: green;
 }
-iframe:hover {
-  width: 2em;
-  height: 2em;
+.my-text-yellow {
+  color: yellow;
+}
+.window-title {
+  background-color: white;
+  height: 30px;
+}
+.window-title, .ps-body-window {
+ box-shadow: 10px 10px 5px #888888;
+}
+#ps-icon {
+  height: inherit;
+}
+#ps-iconset {
+  position:absolute;
+  right: 0;
+}
+#ava {
+  height: 306px;
 }

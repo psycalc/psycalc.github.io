@@ -1,47 +1,52 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="" ng-app>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Resume site</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <!-- Place favicon.ico in the root directory -->
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
-    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-</head>
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="bower_components\bootstrap\dist\css\bootstrap.min.css">
+    </head>
 
-<body>
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+    <body>
+        <!--[if lt IE 8]> <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p> <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <p>Hello world! This is HTML5 Boilerplate.</p>
-    <h2>Here is my another projects:</h2>
-    <ol>
-        <li><iframe src="index1.html"></iframe><br><a href="index1.html" target="_blank">Симуляция ткани</a></li>
-        <li>
-            <iframe src="\projects\twitch-api\index.html"></iframe>
-        </li>
-        <li>
-            <iframe src="\projects\wikipedia-api-search\index.html"></iframe>
-        </li>
-        <li><iframe src="\projects\codepen_GqmZdN\index.html"></iframe></li>
-        <li><iframe src="\projects\codepen_quoteGenerator\index.html"></iframe></li>
-    </ol>
-    <script src="https://code.jquery.com/jquery-{{JQUERY_VERSION}}.min.js"></script>
-    <script>
-        window.jQuery || document.write('<script src="js/vendor/jquery-{{JQUERY_VERSION}}.min.js"><\/script>')
-    </script>
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
-
+        <!-- Add your site or application content here -->
+        <div class="window-title"><img id="ps-icon" src="images/PowerShell_5.0_icon.png" alt=""/>Windows PowerShell <img id="ps-iconset" src="images/windowTitleIconSet.png" alt="" /></div>
+        <div class="ps-body-window">
+            <p>Oleg Protsenko</p>
+            <img id="ava" src="images/ava.jpg" alt="">
+            <p>Here is my skills as System Adminsitrator:</p>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="cold-md-12">
+                        <ul class="list-unstyled">
+                            <li><div class="my-text-success">Deploy, support, update Windows Server 2003</div> <!--2008-2016--> with list of roles <!--DC-->, <span class="my-text-yellow">WSUS</span>, <!--Hyper-V--><span class="my-text-yellow"> MS SQL</span>.</li>
+                            <li><span class="my-text-success">Deploy, Support, update Linux Servers:</span> <span class="my-text-yellow">ArchLinux</span>, <span class="my-text-yellow">Scientific Linux</span> <!--such as CentOS, Ubuntu Server.--></li>
+                            <li><span class="my-text-success">Support & Solve hardware and software issues.</span></li> <!--Postgresql, XenServer, RouterOS, ClearOS-->
+                            <li><span class="my-text-success">Buy equipment and supporting up to date IT’s state.</span></li>
+                            <!-- <li>Support PFsense router in Kharkov and Voronezh office.</li> -->
+                            <!-- <li>Solve issues with IPSec VPN between offices.</li> -->
+                            <li><span class="my-text-yellow">Buying new PCs and laptops, configure it for new employee.</span></li>
+                            <!-- <li>Solving issue with VPNs(OpenVPN, SonicWall VPN, PPTP).</li> -->
+                            <li><span class="my-text-success">Support backup process.</span></li>
+                            <li><span class="my-text-success">Support users with all issues that appearing during their work process</span>.</li>
+                            <li><span class="my-text-success"><span class="my-text-success">Support 5 servers and 100 desktops <span class="my-text-yellow">windows 7</span>.</span></span></li>
+                            <!-- <li>Every year task, It's do everything for renew our partner program with Microsoft.</li> -->
+                            <!-- <li>Temporary task: support Wrike’s office in Kiev and on 6 floor</li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
     <script>
         window.ga = function() {
