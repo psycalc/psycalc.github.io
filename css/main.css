@@ -1,39 +1,104 @@
 .ps-body-window {
-  font-family: "Lucida Console";
-  background-color: #012456;
-  overflow-y: auto;
-  height: 300px;
-  color: white;
-}
-@media print {
-  .ps-body-window {
     font-family: "Lucida Console";
     background-color: #012456;
     overflow-y: auto;
-    height: initial;
+    height: 300px;
     color: white;
-  }
 }
+
+@media print {
+    body {
+        font-size: 10px;
+    }
+    .ps-body-window {
+        font-family: "Lucida Console";
+        background-color: #012456;
+        overflow-y: auto;
+        height: initial;
+        color: white;
+    }
+    .formal {
+        visibility: hidden;
+    }
+    h2 {
+      margin-top: 0px;
+    }
+}
+
 .my-text-success {
-  color: green;
+    color: green;
 }
+
 .my-text-yellow {
-  color: yellow;
+    color: yellow;
 }
+
 .window-title {
-  background-color: white;
-  height: 30px;
+    background-color: white;
+    height: 30px;
 }
+
 .window-title, .ps-body-window {
- box-shadow: 10px 10px 5px #888888;
+    box-shadow: 10px 10px 5px #888888;
 }
+
 #ps-icon {
-  height: inherit;
+    height: inherit;
 }
+
 #ps-iconset {
-  position:absolute;
-  right: 0;
+    position: absolute;
+    right: 0;
 }
+
 #ava {
-  height: 306px;
+    height: 153px;
+}
+
+.fake-browser-ui {
+    padding: 10px 0 0;
+    border-radius: 3px;
+    border-bottom: 2px solid #ccc;
+    background: #ddd;
+    display: inline-block;
+    position: relative;
+    /*line-height: 0;*/
+    /*border: 1px solid;*/
+    box-shadow: 10px 10px 5px #888888;
+}
+
+.fake-browser-ui .frame {
+    display: block;
+    height: 15px;
+    position: absolute;
+    top: 5px;
+    left: 1px;
+}
+
+.fake-browser-ui span {
+    height: 8px;
+    width: 8px;
+    border-radius: 8px;
+    background-color: #eee;
+    border: 1px solid #dadada;
+    float: left;
+    margin: 0 0 0 4px;
+}
+
+.fake-browser-content {
+    background-color: white;
+    height: 100%;
+}
+
+footer {
+    margin-top: 50px;
+    background-color: #012456;
+    color: white;
+}
+footer .contact-title {
+  background-color: black;
+}
+
+footer ul {
+    list-style-type: none;
 }
