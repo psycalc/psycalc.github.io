@@ -18,11 +18,18 @@
         color: white;
     }
     .formal {
-        visibility: hidden;
+        /*visibility: hidden;*/
+        display: none;
+    }
+    .formal-ava {
+      text-align: center;
     }
     h2 {
       margin-top: 0px;
     }
+    footer {
+        margin-top: 0px;
+      }
 }
 
 .my-text-success {
