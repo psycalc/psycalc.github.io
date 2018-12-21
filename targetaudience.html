@@ -53,10 +53,11 @@
     <p>Выберите интересующую область применения:</p>
 
     <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'Psy')">Психология</button>
-        <button class="tablinks" onclick="openCity(event, 'Business')">Бизнес</button>
-        <button class="tablinks" onclick="openCity(event, 'Dating')">Знакомтсва</button>
-        <button class="tablinks" onclick="openCity(event, 'Community')">Сообщество & Клуб Знакомств</button>
+        <button class="tablinks" onclick="openTab(event, 'Psy')">Психология</button>
+        <button class="tablinks" onclick="openTab(event, 'Business')">Бизнес</button>
+        <button class="tablinks" onclick="openTab(event, 'Dating')">Знакомтсва</button>
+        <button class="tablinks" onclick="openTab(event, 'Education')">Образование</button>
+        <button class="tablinks" onclick="openTab(event, 'Community')">Сообщество & Клуб Знакомств</button>
     </div>
 
     <div id="Psy" class="tabcontent">
@@ -78,9 +79,12 @@
         <h3>Cообщество & Клуб Знакомств</h3>
         <p>Для работы этого подхода необходимо сообщество, людей ищущих работу, ищущих знакомтсва. Люди должны понимать пользу материальную, психологическую от знакомтсва по психологическому расчету</p>
     </div>
-
+    <div id="Education" class="tabcontent">
+        <h3>Образование</h3>
+        <p>Подобрать методику обучения, подобрать соместимого преподователя под ученика.Родителям понять в каком направление помогать развиваться своему чаду.</p>
+    </div>
     <script>
-        function openCity(evt, cityName) {
+        function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tabcontent");
             for (i = 0; i < tabcontent.length; i++) {
@@ -90,7 +94,7 @@
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
-            document.getElementById(cityName).style.display = "block";
+            document.getElementById(tabName).style.display = "block";
             evt.currentTarget.className += " active";
         }
     </script>
