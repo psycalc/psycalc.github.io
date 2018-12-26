@@ -45,6 +45,11 @@
             border-top: none;
         }
     </style>
+    <script type="text/javascript">
+        function toggle_show(id) {
+            document.getElementById(id).style.display = document.getElementById(id).style.display == 'none' ? 'block' : 'none';
+        }
+    </script>
 </head>
 
 <body>
@@ -69,7 +74,7 @@
 
     <div id="Business" class="tabcontent">
         <h3>Бизнес</h3>
-        <p>Очень часто стратапам просто необходимы совместимые люди, которых проще самим научить, чем искать людей с походящими знаниями. Поиск людей под определенного человека.</p>
+        <p>Очень часто стратапам просто необходимы совместимые люди, которых проще самим научить, чем искать людей с походящими знаниями. Поиск людей под определенного лидера.</p>
     </div>
 
     <div id="Dating" class="tabcontent">
@@ -88,6 +93,19 @@
         <h3>События</h3>
         <p>Проводите время в кругу совместимых людей, с пользой и выгодой.</p>
     </div>
+
+    <ul>
+        <li>Название 1</li>
+        <li onClick="toggle_show('bla-bla2')">Название 2
+            <ul id="bla-bla2" style="display: none">
+                <li>Бла Бла Бла</li>
+                <li>Бла Бла Бла</li>
+                <li>Бла Бла Бла</li>
+            </ul>
+        </li>
+        <li>Название 3</li>
+    </ul>
+
     <script>
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
