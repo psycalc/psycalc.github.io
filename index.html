@@ -15,6 +15,47 @@
         .dotted {
             border-style: dotted;
         }
+        
+        body {
+            font-family: Arial;
+        }
+        /* Style the tab */
+        
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+        /* Style the buttons inside the tab */
+        
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+        /* Change background color of buttons on hover */
+        
+        .tab button:hover {
+            background-color: #ddd;
+        }
+        /* Create an active/current tablink class */
+        
+        .tab button.active {
+            background-color: #ccc;
+        }
+        /* Style the tab content */
+        
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
     </style>
 </head>
 
@@ -54,6 +95,19 @@
                     мышления вычленяет проблему целиком, во всех ее связях и зависимостях, несмотря на границы охвата, и решает, способствуя дальнейшему духовному, социальному или экономическому развитию и самосовершенствоанию народов, государств, больших
                     человеческих общностей. Люди с глобальным мышлением, способные планетарно мыслить, особенно нужны в сфере науки, политики и управления.
                 </p>
+                <div class="tab">
+                    <button class="tablinks" onclick="openTab(event, 'selfeducation')">Хочу разобраться сам.</button>
+                    <button class="tablinks" onclick="openTab(event, 'result')">Интересует результат</button>
+                </div>
+                <div id="selfeducation" class="tabcontent">
+                    <h3>Рекомендации:</h3>
+                    <p>Cамостоятельное изучение темпористику рекомендую начать с этой статьи http://temporistics.ru/?q=node/90. Эта статья поможет определиться с третьей функцией по темпористике, а потом методом исключения можно оределить другие.</p>
+                </div>
+
+                <div id="result" class="tabcontent">
+                    <h3>Типирование</h3>
+                    <p>По поводу типирования и проверки типа обращайтесь в телеграмм https://t.me/LegacyOfKain.</p>
+                </div>
             </div>
             <p> 2. Типология <b>Психософия</b> показывает, что у человека с волевыми качествами, эмоциональностью, типом мышления (логикой), с физическим миром (золотые руки или нужна помощь в быту). Другими словами с помощью каких амбций\прироритетов будет
                 реализовать, свою философию жизни, стратегию жизни, важные для себя акценты времени. Тактическое взаимодействие.</p>
@@ -99,6 +153,21 @@
                 <p>Группа в контакте: https://vk.com/designofhumanity </p>
                 <p>Группа в Facebook: https://www.facebook.com/groups/1209941655840143/</p>
                 <div class="fb-share-button" data-href="https://designofhumanity.github.io/" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdesignofhumanity.github.io%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Поделиться</a></div>
+                <script>
+                    function openTab(evt, tabName) {
+                        var i, tabcontent, tablinks;
+                        tabcontent = document.getElementsByClassName("tabcontent");
+                        for (i = 0; i < tabcontent.length; i++) {
+                            tabcontent[i].style.display = "none";
+                        }
+                        tablinks = document.getElementsByClassName("tablinks");
+                        for (i = 0; i < tablinks.length; i++) {
+                            tablinks[i].className = tablinks[i].className.replace(" active", "");
+                        }
+                        document.getElementById(tabName).style.display = "block";
+                        evt.currentTarget.className += " active";
+                    }
+                </script>
 </body>
 
 </html>
