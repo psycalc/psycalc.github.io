@@ -45,12 +45,13 @@
             border: 1px solid #ccc;
             border-top: none;
         }
-    </style>
-    <script type="text/javascript">
-        function toggle_show(id) {
-            document.getElementById(id).style.display = document.getElementById(id).style.display == 'none' ? 'block' : 'none';
+        
+        article {
+            overflow: hidden;
         }
-    </script>
+    </style>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/readmore-js/readmore.min.js"></script>
 </head>
 
 <body>
@@ -99,7 +100,34 @@
         <p>Описание Описание Описание Описание Описание Описание Описание Описание Описание Описание Описание Описание</p>
     </div>
 
+    <article>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem quidem illum repudiandae minima labore, cum voluptatibus maxime aut amet debitis laboriosam doloribus nam quo atque, corporis aliquid culpa, consequuntur repellendus quas dolorum
+            porro aperiam eveniet asperiores inventore. Animi consequuntur repudiandae aliquid incidunt veniam voluptate sapiente ipsam nam explicabo totam. Alias eligendi dolores cupiditate magni eaque minima obcaecati saepe. Similique at optio veritatis
+            error doloremque libero mollitia exercitationem et numquam modi tenetur quo recusandae repudiandae aliquid officia, eaque debitis necessitatibus alias voluptates tempora fugit reiciendis dolores ipsum! Modi repudiandae omnis aliquam provident
+            magnam dolore neque eos sequi explicabo culpa! Alias magni autem vitae nobis impedit doloribus. Ipsum soluta odit nihil? Qui, minima! Minima voluptates quasi voluptate, eaque libero, ut dicta impedit optio quas nostrum obcaecati porro, ducimus
+            odit. Sequi veritatis similique doloremque ipsum recusandae magni, beatae harum architecto illo nobis modi quos impedit nihil ipsam labore autem ducimus error, aperiam sunt. Neque explicabo laboriosam quos adipisci ad perferendis voluptatem
+            repellendus excepturi omnis est. Ducimus molestiae sequi labore ratione voluptate. Perferendis a enim saepe laborum officia mollitia reprehenderit similique omnis et, molestiae debitis aperiam tempore esse expedita non laudantium necessitatibus!
+            A id fugiat aspernatur vero, deleniti doloremque voluptates facilis? Sed, vitae dolores! Earum accusamus nemo iste quae consequuntur praesentium delectus rem pariatur ex quis? Sit itaque molestiae expedita earum veniam optio corporis facilis,
+            sint laudantium illum vero voluptatum autem aperiam id? Rem esse doloremque consequatur eum possimus ducimus excepturi nemo quis. Asperiores, beatae expedita perspiciatis eum obcaecati corrupti, ipsum explicabo nemo esse facilis, blanditiis
+            dolorem? Voluptas doloribus quia quaerat aut corrupti soluta, tenetur, explicabo quasi cumque maiores asperiores perferendis dolorum? Reprehenderit molestias praesentium id nesciunt ea hic, eaque architecto non deserunt ratione a beatae, ut
+            suscipit cumque quae magni eos! Voluptate quaerat rem quisquam fuga. Inventore reprehenderit sequi dolores nesciunt minus. Nihil facilis possimus consequuntur laudantium eveniet error consequatur deleniti quae temporibus repudiandae saepe
+            eaque in amet, cum eum veritatis culpa at quas aspernatur! Deleniti quo doloribus neque quidem adipisci amet molestias, pariatur accusamus a sapiente similique assumenda dolorum, doloremque autem ducimus aliquid facere iusto corrupti, saepe
+            ea tempore rerum reprehenderit expedita? Repellendus sunt, explicabo porro quae sequi obcaecati illo mollitia ullam quod modi temporibus hic. Rerum numquam laborum fuga quia sint necessitatibus commodi modi sunt, cum repellendus nobis corporis
+            voluptas quis veniam eveniet molestiae a iure quibusdam corrupti officiis. Laborum quibusdam sed tenetur nostrum ipsum hic. Magni perspiciatis blanditiis quasi cumque sunt culpa accusantium quod, dolorum aliquam, sit rerum placeat possimus
+            maxime rem repudiandae. Incidunt consequuntur odio ea nesciunt magnam esse, asperiores placeat, commodi libero, fuga nemo voluptate in perferendis. Velit suscipit perspiciatis amet magni, quis perferendis maxime qui molestias atque sunt repudiandae
+            dolore possimus, quidem adipisci numquam dolor. Vitae reprehenderit aliquid veritatis quia dolorum voluptate. Molestiae ut repellat reiciendis corrupti similique neque eius assumenda id perferendis amet eligendi soluta cupiditate incidunt
+            atque iusto ex deleniti, quibusdam itaque delectus sit voluptates! Praesentium quibusdam itaque maxime, minus vitae consequatur voluptatem non id dolorem obcaecati, blanditiis perferendis distinctio quam. Obcaecati consectetur cumque velit.</p>
+    </article>
     <script>
+        $('article').readmore({
+            speed: 75,
+            lessLink: '<a href="#">Закрыть</a>',
+            moreLink: '<a href="#">Подробнее</a>',
+            embedCSS: true,
+            blockCSS: 'display: block; width: 100%;',
+            startOpen: false
+        });
+
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tabcontent");

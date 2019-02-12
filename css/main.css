@@ -1,4 +1,4 @@
-  /*         .note {
+/*         .note {
             color: #000000;
             border: 2px solid #fff;
             background: rgb(69, 189, 102);
@@ -6,101 +6,123 @@
             margin-bottom: 30px;
             padding: 18px;
         } */
-  
-  .swing {
-      animation: swing ease-in-out 1s infinite alternate;
-      transform-origin: center -20px;
-      float: left;
-      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-  }
-  
-  .swing img {
-      border: 5px solid black;
-      display: block;
-  }
-  
-  .swing:after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border: 1px solid #999;
-      top: -10px;
-      left: 50%;
-      z-index: 0;
-      border-bottom: none;
-      border-right: none;
-      transform: rotate(45deg);
-  }
-  /* nail */
-  
-  .swing:before {
-      content: '';
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      top: -14px;
-      left: 54%;
-      z-index: 5;
-      border-radius: 50% 50%;
-      background: #000;
-  }
-  
-  .dotted {
-      border-style: dotted;
-      padding: 15px;
-  }
-  
-  .details {
-      height: 50px;
-      width: 100%;
-      font-size: 25px;
-  }
-  
-  .main-flex-wrapper {
-      display: flex;
-      flex-direction: column;
-      background-color: white;
-      padding: 20px;
-      box-shadow: 10px 10px 10px grey;
-  }
-  
-  .typology-priority {
-      display: flex;
-  }
-  
-  .main-wrapper {
-      padding: 0px 240px 0px 240px;
-      background-color: #20c5b9;
-  }
-  
-  .puzzle {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 50%;
-  }
-  
-  iframe {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-  }
-  
-  .tab button {
-      background-color: inherit;
-      float: left;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      padding: 14px 16px;
-      transition: 0.3s;
-      font-size: 17px;
-  }
-  
-  @media only screen and (orientation:landscape) {
+
+body {
+    margin: 0;
+}
+
+.swing {
+    animation: swing ease-in-out 1s infinite alternate;
+    transform-origin: center -20px;
+    float: left;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.swing img {
+    border: 5px solid black;
+    display: block;
+}
+
+.swing:after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #999;
+    top: -10px;
+    left: 50%;
+    z-index: 0;
+    border-bottom: none;
+    border-right: none;
+    transform: rotate(45deg);
+}
+
+article {
+    display: flex;
+    /* max-height: 100px; */
+    /* overflow: hidden; */
+    flex-direction: column;
+}
+
+
+/* nail */
+
+.swing:before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    top: -14px;
+    left: 54%;
+    z-index: 5;
+    border-radius: 50% 50%;
+    background: #000;
+}
+
+.dotted {
+    border-style: dotted;
+    padding: 15px;
+}
+
+.details {
+    height: 50px;
+    width: 100%;
+    font-size: 25px;
+}
+
+.main-flex-wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 10px 10px 10px grey;
+}
+
+.typology-priority {
+    display: flex;
+}
+
+.main-wrapper {
+    padding: 0px 10% 0px 10%;
+    background-color: #20c5b9;
+}
+
+.puzzle {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+iframe {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+.downfooter {
+    padding: 20px;
+}
+
+.supnote {
+    font-size: 10px;
+}
+
+
+/* @media only screen and (min-width: 481px) and (orientation:landscape) {
       .main-wrapper {
-          padding: 0px 50px 0px 50px;
+          padding: 0px 25px 0px 25px;
       }
       button {
           height: 100px;
@@ -113,82 +135,95 @@
       .puzzle {
           width: 50%;
           /* height: 169px; */
-      }
-  }
-  
-  @media only screen and (max-width: 480px) and (orientation:portrait) {
-      .main-wrapper {
-          padding: 0px;
-      }
-      .tab button {
-          padding: 3px 4px;
-      }
-      .puzzle {
-          width: 100%;
-      }
-  }
-  /* @media (max-device-width:800px) {
+
+
+}
+
+}
+@media only screen and (min-width: 769px) {
+    .main-wrapper {
+        padding: 0px 0px 0px 0px;
+        background-color: #20c5b9;
+    }
+    .tab button {
+        padding: 3px 4px;
+    }
+    .puzzle {
+        width: 100%;
+    }
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+        overflow: hidden;
+    }
+}
+
+/* @media (max-device-width:800px) {
             .main-wrapper {
                 padding: 0px 15px 0px 15px;
             }
         } */
-  
-  body {
-      font-family: Arial;
-  }
-  /* Style the tab */
-  
-  .tab {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      overflow: hidden;
-      border: 1px solid #ccc;
-      background-color: #f1f1f1;
-      text-align: center;
-  }
-  /* Style the buttons inside the tab */
-  /* Change background color of buttons on hover */
-  
-  .tab button:hover {
-      background-color: #ffdd300;
-  }
-  /* Create an active/current tablink class */
-  
-  .tab button.active {
-      background-color: yellow;
-  }
-  /* Style the tab content */
-  
-  .tabcontent {
-      display: none;
-      padding: 6px 12px;
-      border: 1px solid #ccc;
-      border-top: none;
-  }
-  
-  button:hover {
-      background-color: ff7c86
-  }
-  
-  @keyframes swing {
-      0% {
-          transform: rotate(3deg);
-      }
-      100% {
-          transform: rotate(-3deg);
-      }
-  }
-  
-  .modela {
-      float: left;
-  }
-  
-  select {
-      font-size: 16px;
-      font-weight: bold;
-  }
-  /* .menu {
+body {
+    font-family: Arial;
+}
+
+/* Style the tab */
+.tab {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    text-align: center;
+}
+
+/* Style the buttons inside the tab */
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ffdd300;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: yellow;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    flex-direction: column;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    overflow: hidden;
+}
+button:hover {
+    background-color: ff7c86
+}
+@keyframes swing {
+    0% {
+        transform: rotate(3deg);
+    }
+    100% {
+        transform: rotate(-3deg);
+    }
+}
+.modela {
+    float: left;
+}
+select {
+    font-size: 16px;
+    font-weight: bold;
+}
+.read_more_js {
+    overflow: hidden;
+}
+
+/* .menu {
             position: fixed;
             width: 100%;
         } */
