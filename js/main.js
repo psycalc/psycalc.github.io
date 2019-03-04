@@ -67,5 +67,5 @@ $.getLanguage = function(key) {
 }
 
 console.log("before redrawLanguage");
-$.redrawLanguage("eng");
+$.redrawLanguage("rus");
 console.log("after redrawLanguage");
