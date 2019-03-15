@@ -193,7 +193,8 @@ body {
 }
 
 /* Style the tab content */
-.tabcontent {
+.tabcontent,
+.subtabcontent {
     display: none;
     flex-direction: column;
     padding: 6px 12px;
