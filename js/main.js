@@ -29,6 +29,13 @@ function openTab(evt, tabName, contentClassName = "tabcontent", tablinkClass = "
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
     document.getElementById(tabName).style.display = "flex";
+    $.ajax({
+        type: "GET",
+        url: "parts/" + tabName + ".html",
+        success: function(result) {
+            $('#' + tabName).html(result);
+        }
+    });
     evt.currentTarget.className += " active";
 }
 //pseudo SPA
