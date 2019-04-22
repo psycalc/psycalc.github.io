@@ -2,6 +2,8 @@ function toggle_show(id) {
     document.getElementById(id).style.display = document.getElementById(id).style.display == 'none' ? 'flex' : 'none';
 }
 
+openTab(event, 'short');
+
 function openTab(evt, tabName, contentClassName = "tabcontent", tablinkClass = "tablinks") {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName(contentClassName);
