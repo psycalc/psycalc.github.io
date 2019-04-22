@@ -2,8 +2,6 @@ function toggle_show(id) {
     document.getElementById(id).style.display = document.getElementById(id).style.display == 'none' ? 'flex' : 'none';
 }
 
-openTab(event, 'short');
-
 function openTab(evt, tabName, contentClassName = "tabcontent", tablinkClass = "tablinks") {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName(contentClassName);
@@ -25,6 +23,18 @@ function openTab(evt, tabName, contentClassName = "tabcontent", tablinkClass = "
     });
     evt.currentTarget.className += " active";
 }
+
+function firstAjax() {
+    $.ajax({
+        type: "GET",
+        url: "parts/" + "short" + ".html",
+        success: function(result) {
+            $('#' + "short").html(result);
+            $.redrawLanguage("rus");
+        }
+    });
+};
+firstAjax();
 //pseudo SPA
 var LANGUAGE;
 
