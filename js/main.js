@@ -1,22 +1,6 @@
-// console.log("inside main.js");
-// console.log("before readmore");
-$('.read_more_js').readmore({
-    speed: 75,
-    lessLink: '<a href="#">Закрыть</a>',
-    moreLink: '<a href="#">Подробнее</a>',
-    embedCSS: true,
-    blockCSS: 'display: block; width: 100%;',
-    startOpen: false
-});
-// console.log("after readmore");
-
 function toggle_show(id) {
     document.getElementById(id).style.display = document.getElementById(id).style.display == 'none' ? 'flex' : 'none';
 }
-
-// function read_more(id) {
-//     document.getElementById(id).style.display = document.getElementById(id).style.maxHeight == '100 px' ? '999 px' : '100 px';
-// }
 
 function openTab(evt, tabName, contentClassName = "tabcontent", tablinkClass = "tablinks") {
     var i, tabcontent, tablinks;
@@ -34,6 +18,7 @@ function openTab(evt, tabName, contentClassName = "tabcontent", tablinkClass = "
         url: "parts/" + tabName + ".html",
         success: function(result) {
             $('#' + tabName).html(result);
+            $.redrawLanguage("rus");
         }
     });
     evt.currentTarget.className += " active";
@@ -72,7 +57,3 @@ $.getLanguage = function(key) {
     }
     return key; //если нет, тогда ключ
 }
-
-// console.log("before redrawLanguage");
-$.redrawLanguage("rus");
-// console.log("after redrawLanguage");
