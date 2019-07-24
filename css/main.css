@@ -141,9 +141,12 @@ iframe {
 }
 
 }
-@media only screen and (max-width: 800px) {
+@media (max-width: 800px) {
+    .main-flex-wrapper {
+        padding: 0px;
+    }
     .main-wrapper {
-        padding: 0px 0px 0px 0px;
+        padding: 0px;
         background-color: #20c5b9;
     }
     .tab button {
