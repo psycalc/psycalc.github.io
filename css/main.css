@@ -141,7 +141,7 @@ iframe {
 }
 
 }
-@media only screen and (min-width: 640px) {
+@media only screen and (max-width: 800px) {
     .main-wrapper {
         padding: 0px 0px 0px 0px;
         background-color: #20c5b9;
