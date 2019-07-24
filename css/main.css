@@ -137,7 +137,7 @@ iframe {
           width: 50%;
           /* height: 169px; */
 
-@media (max-width: 800px) {
+@media screen and (max-width: 800px) {
     .main-flex-wrapper {
         padding: 0px;
     }
