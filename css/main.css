@@ -61,7 +61,7 @@ article {
 
 .dotted {
     border-style: dotted;
-    padding: 15px;
+    padding: 7px;
 }
 
 .details {
@@ -87,11 +87,18 @@ article {
     background-color: #20c5b9;
 }
 
-.puzzle {
+.compact-img {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+}
+
+.very-compact-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 33.3333%;
 }
 
 iframe {
@@ -133,7 +140,7 @@ iframe {
       .details {
           height: 50px;
       }
-      .puzzle {
+      .compact-img {
           width: 50%;
           /* height: 169px; */
 
@@ -148,7 +155,7 @@ iframe {
     .tab button {
         padding: 3px 4px;
     }
-    .puzzle {
+    .compact-img {
         width: 100%;
     }
     .tabcontent {

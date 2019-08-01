@@ -53,6 +53,10 @@ $.redrawLanguage = function(lang) {
                         case "input":
                             $(this).val(lng);
                             break;
+                        case "img":
+                            // $(this).val(lng);
+                            $(this).attr("src", lng);
+                            break;
                         default:
                             $(this).html(lng);
                             break;
