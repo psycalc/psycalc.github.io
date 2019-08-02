@@ -1,36 +1,63 @@
 <h2 lng="lng_intro_title"></h2>
-<img lng="lng_image_puzzle" class="compact-img " src="images/puzzle.jpg " alt="Здесь должна была быть картинка с пазлом:) ">
+<div class="flex-image-container">
+    <img lng="lng_image_puzzle" class="compact-img " src="images/puzzle.jpg " alt="Здесь должна была быть картинка с пазлом:) ">
+</div>
 <p lng="lng_description_1"></p>
-<img class="compact-img " src="/images/humanInteraction.jpg" alt="" srcset="">
+<div class="flex-image-container">
+    <img class="compact-img " src="/images/humanInteraction.jpg" alt="" srcset="">
+</div>
 <p lng="lng_short_tempodescription"></p>
-<img class="compact-img " src="/images/psycalc-afanasievmodel-alttempo.jpg"></p>
-<button class="details " onClick="toggle_show( 'tempmodelexample')" lng="lng_button_example">Пример</button>
-<div class="dotted " id="tempmodelexample" style="display: none ">
-    <div style="display: flex; flex-direction: column">
-        <div style="display: flex; flex-direction: row">
-            <img class="compact-img " src="/images/AristotelSherlock.jpg">
-            <img class="compact-img " src="/images/deduktciia-induktciia.jpg" alt="" srcset="">
-        </div>
+<div class="flex-image-container">
+    <img class="compact-img " src="/images/psycalc-afanasievmodel-alttempo.jpg">
+</div>
+<button class="details " onClick="toggle_show( 'tempmodelexample')" lng="lng_button_example">Пример индукции и дедукции и их взаимодейсвия</button>
+<div class="dotted " id="tempmodelexample" style="display: none; flex-direction: column; justify-content: center ">
+    <h2>В картинках и образах</h2>
+    <div class="flex-image-container">
+        <img class="compact-img " src="/images/AristotelSherlock.jpg">
+        <img class="compact-img " src="/images/deduktciia-induktciia.jpg" alt="" srcset=""></div>
 
-        <div class="dotted " style="display: flex; flex-direction: row">
-            <h2>Пример индукции</h2>
-            <ol>
-                <li>В Аргентине говорят на испанском языке.</li>
-                <li>Венесуэле говорят на испанском языке. </li>
-                <li>Эквадоре говорят на испанском языке.</li>
-            </ol>
+    <div class="dotted " style="display: flex; flex-direction: сolumn">
+        <h2>Пример индукции</h2>
+        <ol>
+            <li>В Аргентине говорят на испанском языке.</li>
+            <li>Венесуэле говорят на испанском языке. </li>
+            <li>Эквадоре говорят на испанском языке.</li>
             <p>Индуктивное умозаключение: Аргентина, Венесуэла и Эквадор — латиноамериканские страны.</p>
+        </ol>
+
+    </div>
+    <div class="dotted " style="display: flex; flex-direction: row">
+        <h2>Пример дедукции</h2>
+        <p>Все люди смертны. Сократ — человек. Следовательно, Сократ смертен.</p>
+    </div>
+    <div class="dotted " style="display: flex; flex-direction: сolumn">
+        <h2>Пример конфлитка Индукции и Дедукции</h2>
+        <ol>
+            <li>В Аргентине говорят на испанском языке.</li>
+            <li>Венесуэле говорят на испанском языке. </li>
+            <li> Сократ — человек.</li>
+        </ol>
+        <p>Индуктивное умозаключение: Что? причем тут "Сократ - Человек" Зачем было говорить Аргентину и Венесеэллу? Или Зачем здесь: "Сократ - Человек"</p>
+        <p>Дедуктивное умозаключение: Что? причем тут Аргентина Венесуэла. Как они относять к тому что Все люди смертны.</p>
+    </div>
+    <div class="dotted">
+        <h2>Видео примеры</h2>
+        <p>Возьмем пример диалога из сериала "Игра Престолов". Обратите внимание: Леди Шипов пришла решать свои личностные интересы (индуктивное решение вопроса) идет от деталей от частного к общему индуктивно, пытается подвести человека к своему индуктивному
+            смыслу. Для решения своих личностных проблем. При этом использует индуктивное доказательство. А Его Воробейшество идет от общего к частному и показывает на проблемы относительно общей гипотезы. Общесвенные проблемы. Его Воробейшество использует
+            прим это дедуктивное доказательство. В итоге люди ник чему не приходят. Смысл и понимание вечных вещей остается тем же что и до разговора (ничего не поменяло не в поведение не в смысле обоих собедеников). Смысл и поведение не меняется. Люди
+            ни очем не договорились и разошлись.</p>
+        <div class="flex-video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/zyd6j5gz8rg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <div class="dotted " style="display: flex; flex-direction: row">
-            <h2>Пример дедукции</h2>
-            <p>Все люди смертны. Сократ — человек. Следовательно, Сократ смертен.</p>
-        </div>
+    </div>
+    <div class="dotted">
         <h2>Проверка понимания</h2>
         <div style="display: flex; flex-direction: сolumn">
             <div>
                 <h3>Вечное (Вечность)</h3>
-                <p>Расскажите про Вечное, Религию, Общесвенное устройства. Общение с философами, учеными, священниками и т.д. Смотрите какой тип мышления Инудкция или дедукция работает.</p>
-                <textarea placeholder="Я считаю общество это организм или система подобная организму. Потому что мы не можем ответить на вопрос что нами движет. Вероятность существования Бога есть, отталкиваясь от теории, гипотезы общества. C священниками и филосовами инетересно общаться. Если только у них сфоримровалась похожая философия и иделогия. Прийти к вере логически. И логически понять. Почему люди верят."
+                <p>Расскажите про Вечное, Религию, Общесвенное устройства. Общение с философами, учеными, священниками и т.д. О закономерностях между поколениями. Смотрите какой тип мышления Инудкция или дедукция работает.</p>
+                <textarea placeholder="Пример:Я считаю общество это организм или система подобная организму. Потому что мы не можем ответить на вопрос что нами движет. Вероятность существования Бога есть, отталкиваясь от теории, гипотезы общества. C священниками и филосовами инетересно общаться. Если только у них сфоримровалась похожая философия и иделогия. Прийти к вере логически. И логически понять. Почему люди верят."
                     rows="10" cols="45" name="text"></textarea><br>
                 <input name="methodofthinking" type="radio" id="radioButtonEnternityInduction" value="induction">Индукция
                 <input name="methodofthinking" type="radio" id="radioButtonEnternityDeduction" checked="checked" value="deduction">Дедукция
@@ -39,7 +66,7 @@
             <div>
                 <h3>Прошлое</h3>
                 <p>Расскажите про Прошлое, результаты, профессию, личные качетва. Смотрите какой тип мышления Инудкция или дедукция работает.</p>
-                <textarea placeholder="Я пробовал разные профессии, разные возможности. Был и журналистом, фрилансером, системным администратор, специалистом по информационной безопасности и с контрафактом боролся. вообще знаю кто я. Хорошая память если цель запомнить и не забыть есть. Прошлый опыт показал могу научиться чему угодно лишь бы была цель. Участвовал в СTF олимпиадах. За мной гонялись HR, работодатели. Был начальником, нехотели отпускать с прошлой работы. Cтараюсь быть лучшим в том чем болею."
+                <textarea placeholder="Пример:Я пробовал разные профессии, разные возможности. Был и журналистом, фрилансером, системным администратор, специалистом по информационной безопасности и с контрафактом боролся. вообще знаю кто я. Хорошая память если цель запомнить и не забыть есть. Прошлый опыт показал могу научиться чему угодно лишь бы была цель. Участвовал в СTF олимпиадах. За мной гонялись HR, работодатели. Был начальником, нехотели отпускать с прошлой работы. Cтараюсь быть лучшим в том чем болею."
                     rows="10" cols="45" name="text"></textarea><br>
                 <input name="methodofthinking1" type="radio" id="radioButtonPastInduction">Индукция
                 <input name="methodofthinking1" type="radio" id="radioButtonPastDeduction">Дедукция
@@ -48,7 +75,7 @@
             <div>
                 <h3>Настоящее</h3>
                 <p>Расскажите про Настоящее, что сейчас происходит, что сейчас за события происходят. Опишите текущий момент. Смотрите какой тип мышления Инудкция или дедукция работает.</p>
-                <textarea placeholder="Набираю пальцами на клавиатуре, этот текст, за окном тихо ездят машины. Тихо гудит вентилятор. Клавиши некоторые залипают. Занял удобное положение." rows="10" cols="45" name="text"></textarea><br>
+                <textarea placeholder="Пример:Набираю пальцами на клавиатуре, этот текст, за окном тихо ездят машины. Тихо гудит вентилятор. Клавиши некоторые залипают. Занял удобное положение." rows="10" cols="45" name="text"></textarea><br>
                 <input name="methodofthinking3" type="radio" id="radioButtonCurrentInduction" checked="checked">Индукция
                 <input name="methodofthinking3" type="radio" id="radioButtonCurrentDeduction">Дедукция
                 <input name="methodofthinking3" type="radio" id="radioButtonCurrentIndectuonDeduction">Индукция и Дедукция
@@ -56,7 +83,7 @@
             <div>
                 <h3>Будущее</h3>
                 <p>Расскажите про Будущее, динамику развития свою, общества, каким будущее видите и видите ли вообще. Смотрите какой тип мышления Инудкция или дедукция работает.</p>
-                <textarea placeholder="Лучше мне расскажите я поверю.... Говорят у Украины будущего нету. Не знаю наверное надо верить. Или что-то делать с такой негативной динамикой развития. Из прошлого опыта собрать людей очень трудно, а активистов мало... Что-то мне подсказывает что это правда."
+                <textarea placeholder="Пример:Лучше мне расскажите я поверю.... Говорят у Украины будущего нету. Не знаю наверное надо верить. Или что-то делать с такой негативной динамикой развития. Из прошлого опыта собрать людей очень трудно, а активистов мало... Что-то мне подсказывает что это правда."
                     rows="10" cols="45" name="text"></textarea><br>
                 <input name="methodofthinking2" type="radio" id="radioButtonFutureInduction">Индукция
                 <input name="methodofthinking2" type="radio" id="radioButtonFutureDeduction" checked="checked">Дедукция
@@ -65,21 +92,65 @@
         </div>
     </div>
 </div>
+</div>
 <p>В психософии на ситезе и анализе волевых качеств, эмоций, материальных потребностей и привычном синтезе и анализе убеждений, логике.</p>
-<img class="compact-img" src="/images/psycalc-afanasievmodel-altyoga.jpg" alt="">
+<div class="flex-image-container">
+    <img class="compact-img" src="/images/psycalc-afanasievmodel-altyoga.jpg" alt="">
+</div>
 <button class="details " onClick="toggle_show( 'jogaexample')" lng="lng_button_example">Пример</button>
 <div class="dotted " id="jogaexample" style="display: none ; flex-direction: column ">
     <div style="display: flex; flex-direction: row">
         <img class="compact-img" src="/images/analysis-and-synthesis.jpg" alt="">
         <img сlass="compart-img" src="/images/resercher.jpg" alt="" srcset="">
     </div>
+    <h2>Проверка понимания</h2>
+    <div style="display: flex; flex-direction: сolumn">
+        <div>
+            <h3>Воля</h3>
+            <p>Как вы приниматее реешния, учитываете ли желания и детали решений других людей. Насколько это важно или нет для вас</p>
+            <textarea placeholder="Нельзя заставить человека что-то делать только в очень крайних ситуация. Решения други желания других важно. Иначе кажеться что живу в мире безвользных людей. Могу сам принимать решения и могу проговаривать их в диалоге с другими людьми."
+                rows="10" cols="45" name="text"></textarea><br>
+            <input name="methodofthinking4" type="radio" id="radioButtonEnternityAnalyse" value="induction">Анализ
+            <input name="methodofthinking4" type="radio" id="radioButtonEnternitySyntes" checked="checked" value="deduction">Синтез
+            <input name="methodofthinking4" type="radio" id="radioButtonEnternityAnalysSystes" value="inductionAndDeduction">Анализ и Синтез
+        </div>
+        <div>
+            <h3>Логика</h3>
+            <p>Как вам легко менять свои убеждения. Легко ли дискутировать с другими людьми. Можете ли понять убеждения других людей. Проанализировать их.</p>
+            <textarea placeholder="Пример: Интересны разные убеждения и как к ним пришли. Интреесны не сами методики и заключения, а исследования." rows="10" cols="45" name="text"></textarea><br>
+            <input name="methodofthinking5" type="radio" id="radioButtonEnternityAnalyse">Анализ
+            <input name="methodofthinking5" type="radio" id="radioButtonEnternitySyntes">Синтез
+            <input name="methodofthinking5" type="radio" id="radioButtonEnternityAnalysSystes" checked="checked">Анализ и Синтез
+        </div>
+        <div>
+            <h3>Эмоция</h3>
+            <p>При выражении себя учитываете эмоции других людей? Как формируется ваше настроение</p>
+            <textarea placeholder="Набираю пальцами на клавиатуре, этот текст, за окном тихо ездят машины. Тихо гудит вентилятор. Клавиши некоторые залипают. Занял удобное положение." rows="10" cols="45" name="text"></textarea><br>
+            <input name="methodofthinking6" type="radio" id="radioButtonEnternityAnalyse" checked="checked">Анализ
+            <input name="methodofthinking6" type="radio" id="radioButtonEnternitySyntes">Синтез
+            <input name="methodofthinking6" type="radio" id="radioButtonEnternityAnalysSystes">Анализ и Синтез
+        </div>
+        <div>
+            <h3>Физика</h3>
+            <p>Материальное благо состояние себя и окружающих. Учитываете ли вы желания физиологические других людей. Легко ли их менять подстраиваться.</p>
+            <textarea placeholder="Лучше мне расскажите я поверю.... Говорят у Украины будущего нету. Не знаю наверное надо верить. Или что-то делать с такой негативной динамикой развития. Из прошлого опыта собрать людей очень трудно, а активистов мало... Что-то мне подсказывает что это правда."
+                rows="10" cols="45" name="text"></textarea><br>
+            <input name="methodofthinking7" type="radio" id="radioButtonEnternityAnalyse">Анализ
+            <input name="methodofthinking7" type="radio" id="radioButtonEnternitySyntes" checked="checked">Синтез
+            <input name="methodofthinking7" type="radio" id="radioButtonEnternityAnalysSystes">Анализ и Синтез
+        </div>
+    </div>
 </div>
-<p>Соционику можно расматривать для простоты как информационный фильтр, решето.</p>
-<img class="compact-img" src="/images/psycalc-modelA.jpg" alt="">
+<p>Соционику можно расматривать для простоты как информационный фильтр, решето. Модель соционики отображает работу и закономерность фильтрации информации гипокампом.</p>
+<div class="flex-image-container">
+    <img class="compact-img" src="/images/psycalc-modelA.jpg" alt="">
+</div>
 <h2>А что будет если сложить такой пазл?</h2>
 <p>Представте себе мощную группу людей по психологическому расчету? Чего они смогут добиться и изменить вместе?</p>
 <p>О каких масштабах перемен идти будет речь. Общесвенная деятельность? Партия? Комания? Или может мощный стратап?</p>
-<img class="compact-img" src="/images/black-and-white-connect-hand-164531.jpg" alt="">
+<div class="flex-image-container">
+    <img class="compact-img" src="/images/black-and-white-connect-hand-164531.jpg" alt="">
+</div>
 <p lng="lng_description_1_example"></p>
 <h2 lng="lng_what_do_you_need"></h2>
 <p lng="lng_pay_attention"></p>
