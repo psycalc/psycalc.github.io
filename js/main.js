@@ -1,3 +1,11 @@
+$('input[type=radio][name=methodofthinking]').change(function() {
+    if (this.value == 'induction') {
+        alert("Allot Thai Gayo Bhai");
+    } else if (this.value == 'deduction') {
+        alert("Transfer Thai Gayo");
+    }
+});
+
 function toggle_show(id) {
     document.getElementById(id).style.display = document.getElementById(id).style.display == 'none' ? 'flex' : 'none';
 }
