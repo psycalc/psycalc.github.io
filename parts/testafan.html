@@ -1,0 +1,461 @@
+<!-- Display the countdown timer in an element -->
+<p id="demo"></p>
+
+
+<h1>Тест Афанасьева по психософии</h1>
+<p id="description">Данный тест был разработан А.Ю. Афанасьевым, автором психософии и книги «Синтаксис любви». Тест содержит 40 утверждений, касающихся психософских аспектов (Воли, Логики, Эмоции, Физики), для каждого из которых нужно указать, насколько оно вам соответствует.
+    Оценивать нужно по четырехбалльной шкале со следующими вариантами: «Нет», «Иногда», «Пожалуй» и «Да». Результатом теста является оценка того, какие именно сферы Бытия оказались для вас наиболее значимы, на основе этого делается предположение о психософском
+    типе.
+</p>
+
+<noscript>Внимание: для работы теста нужен включенный JavaScript!</noscript>
+
+<div id="test"></div>
+<script>
+    /* ========================================
+                                                                                                                                                                40-вопросый тест для определения психософского типа по приоритетам аспектов
+                                                                                                                                                                Автор методики: А.Ю. Афанасьев
+                                                                                                                                                                Автор программной реализации: 4X_Pro <admin@openproj.ru>
+                                                                                                                                                                (c) 2012, Единый Типологический Проект (TYPOLOGIES.RU)
+                                                                                                                                                                
+                                                                                                                                                                В соответствии с Условиями использования матриалов проекта (http://typologies.ru/terms.htm)
+                                                                                                                                                                при размещении теста на своем сайте необходимо явное
+                                                                                                                                                                указание, что тест разработан Единым Типологическим Проектом с активной гиперссылкой на него.
+                                                                                                                                                                =========================================== */
+    var outerInterval;
+
+    function questions_timer() {
+        // Set the date we're counting down to
+        // var countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
+        var oldDateObj = new Date();
+        // alert(oldDateObj.getDate());
+        var countDownDate = new Date(oldDateObj.getTime() - 0 * 60000);
+
+        // Update the count down every 1 second
+        outerInterval = setInterval(function() {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = now - countDownDate;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="demo"
+            document.getElementById("demo").innerHTML = "Время:" +
+                minutes + "m " + seconds + "s ";
+
+            // If the count down is finished, write some text 
+            if (distance < 0) {
+                clearInterval(outerInterval);
+                document.getElementById("demo").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    }
+
+    function Aleafan_Test(testElement, hidElement, onFinish) {
+        /* =============== ОБЩАЯ ЧАСТЬ ВСЕХ ТЕСТОВ ====================*/
+
+        var counter = 0;
+        var results = {
+            logic: 0,
+            emotion: 0,
+            physics: 0,
+            will: 0
+        };
+        var result_string = false;
+        var hash_flag = true;
+        var class_name = 'aleafan';
+
+        var show_question = function(q) { // вывод вопроса
+            startButton.style.display = 'none';
+            var html = '<p>Вопрос №' + (counter + 1) + ' из ' + questions.length + ' <progress value="' + (counter) + '" max="' + questions.length + '"></progress></p>';
+            html += '<big>' + q.text + '</big>'; // выводим текст вопроса
+            for (key in q.answers) { // и ответы
+                html += '<label> ' + (parseInt(key) + 1) + ' <input type="radio" name="answer" value="' + key + '" onclick="this.form.onsubmit()"/> ' + q.answers[key] + '</label>';
+            }
+            fade_in();
+            innerElement.innerHTML = html;
+        }
+
+        var key_string = 'ploikjuyhgtrfdewsaqzxcvbnm1234567890PLOIKJUYHGTRFDEWSAQZXCVBNM'; // строка для кодирования результатов теста в хеше
+
+        var enc_number = function(number) {
+            if (number < 0 || number > key_string.length) {
+                alert('Ошибка кодирования, слишком большое значение ' + number);
+                return '';
+            } else return key_string.charAt(number);
+        }
+
+        var dec_number = function(char) {
+            return key_string.indexOf(char);
+        }
+
+        function getInputWithValue(wrapper, value) {
+            var inputs = wrapper.getElementsByTagName("input");
+            var i = inputs.length;
+            while (i--) {
+                if (inputs[i].value === value) {
+                    return inputs[i];
+                }
+            }
+            return null;
+        }
+        var start = function() { // сбрасываем результаты предыдущего прохождеия теста и счетчик вопросов
+            if (hidElement && hidElement.style) {
+                hidElement.style.display = 'none'
+            } // скрываем вводный текст, если указан элемент с ним
+            if (!decode_hash()) { // если не удалось извлечь из хеша данные о том, откуда продолжить, начинаем сначала
+                counter = 0; // номер текущего вопроса
+                results = {
+                    logic: 0,
+                    emotion: 0,
+                    physics: 0,
+                    will: 0
+                };
+                document.location.hash = '';
+            }
+            show_question(questions[counter]);
+            questions_timer();
+            document.onkeyup = function(e) {
+                var wrapper = document.getElementsByClassName(class_name)[0];
+                if (e.which == 49) {
+                    getInputWithValue(wrapper, "0").checked = true;
+                    next();
+                } else if (e.which == 50) {
+                    getInputWithValue(wrapper, "1").checked = true;
+                    next();
+                } else if (e.which == 51) {
+                    getInputWithValue(wrapper, "2").checked = true;
+                    next();
+                } else if (e.which == 52) {
+                    getInputWithValue(wrapper, "3").checked = true;
+                    next();
+                };
+            }
+        }
+
+        var next = function() { // переход к следующему вопросу
+            var answer_id = -1;
+            for (i = 0; i < testForm.elements.length; i++) { // обходим все элементы формы, чтобы проверить radiobuttons с ответами
+                if (testForm.elements[i].name == 'answer' && testForm.elements[i].checked == true) answer_id = testForm.elements[i].value; // если текущий radiobutton с answer
+            }
+            var next_id = questions[counter].onanswer(answer_id);
+            if (!next_id) {
+                next_id = counter + 1;
+            }
+            counter = next_id;
+            if (counter == -1 || counter >= questions.length) { // если функция onanswer вернула -1 или вопросы кончились, выдаем результат теста
+                calculate_result();
+                fade_in();
+                show_result();
+                startButton.style.display = '';
+                if (onFinish) onFinish(); // выполняем функцию-обработчик завершения теста
+            } else { // иначе задаем следующий вопрос
+                show_question(questions[counter]);
+            }
+            hash_flag = false; // временно блокируем обработчик хешей, чтобы не выполнять лишних действий
+            document.location.hash = encode_hash();
+            hash_flag = true;
+            return false; // нужно, чтобы не происходило обновление страницы в результате отправки формы
+        }
+
+        function fade_in() { // "всплывающий" показ вопроса
+            testElement.style.opacity = 0.0;
+            var si = setInterval(function() {
+                var alpha = parseFloat(testElement.style.opacity) + 0.05;
+                testElement.style.opacity = alpha;
+                if (alpha >= 1) clearInterval(si);
+            }, 40);
+        }
+
+        /* ========= ЗДЕСЬ НАЧИНАЕТСЯ ТЕСТ-ЗАВИСИМАЯ ЧАСТЬ ================*/
+        var answers = {
+            0: 'Нет',
+            1: 'Иногда',
+            2: 'Пожалуй',
+            3: 'Да'
+        };
+
+        var fn_logic = function(answer_id) {
+                results.logic += parseInt(answer_id);
+            } // обработчик ответа по Логике
+        var fn_emotion = function(answer_id) {
+                results.emotion += parseInt(answer_id);
+            } // обработчик ответа по Логике
+        var fn_physics = function(answer_id) {
+                results.physics += parseInt(answer_id);
+            } // обработчик ответа по Логике
+        var fn_will = function(answer_id) {
+                results.will += parseInt(answer_id);
+            } // обработчик ответа по Логике
+
+        var questions = [{
+                text: 'Вы считаете себя вдумчивым человеком?',
+                answers: answers,
+                onanswer: fn_logic
+            }, {
+                text: 'Вы доверяете своему разуму?',
+                answers: answers,
+                onanswer: fn_logic
+            }, {
+                text: 'Вас раздражает глупость?',
+                answers: answers,
+                onanswer: fn_logic
+            }, {
+                text: 'Вы с доверием относитесь к логике?',
+                answers: answers,
+                onanswer: fn_logic
+            }, {
+                text: 'Вы самостоятельны в своем мышлении?',
+                answers: answers,
+                onanswer: fn_logic
+            }, {
+                text: 'Вы подчиняете свою жизнь своим воззрениям?',
+                answers: answers,
+                onanswer: fn_logic
+            }, {
+                text: 'Вам интересна научная информация?',
+                answers: answers,
+                onanswer: fn_logic
+            }, {
+                text: 'Радуют ли Вас проявления сильной мысли?',
+                answers: answers,
+                onanswer: fn_logic
+            }, {
+                text: 'Вы уверенно чувствуете себя во время дискуссий?',
+                answers: answers,
+                onanswer: fn_logic
+            }, {
+                text: 'Сами Вы верите в строгость своих логических построений?',
+                answers: answers,
+                onanswer: fn_logic
+            },
+
+            {
+                text: 'Вы считаете себя эмоциональным человеком?',
+                answers: answers,
+                onanswer: fn_emotion
+            }, {
+                text: 'Вы любите театр?',
+                answers: answers,
+                onanswer: fn_emotion
+            }, {
+                text: 'Вы влюбчивы?',
+                answers: answers,
+                onanswer: fn_emotion
+            }, {
+                text: 'Резко ли меняются Ваши настроения?',
+                answers: answers,
+                onanswer: fn_emotion
+            }, {
+                text: 'Вы суеверны?',
+                answers: answers,
+                onanswer: fn_emotion
+            }, {
+                text: 'Чувства властны над Вами?',
+                answers: answers,
+                onanswer: fn_emotion
+            }, {
+                text: 'Склонны ли Вы к актерству?',
+                answers: answers,
+                onanswer: fn_emotion
+            }, {
+                text: 'Вам присуща реакция слезами на происходящее?',
+                answers: answers,
+                onanswer: fn_emotion
+            }, {
+                text: 'Вы доверяете астрологии?',
+                answers: answers,
+                onanswer: fn_emotion
+            }, {
+                text: 'Есть ли у Вас тяга к искусству?',
+                answers: answers,
+                onanswer: fn_emotion
+            },
+
+            {
+                text: 'Вы считаете себя физически крепким человеком?',
+                answers: answers,
+                onanswer: fn_physics
+            }, {
+                text: 'Вы прижимисты?',
+                answers: answers,
+                onanswer: fn_physics
+            }, {
+                text: 'Тяга к физическим нагрузкам присуща Вам?',
+                answers: answers,
+                onanswer: fn_physics
+            }, {
+                text: 'Вы склонны к насилию?',
+                answers: answers,
+                onanswer: fn_physics
+            }, {
+                text: 'Спорт занимает(л) в Вашей жизни значительное место?',
+                answers: answers,
+                onanswer: fn_physics
+            }, {
+                text: 'Серьезно ли Вы относитесь к деньгам?',
+                answers: answers,
+                onanswer: fn_physics
+            }, {
+                text: 'Вы собственник?',
+                answers: answers,
+                onanswer: fn_physics
+            }, {
+                text: 'Можно ли Вас назвать гурманом?',
+                answers: answers,
+                onanswer: fn_physics
+            }, {
+                text: 'Вас заботит Ваше здоровье?',
+                answers: answers,
+                onanswer: fn_physics
+            }, {
+                text: 'Вы сексуальны?',
+                answers: answers,
+                onanswer: fn_physics
+            },
+
+            {
+                text: 'Вы считаете себя волевым человеком?',
+                answers: answers,
+                onanswer: fn_will
+            }, {
+                text: 'Вам легко руководить людьми?',
+                answers: answers,
+                onanswer: fn_will
+            }, {
+                text: 'Вы человек независимый?',
+                answers: answers,
+                onanswer: fn_will
+            }, {
+                text: 'Вы решительны?',
+                answers: answers,
+                onanswer: fn_will
+            }, {
+                text: 'Вы всегда контролируете свое поведение?',
+                answers: answers,
+                onanswer: fn_will
+            }, {
+                text: 'Считаете ли Вы себя настойчивым человеком?',
+                answers: answers,
+                onanswer: fn_will
+            }, {
+                text: 'Вам всегда удается исполнять принятые решения?',
+                answers: answers,
+                onanswer: fn_will
+            }, {
+                text: 'Вы ответственный человек?',
+                answers: answers,
+                onanswer: fn_will
+            }, {
+                text: 'Вы любопытны?',
+                answers: answers,
+                onanswer: fn_will
+            }, {
+                text: 'Вы уверены в своем праве вести за собой людей?',
+                answers: answers,
+                onanswer: fn_will
+            }
+        ];
+
+        var calculate_result = function() { // обработка результатов
+            var resarray = [results.logic, results.emotion, results.physics, results.will];
+            var same = false;
+            for (i = 0; i < resarray.length && !same; i++) {
+                for (j = i + 1; j < resarray.length && !same; j++) {
+                    if (resarray[i] == resarray[j]) same = true; // если нашли одинаковые элементы, значит, есть неоднозначность
+                }
+            }
+            result_string = '';
+            if (!same) { // если нет одинаковых результатов, формируем строку с обозначением типа
+                resarray.sort(function(a, b) {
+                    return a - b;
+                }); // своя функция сортировки нужна потому что JavaScript сортирует numbers как строки
+                for (i = resarray.length; i >= 0; i--) {
+                    if (resarray[i] == results.logic) result_string += 'Л';
+                    if (resarray[i] == results.emotion) result_string += 'Э';
+                    if (resarray[i] == results.physics) result_string += 'Ф';
+                    if (resarray[i] == results.will) result_string += 'В';
+                }
+            }
+        }
+
+        var show_result = function() { // вывод результатов теста пользователю
+            clearInterval(outerInterval); //останавливаем время.
+            var html = '<h3>Результат теста</h3>';
+            html += '<p>Логика: ' + results.logic + ' балла из 30<br />';
+            html += 'Эмоция: ' + results.emotion + ' балла из 30<br />';
+            html += 'Физика: ' + results.physics + ' балла из 30<br />';
+            html += 'Воля: ' + results.will + ' балла из 30</p>';
+            if (result_string) html += '<p><b>Предполагаемый тип: <span>' + result_string + '</span></b></p>';
+            else html += '<p><b>Не удается определить тип однозначно. Попробуйте пройти тест еще раз через некоторое время.</b></p>';
+            innerElement.innerHTML = html;
+
+        }
+
+        var encode_hash = function() {
+            return enc_number(counter) + enc_number(results.logic) + enc_number(results.emotion) + enc_number(results.physics) + enc_number(results.will);
+        }
+
+        var decode_hash = function() {
+            var startarray = document.location.hash;
+            if (document.location.hash.length != 6) return false;
+            counter = dec_number(startarray.charAt(1));
+            results.logic = dec_number(startarray.charAt(2));
+            results.emotion = dec_number(startarray.charAt(3));
+            results.physics = dec_number(startarray.charAt(4));
+            results.will = dec_number(startarray.charAt(5));
+            if (counter == -1 || counter >= questions.length) {
+                calculate_result();
+                show_result();
+                if (hidElement && hidElement.style) {
+                    hidElement.style.display = 'none'
+                } // скрываем вводный текст, если указан элемент с ним
+                return false;
+            }
+            return true;
+        }
+
+        var hash_change = function() {
+            if (hash_flag) { //
+                if (decode_hash()) show_question(questions[counter]);
+            }
+        }
+
+        /* ========= ЧАСТЬ, ОТВЕЧАЮЩАЯ ЗА ЗАПУСК ТЕСТА ================================== */
+
+        try {
+            // создаем элементы, используемые при выводе вопросов и результата
+            var testForm = document.createElement('form');
+            if (class_name) testForm.className = class_name; // задаем имя класса, это может быть нужно для специфических стилей для конкретного теста
+            testForm.onsubmit = next; // вешаем обработчик, который будет вызываться после того, как пользователь ответил на вопрос
+            var qfset = document.createElement('fieldset');
+            testForm.appendChild(qfset);
+            var innerElement = document.createElement('div'); // в этот внутренний div будем выводить вопросы (чтобы можно было делать это через innerHTML, а не возиться с DOM)
+            qfset.appendChild(innerElement);
+            var startButton = document.createElement('input'); // создаем кнопку, по нажатию на которую будет запускаться тест
+            startButton.type = 'button';
+            startButton.value = 'Начать тест';
+            startButton.onclick = start;
+            qfset.appendChild(startButton);
+            testElement.appendChild(testForm);
+
+            // вешаем обработчик изменения хеша
+            if (window.addEventListener) window.addEventListener('hashchange', hash_change);
+            else if (window.attachEvent) window.attachEvent('onhashchange', hash_change);
+            else window.onhashchange = hash_change;
+
+            if (decode_hash()) start(); // если уже задан хеш, то стартуем сразу, не ждем нажатия кнопки
+        } catch (e) {
+            alert(e.message);
+        }
+
+    }
+    var test = new Aleafan_Test(document.getElementById('test'), document.getElementById('description'), false);
+</script>

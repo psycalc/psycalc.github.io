@@ -7,10 +7,12 @@ $('input[type=radio][name=methodofthinking]').change(function() {
 });
 
 function toggle_show(id) {
+    console.log("TCL: functiontoggle_show -> toggle_show", toggle_show)
     document.getElementById(id).style.display = document.getElementById(id).style.display == 'none' ? 'flex' : 'none';
 }
 
 function openTab(evt, tabName, contentClassName = "tabcontent", tablinkClass = "tablinks") {
+    console.log("TCL: openTab -> openTab", openTab)
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName(contentClassName);
     for (i = 0; i < tabcontent.length; i++) {
@@ -38,7 +40,7 @@ function firstAjax() {
         url: "parts/" + "short" + ".html",
         success: function(result) {
             $('#' + "short").html(result);
-            $.redrawLanguage("rus");
+            $.redrawLanguage(event, "rus");
         }
     });
 };
@@ -46,7 +48,15 @@ firstAjax();
 //pseudo SPA
 var LANGUAGE;
 
-$.redrawLanguage = function(lang) {
+$.redrawLanguage = function(evt, lang) {
+    lngtablinkClass = "lngtablinks";
+    lngtablinks = document.getElementsByClassName(lngtablinkClass);
+    for (i = 0; i < lngtablinks.length; i++) {
+        lngtablinks[i].className = lngtablinks[i].className.replace(" active", "");
+    }
+    if (typeof(evt) !== 'undefined') {
+        evt.currentTarget.className += " active";
+    }
     $.ajax({
         url: 'lang/' + lang + '.json', //тянем файл с языком
         dataType: 'json',

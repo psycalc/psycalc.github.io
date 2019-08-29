@@ -1,0 +1,1221 @@
+<!-- Display the countdown timer in an element -->
+<p id="demo"></p>
+
+<h1>Тест по темпористике</h1>
+
+<p>Тест по новой типологии личности — <a href="http://typologies.ru/temporistics/" class="external">темпористике</a>, разработанный одним из ее авторов — Александром Латышевым. Тест содержит 54 вопроса, на каждый из которых возможно три варианта ответа «Да»,
+    «Не знаю/Не важно» и «Нет». По результатам теста будет показано количество баллов для каждого темпористического типа. Тип, набравший максимальное количество баллов, следует считать основной версией.</p>
+<p>Подробнее о темпористике можно узнать на сайте <a class="external" href="http://темпористика.рф/">ТЕМПОРИСТИКА.РФ</a>.</p>
+
+<noscript>Для корректной работы теста должен быть включен JavaScript</noscript>
+
+<div id="test"></div>
+<script>
+    /* ========================================
+                                                                                                                                        Тест по темпористике
+                                                                                                                                        Автор методики: Александр Латышев <http://vk.com/mozgosteb>
+                                                                                                                                        Автор программной реализации: 4X_Pro <admin@openproj.ru>
+                                                                                                                                        (c) 2012, Единый Типологический Проект (TYPOLOGIES.RU)
+
+                                                                                                                                        При размещении теста на своем сайте необходимо разместить гиперссылки на сайт автора теста (http://темпористика.рф) и сайт разработчика (http://typologies.ru). 
+                                                                                                                                        =========================================== */
+    var outerInterval;
+
+    function questions_timer() {
+        // Set the date we're counting down to
+        // var countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
+        var oldDateObj = new Date();
+        // alert(oldDateObj.getDate());
+        var countDownDate = new Date(oldDateObj.getTime() - 0 * 60000);
+
+        // Update the count down every 1 second
+        outerInterval = setInterval(function() {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = now - countDownDate;
+
+            // Time calculations for days, hours, minutes and seconds
+            // var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            // var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="demo"
+            document.getElementById("demo").innerHTML = "Время:" +
+                minutes + "m " + seconds + "s ";
+
+            // If the count down is finished, write some text 
+            if (distance < 0) {
+                clearInterval(outerInterval);
+                document.getElementById("demo").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    }
+
+    function Temporistics_Test(testElement, hidElement, onFinish) {
+        /* =============== ОБЩАЯ ЧАСТЬ ВСЕХ ТЕСТОВ ====================*/
+        var counter = 0;
+        var results = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // результаты будут массивом из 24 элементов ("веса" для каждого изтипов)
+        var hash_flag = true;
+        var class_name = 'tmpr';
+
+        var show_question = function(q) { // вывод вопроса
+            startButton.style.display = 'none';
+            var html = '<p>Вопрос №' + (counter + 1) + ' из ' + questions.length + ' <progress value="' + (counter) + '" max="' + questions.length + '"></progress></p>';
+            html += '<big>' + q.text + '</big>'; // выводим текст вопроса
+            for (key in q.answers) { // и ответы
+                html += '<label><input type="radio" name="answer" value="' + key + '" onclick="this.form.onsubmit()"/> ' + q.answers[key] + '</label>';
+            }
+            fade_in();
+            innerElement.innerHTML = html;
+        }
+
+        var key_string = 'ploikjuyhgtrfdewsaqzxcvbnm1234567890PLOIKJUYHGTRFDEWSAQZXCVBNM'; // строка для кодирования результатов теста в хеше
+
+        var enc_number = function(number) {
+            if (number < 0 || number > key_string.length) {
+                alert('Ошибка кодирования, слишком большое значение ' + number);
+                return '';
+            } else return key_string.charAt(number);
+        }
+
+        var dec_number = function(char) {
+            return key_string.indexOf(char);
+        }
+
+        function getInputWithValue(wrapper, value) {
+            var inputs = wrapper.getElementsByTagName("input");
+            var i = inputs.length;
+            while (i--) {
+                if (inputs[i].value === value) {
+                    return inputs[i];
+                }
+            }
+            return null;
+        }
+        var start = function() { // сбрасываем результаты предыдущего прохождеия теста и счетчик вопросов
+            if (hidElement && hidElement.style) {
+                hidElement.style.display = 'none'
+            } // скрываем вводный текст, если указан элемент с ним
+            if (!decode_hash()) { // если не удалось извлечь из хеша данные о том, откуда продолжить, начинаем сначала
+                counter = 0; // номер текущего вопроса
+                for (i = 0; i < 24; i++) results[i] = 0; // обнуляем результаты перед тестом    
+                document.location.hash = '';
+            }
+            show_question(questions[counter]);
+            document.onkeyup = function(e) {
+                var wrapper = document.getElementsByClassName(class_name)[0];
+                if (e.which == 49) {
+                    getInputWithValue(wrapper, "0").checked = true;
+                    next();
+                } else if (e.which == 50) {
+                    getInputWithValue(wrapper, "1").checked = true;
+                    next();
+                } else if (e.which == 51) {
+                    getInputWithValue(wrapper, "2").checked = true;
+                    next();
+                }
+            };
+            questions_timer();
+        }
+
+        var next = function() { // переход к следующему вопросу
+            var answer_id = -1;
+            for (i = 0; i < testForm.elements.length; i++) { // обходим все элементы формы, чтобы проверить radiobuttons с ответами
+                if (testForm.elements[i].name == 'answer' && testForm.elements[i].checked == true) answer_id = testForm.elements[i].value; // если текущий radiobutton с answer 
+            }
+            var next_id = questions[counter].onanswer(answer_id);
+            if (!next_id) {
+                next_id = counter + 1;
+            }
+            counter = next_id;
+            if (counter == -1 || counter >= questions.length) { // если функция onanswer вернула -1 или вопросы кончились, выдаем результат теста    
+                calculate_result();
+                fade_in();
+                show_result();
+                startButton.style.display = '';
+                if (onFinish) onFinish(); // выполняем функцию-обработчик завершения теста
+            } else { // иначе задаем следующий вопрос
+                show_question(questions[counter]);
+            }
+            hash_flag = false; // временно блокируем обработчик хешей, чтобы не выполнять лишних действий
+            document.location.hash = encode_hash();
+            hash_flag = true;
+            return false; // нужно, чтобы не происходило обновление страницы в результате отправки формы
+        }
+
+        function fade_in() { // "всплывающий" показ вопроса
+            testElement.style.opacity = 0.0;
+            var si = setInterval(function() {
+                var alpha = parseFloat(testElement.style.opacity) + 0.05;
+                testElement.style.opacity = alpha;
+                if (alpha >= 1) clearInterval(si);
+            }, 25);
+        }
+
+        /* ========= ЗДЕСЬ НАЧИНАЕТСЯ ТЕСТ-ЗАВИСИМАЯ ЧАСТЬ ================*/
+        var answers = {
+            '0': 'Скорее Да',
+            '1': 'Не знаю/Не важно',
+            '2': 'Скорее Нет'
+        };
+        var typenames = ['ПНБВ', 'ПНВБ', 'ПВНБ', 'ПВБН', 'ПБВН', 'ПБНВ', 'НПБВ', 'НПВБ', 'НВПБ', 'НВБП', 'НБПВ', 'НБВП', 'БПНВ', 'БПВН', 'БВНП', 'БВПН', 'БНВП', 'БНПВ', 'ВПНБ', 'ВПБН', 'ВНПБ', 'ВНБП', 'ВБПН', 'ВБНП'];
+
+        var fn_answer = function(answer_data) { // обработчик для прямого ответа
+            return function(answer_id) { // здесь используем замыкание, чтобы не генерировать много похожих функций
+                    var masks = answer_data[answer_id].masks;
+                    var weight = answer_data[answer_id].weight;
+                    var subResults = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                    for (n = 0; n < masks.length; n++) { // для всех масок определяем номера типов и для соответствующих типов плюсуем вес к результатам
+                        //		console.log(n + ' in ' + masks.length);
+                        //		console.log(masks[n] + ' in ' + masks.length);
+                        var types = mask_match(masks[n]);
+                        for (j = 0; j < types.length; j++) subResults[types[j]] = 1;
+                        //		console.log(n + ' in ' + masks.length);
+                    }
+                    for (k = 0; k < subResults.length; k++) {
+                        results[k] = results[k] + subResults[k] * weight
+                    }
+                    //	console.log(results);
+                } // помещаем ответ в соответствующий элемент массива
+        }
+
+        function mask_match(mask) {
+            var inverse = false;
+            if (mask[0] == '!') {
+                inverse = true;
+                mask = mask.substr(1);
+            }
+            var res = [];
+            for (i = 0; i < typenames.length; i++) {
+                var matched = true;
+                for (j = 0; j < mask.length && matched; j++) matched = matched && (mask[j] == typenames[i][j] || mask[j] == '*')
+                if (matched != inverse) res.push(i);
+            }
+            return res;
+        }
+
+        var questions = [{
+            text: 'Я ненавижу конкурировать ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.8,
+                    masks: ['**Н*', '**П*']
+                },
+                '1': {
+                    weight: 0.8,
+                    masks: ['**Б*', '**В*']
+                },
+                '2': {
+                    weight: 0.8,
+                    masks: ['**Б*', '**В*']
+                }
+            })
+        }, {
+            text: 'Время все расставит по местам ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 1.5,
+                    masks: []
+                },
+                '1': {
+                    weight: 1.5,
+                    masks: ['!*Б**']
+                },
+                '2': {
+                    weight: 1.5,
+                    masks: ['!*Б**']
+                }
+            })
+        }, {
+            text: 'Мне ничего не стоит вникнуть в чужой замысел и дополнить его ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.133333333333332,
+                    masks: ['Б***', 'В***', '*В**', '*Б**']
+                },
+                '1': {
+                    weight: 0.133333333333332,
+                    masks: []
+                },
+                '2': {
+                    weight: 0.133333333333332,
+                    masks: ['ПН**', 'НП**']
+                }
+            })
+        }, {
+            text: 'Я не могу придти в гости без приглашения ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 1.5,
+                    masks: []
+                },
+                '1': {
+                    weight: 1.5,
+                    masks: []
+                },
+                '2': {
+                    weight: 1.5,
+                    masks: ['!**Н*']
+                }
+            })
+        }, {
+            text: 'Я принимаю решения под влиянием момента ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.4,
+                    masks: ['Н***', '*Н**']
+                },
+                '1': {
+                    weight: 0.4,
+                    masks: ['**Н*', '***Н']
+                },
+                '2': {
+                    weight: 0.4,
+                    masks: ['**Н*', '***Н']
+                }
+            })
+        }, {
+            text: 'В прошлом слишком много неприятных воспоминаний, я предпочитаю не думать о них. ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.5,
+                    masks: ['!***П']
+                },
+                '1': {
+                    weight: 0.5,
+                    masks: ['!**П*']
+                },
+                '2': {
+                    weight: 0.5,
+                    masks: ['!**П*']
+                }
+            })
+        }, {
+            text: 'Я хорошо понимаю кто я такой(ая)',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 1.2,
+                    masks: ['П***', '*П**']
+                },
+                '1': {
+                    weight: 1.2,
+                    masks: ['**П*', '***П']
+                },
+                '2': {
+                    weight: 1.2,
+                    masks: ['**П*', '***П']
+                }
+            })
+        }, {
+            text: 'Жизнь без приключений — ничто ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.5,
+                    masks: ['!***П']
+                },
+                '1': {
+                    weight: 0.5,
+                    masks: []
+                },
+                '2': {
+                    weight: 0.5,
+                    masks: ['!П***']
+                }
+            })
+        }, {
+            text: 'У меня почти всегда есть план ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.7,
+                    masks: ['Б***']
+                },
+                '1': {
+                    weight: 0.7,
+                    masks: ['!Б***']
+                },
+                '2': {
+                    weight: 0.7,
+                    masks: ['!Б***']
+                }
+            })
+        }, {
+            text: 'Абсурд - это весело ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.7,
+                    masks: ['!**В*']
+                },
+                '1': {
+                    weight: 0.7,
+                    masks: ['**В*', '***В']
+                },
+                '2': {
+                    weight: 0.7,
+                    masks: []
+                }
+            })
+        }, {
+            text: 'Счастливые воспоминания легко приходят в голову ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.5,
+                    masks: ['!**П*']
+                },
+                '1': {
+                    weight: 0.5,
+                    masks: []
+                },
+                '2': {
+                    weight: 0.5,
+                    masks: []
+                }
+            })
+        }, {
+            text: 'Удача дает больше чем упорная работа ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.75,
+                    masks: ['*Н**']
+                },
+                '1': {
+                    weight: 0.75,
+                    masks: []
+                },
+                '2': {
+                    weight: 0.75,
+                    masks: ['!*Н**']
+                }
+            })
+        }, {
+            text: 'Бездействие меня нервирует ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.5,
+                    masks: ['Б***']
+                },
+                '1': {
+                    weight: 0.5,
+                    masks: []
+                },
+                '2': {
+                    weight: 0.5,
+                    masks: []
+                }
+            })
+        }, {
+            text: 'Обожаю английский юмор ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 1.25,
+                    masks: ['В***', '*В**']
+                },
+                '1': {
+                    weight: 1.25,
+                    masks: []
+                },
+                '2': {
+                    weight: 1.25,
+                    masks: ['**В*', '***В']
+                }
+            })
+        }, {
+            text: 'Мои “скелеты в шкафу” вряд ли кому-нибудь интересны ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.5,
+                    masks: []
+                },
+                '1': {
+                    weight: 0.5,
+                    masks: ['!***П']
+                },
+                '2': {
+                    weight: 0.5,
+                    masks: ['!***П']
+                }
+            })
+        }, {
+            text: 'Когда у меня есть цель, то все что к ней не относится перестает быть интересным ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 1.2,
+                    masks: ['БП**', 'Б*П*', 'Б**П', '*БП*', '*Б*П', '**БП']
+                },
+                '1': {
+                    weight: 1.2,
+                    masks: []
+                },
+                '2': {
+                    weight: 1.2,
+                    masks: ['ПБ**', 'П*Б*', 'П**Б', '*ПБ*', '*П*Б', '**ПБ']
+                }
+            })
+        }, {
+            text: 'Занимаясь чем-то я часто забываю про время ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 1.5,
+                    masks: []
+                },
+                '1': {
+                    weight: 1.5,
+                    masks: ['**Н*', '***Н']
+                },
+                '2': {
+                    weight: 1.5,
+                    masks: ['**Н*', '***Н']
+                }
+            })
+        }, {
+            text: 'Когда я не знаю что обо мне думают, меня это совершенно не волнует ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.666666666666667,
+                    masks: ['*П**', '***П']
+                },
+                '1': {
+                    weight: 0.666666666666667,
+                    masks: []
+                },
+                '2': {
+                    weight: 0.666666666666667,
+                    masks: ['П***', '**П*']
+                }
+            })
+        }, {
+            text: 'В идеале, хорошо было бы проживать каждый день как последний ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 1,
+                    masks: ['Н***']
+                },
+                '1': {
+                    weight: 1,
+                    masks: []
+                },
+                '2': {
+                    weight: 1,
+                    masks: []
+                }
+            })
+        }, {
+            text: 'Мне трудно сориентироваться в незнакомом месте ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.8,
+                    masks: ['**Н*', '***Н']
+                },
+                '1': {
+                    weight: 0.8,
+                    masks: []
+                },
+                '2': {
+                    weight: 0.8,
+                    masks: ['Н***', '*Н**']
+                }
+            })
+        }, {
+            text: 'Все слишком изменчиво чтобы можно было планировать свое будущее ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 1.25,
+                    masks: ['**Б*', '***Б']
+                },
+                '1': {
+                    weight: 1.25,
+                    masks: []
+                },
+                '2': {
+                    weight: 1.25,
+                    masks: ['Б***', '*Б**']
+                }
+            })
+        }, {
+            text: 'В моем лице есть что-то детское ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.5,
+                    masks: []
+                },
+                '1': {
+                    weight: 0.5,
+                    masks: ['!**П*']
+                },
+                '2': {
+                    weight: 0.5,
+                    masks: ['!**П*']
+                }
+            })
+        }, {
+            text: 'Мне нравится скорее принимать гостей, нежели ходить в гости ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 1.25,
+                    masks: ['Н***', '**Н*']
+                },
+                '1': {
+                    weight: 1.25,
+                    masks: []
+                },
+                '2': {
+                    weight: 1.25,
+                    masks: ['*Н**', '***Н']
+                }
+            })
+        }, {
+            text: 'Изучая что-то новое, я часто вижу скрытые закономерности, о которых нигде не говорится ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.8,
+                    masks: ['В***', '*В**']
+                },
+                '1': {
+                    weight: 0.8,
+                    masks: ['**В*', '***В']
+                },
+                '2': {
+                    weight: 0.8,
+                    masks: ['**В*', '***В']
+                }
+            })
+        }, {
+            text: 'Я легче чем многие переношу скуку ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 1,
+                    masks: []
+                },
+                '1': {
+                    weight: 1,
+                    masks: []
+                },
+                '2': {
+                    weight: 1,
+                    masks: ['!***Н']
+                }
+            })
+        }, {
+            text: 'Коллекционирование - интереснейшее занятие ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.5,
+                    masks: ['П***', '*П**']
+                },
+                '1': {
+                    weight: 0.5,
+                    masks: ['!П***']
+                },
+                '2': {
+                    weight: 0.5,
+                    masks: ['!П***']
+                }
+            })
+        }, {
+            text: 'Я далеко не всегда могу сказать зачем я делаю те или иные вещи ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.8,
+                    masks: ['**В*', '***В']
+                },
+                '1': {
+                    weight: 0.8,
+                    masks: []
+                },
+                '2': {
+                    weight: 0.8,
+                    masks: ['В***', '*В**']
+                }
+            })
+        }, {
+            text: 'Много раз я начинал(а) дела к котором, в итоге, оказывался(ась) совершенно неспособным ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.7,
+                    masks: ['***Б']
+                },
+                '1': {
+                    weight: 0.7,
+                    masks: []
+                },
+                '2': {
+                    weight: 0.7,
+                    masks: ['!***Б']
+                }
+            })
+        }, {
+            text: 'Придя в новый коллектив, я быстро становлюсь своим ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 1.5,
+                    masks: ['*Н**']
+                },
+                '1': {
+                    weight: 1.5,
+                    masks: ['*Н**', '***Н']
+                },
+                '2': {
+                    weight: 1.5,
+                    masks: []
+                }
+            })
+        }, {
+            text: 'Я воспринимаю мир не так ярко и живо как большинство моих знакомых ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.5,
+                    masks: []
+                },
+                '1': {
+                    weight: 0.5,
+                    masks: ['!***Н']
+                },
+                '2': {
+                    weight: 0.5,
+                    masks: ['!***Н']
+                }
+            })
+        }, {
+            text: 'Мне легче говорить о вещах, которые не касаются меня лично ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.4,
+                    masks: ['ВП**', 'В*П*', 'В**П', '*ВП*', '*В*П', '**ВП']
+                },
+                '1': {
+                    weight: 0.4,
+                    masks: ['**В*', '***В']
+                },
+                '2': {
+                    weight: 0.4,
+                    masks: ['ПВ**', 'П*В*', 'П**В', '*ПВ*', '*П*В', '**ПВ']
+                }
+            })
+        }, {
+            text: 'Я принимаю каждый день, каков он есть, не пытаясь планировать его заранее ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 1.2,
+                    masks: ['НБ**', 'Н*Б*', 'Н**Б', '*НБ*', '*Н*Б', '**НБ']
+                },
+                '1': {
+                    weight: 1.2,
+                    masks: []
+                },
+                '2': {
+                    weight: 1.2,
+                    masks: ['БН**', 'Б*Н*', 'Б**Н', '*БН*', '*Б*Н', '**БН']
+                }
+            })
+        }, {
+            text: 'Импровизация - явно не мой жанр ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.4,
+                    masks: ['**Н*', '***Н']
+                },
+                '1': {
+                    weight: 0.4,
+                    masks: ['**Н*', '***Н']
+                },
+                '2': {
+                    weight: 0.4,
+                    masks: ['Н***', '*Н**']
+                }
+            })
+        }, {
+            text: 'Знания не бывают лишними ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.1,
+                    masks: ['П***']
+                },
+                '1': {
+                    weight: 0.1,
+                    masks: ['!П***']
+                },
+                '2': {
+                    weight: 0.1,
+                    masks: ['!П***']
+                }
+            })
+        }, {
+            text: 'Процесс перестает приносить мне удовольствие, если приходится думать о цели, последствиях и практических результатах ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 1.333333333333333,
+                    masks: ['**Б*', '***Б']
+                },
+                '1': {
+                    weight: 1.333333333333333,
+                    masks: []
+                },
+                '2': {
+                    weight: 1.333333333333333,
+                    masks: ['Б***', '*Б**']
+                }
+            })
+        }, {
+            text: 'Мои успехи редко видны со стороны ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 1,
+                    masks: ['ПБ**', 'БП**']
+                },
+                '1': {
+                    weight: 1,
+                    masks: []
+                },
+                '2': {
+                    weight: 1,
+                    masks: []
+                }
+            })
+        }, {
+            text: 'Когда сразу несколько вещей требует внимания - я теряюсь ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.1,
+                    masks: ['***Н']
+                },
+                '1': {
+                    weight: 0.1,
+                    masks: ['!***Н']
+                },
+                '2': {
+                    weight: 0.1,
+                    masks: ['!***Н']
+                }
+            })
+        }, {
+            text: 'Мне приятно думать о прошлом ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.666666666666667,
+                    masks: []
+                },
+                '1': {
+                    weight: 0.666666666666667,
+                    masks: []
+                },
+                '2': {
+                    weight: 0.666666666666667,
+                    masks: ['П***', '**П*']
+                }
+            })
+        }, {
+            text: 'Я часто ощущаю себя лишним, ненужным ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.7,
+                    masks: ['**Н*']
+                },
+                '1': {
+                    weight: 0.7,
+                    masks: []
+                },
+                '2': {
+                    weight: 0.7,
+                    masks: ['!**Н*']
+                }
+            })
+        }, {
+            text: 'Судьба влияет на мою жизнь ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.1,
+                    masks: ['!***В']
+                },
+                '1': {
+                    weight: 0.1,
+                    masks: ['**В*', '***В']
+                },
+                '2': {
+                    weight: 0.1,
+                    masks: ['!**В*']
+                }
+            })
+        }, {
+            text: 'Как только дело закончено, я теряю к нему интерес ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.75,
+                    masks: ['БП**', 'Б*П*', 'Б**П', '*БП*', '*Б*П', '**БП']
+                },
+                '1': {
+                    weight: 0.75,
+                    masks: []
+                },
+                '2': {
+                    weight: 0.75,
+                    masks: ['ПБ**', 'П*Б*', 'П**Б', '*ПБ*', '*П*Б', '**ПБ']
+                }
+            })
+        }, {
+            text: 'Лучше потратить заработанные деньги на удовольствие сегодняшнего дня, чем отложить на черный день ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.4,
+                    masks: ['Н***', '*Н**']
+                },
+                '1': {
+                    weight: 0.4,
+                    masks: ['БН**', 'Б*Н*', 'Б**Н', '*БН*', '*Б*Н', '**БН']
+                },
+                '2': {
+                    weight: 0.4,
+                    masks: ['БН**', 'Б*Н*', 'Б**Н', '*БН*', '*Б*Н', '**БН']
+                }
+            })
+        }, {
+            text: 'Если не сидеть на месте, то обязательно подвернется какая-нибудь интересная возможность ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.5,
+                    masks: []
+                },
+                '1': {
+                    weight: 0.5,
+                    masks: ['ПВ**', 'ВП**']
+                },
+                '2': {
+                    weight: 0.5,
+                    masks: ['ПВ**', 'ВП**']
+                }
+            })
+        }, {
+            text: 'Пусть я не стану специалистом, но понемножку буду разбираться во всём ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.1,
+                    masks: ['*П**']
+                },
+                '1': {
+                    weight: 0.1,
+                    masks: ['!*П**']
+                },
+                '2': {
+                    weight: 0.1,
+                    masks: ['!*П**']
+                }
+            })
+        }, {
+            text: 'Просьба рассказать о себе ставит меня в тупик ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.4,
+                    masks: ['**П*', '***П']
+                },
+                '1': {
+                    weight: 0.4,
+                    masks: []
+                },
+                '2': {
+                    weight: 0.4,
+                    masks: ['П***', '*П**']
+                }
+            })
+        }, {
+            text: 'Упреки в невежестве очень обидны ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.8,
+                    masks: ['В***', '**В*']
+                },
+                '1': {
+                    weight: 0.8,
+                    masks: []
+                },
+                '2': {
+                    weight: 0.8,
+                    masks: ['*В**', '***В']
+                }
+            })
+        }, {
+            text: 'Имея такую возможность, я бы несколько лет своей жизни посвятил путешествиям ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 1.5,
+                    masks: []
+                },
+                '1': {
+                    weight: 1.5,
+                    masks: ['!*Б**']
+                },
+                '2': {
+                    weight: 1.5,
+                    masks: ['!*Б**']
+                }
+            })
+        }, {
+            text: 'Я умею смеяться над собой ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 1.5,
+                    masks: []
+                },
+                '1': {
+                    weight: 1.5,
+                    masks: ['!*В**']
+                },
+                '2': {
+                    weight: 1.5,
+                    masks: ['!*В**']
+                }
+            })
+        }, {
+            text: 'Когда мне нечем заняться, я чувствую себя опустошенным(ной)',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.3,
+                    masks: ['**Н*']
+                },
+                '1': {
+                    weight: 0.3,
+                    masks: ['!**Н*']
+                },
+                '2': {
+                    weight: 0.3,
+                    masks: ['!**Н*']
+                }
+            })
+        }, {
+            text: 'Настоящий мир скрыт от посторонних глаз ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.5,
+                    masks: ['!***В']
+                },
+                '1': {
+                    weight: 0.5,
+                    masks: ['!В***']
+                },
+                '2': {
+                    weight: 0.5,
+                    masks: ['!В***']
+                }
+            })
+        }, {
+            text: 'Знание будущего - проклятье а не дар ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 1,
+                    masks: ['**Б*']
+                },
+                '1': {
+                    weight: 1,
+                    masks: []
+                },
+                '2': {
+                    weight: 1,
+                    masks: []
+                }
+            })
+        }, {
+            text: 'Я быстро забываю о неудаче и двигаюсь дальше ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.5,
+                    masks: ['*П**', '***П']
+                },
+                '1': {
+                    weight: 0.5,
+                    masks: []
+                },
+                '2': {
+                    weight: 0.5,
+                    masks: ['П***', '**П*']
+                }
+            })
+        }, {
+            text: 'Мой дом - моя крепость ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.75,
+                    masks: ['!***П']
+                },
+                '1': {
+                    weight: 0.75,
+                    masks: []
+                },
+                '2': {
+                    weight: 0.75,
+                    masks: ['!П***']
+                }
+            })
+        }, {
+            text: 'Часто перед тем как что-то начать делать я испытываю нервозность или даже страх ',
+            answers: answers,
+            onanswer: fn_answer({
+                '0': {
+                    weight: 0.833333333333333,
+                    masks: ['!*Б**']
+                },
+                '1': {
+                    weight: 0.833333333333333,
+                    masks: []
+                },
+                '2': {
+                    weight: 0.833333333333333,
+                    masks: ['!**Б*']
+                }
+            })
+        }, ];
+
+
+        var calculate_result = function() { // обработка результатов
+            // считать тут особо нечего, все считается в процессе
+        }
+
+        var show_result = function() { // вывод результатов теста пользователю
+            clearInterval(outerInterval);
+            var sorted_result = [];
+            for (i = 0; i < results.length; i++) sorted_result.push({
+                weight: results[i],
+                name: typenames[i]
+            });
+            console.dir(sorted_result);
+            sorted_result.sort(function(a, b) {
+                return b.weight - a.weight
+            });
+            var html = '<h3>Результат теста</h3>';
+            html += '<p><b>Предполагаемый тип: <span>' + sorted_result[0].name + '</span></b></p><div style="font-size: 80%">';
+            html += '<p>Набранное количество баллов по типам: (чем больше значение, тем больше шансов, что тип окажется правильным):</p>';
+
+            html += '<ul style="list-style: none">';
+            for (i = 0; i < results.length; i++) {
+                html += '<li>Тип ' + sorted_result[i].name + ' &mdash; ' + Math.round(sorted_result[i].weight * 100) / 100 + '</li>';
+            }
+            html += '</ul></div>';
+            innerElement.innerHTML = html;
+        }
+
+        var value_encode = function(value) {
+            var value1 = Math.floor(value / 50);
+            var value2 = value % 50;
+            return enc_number(value1) + enc_number(value2);
+        }
+
+        var value_decode = function(hash, position) {
+            return dec_number(hash[position * 2 + 1]) * 50 + dec_number(hash[position * 2 + 2]);
+        }
+
+        var encode_hash = function() {
+            var buffer = value_encode(counter);
+            for (i = 0; i < results.length; i++) buffer += value_encode(results[i] * 30);
+            return buffer;
+        }
+
+        var decode_hash = function() {
+            var startarray = document.location.hash;
+            var hash_len = document.location.hash.length - 1;
+            if (hash_len == -1 || hash_len != (24 + 1) * 2) return false;
+            counter = value_decode(startarray, 0);
+            for (i = 0; i < 24; i++) results[i] = value_decode(startarray, i + 1) / 30;
+            if (counter >= questions.length) {
+                calculate_result();
+                show_result();
+                if (hidElement && hidElement.style) {
+                    hidElement.style.display = 'none'
+                } // скрываем вводный текст, если указан элемент с ним
+                return false;
+            }
+            return true;
+        }
+
+        var hash_change = function() {
+            if (hash_flag) { // 
+                if (decode_hash()) show_question(questions[counter]);
+            }
+        }
+
+        /* ========= ЧАСТЬ, ОТВЕЧАЮЩАЯ ЗА ЗАПУСК ТЕСТА ================================== */
+
+        try {
+            // создаем элементы, используемые при выводе вопросов и результата
+            var testForm = document.createElement('form');
+            if (class_name) testForm.className = class_name; // задаем имя класса, это может быть нужно для специфических стилей для конкретного теста
+            testForm.onsubmit = next; // вешаем обработчик, который будет вызываться после того, как пользователь ответил на вопрос 
+            var qfset = document.createElement('fieldset');
+            qfset.style.padding = "10px"
+            testForm.appendChild(qfset);
+            var innerElement = document.createElement('div'); // в этот внутренний div будем выводить вопросы (чтобы можно было делать это через innerHTML, а не возиться с DOM)  
+            qfset.appendChild(innerElement);
+            var startButton = document.createElement('input'); // создаем кнопку, по нажатию на которую будет запускаться тест
+            startButton.type = 'button';
+            startButton.value = 'Начать тест';
+            startButton.onclick = start;
+            qfset.appendChild(startButton);
+            testElement.appendChild(testForm);
+
+            // вешаем обработчик изменения хеша
+            if (window.addEventListener) window.addEventListener('hashchange', hash_change);
+            else if (window.attachEvent) window.attachEvent('onhashchange', hash_change);
+            else window.onhashchange = hash_change;
+
+            if (decode_hash()) start(); // если уже задан хеш, то стартуем сразу, не ждем нажатия кнопки
+        } catch (e) {
+            alert(e.message);
+        }
+
+    }
+    var test = new Temporistics_Test(document.getElementById('test'), document.getElementById('description'), false);
+</script>
+
+<p><small>Для выбора одного из вариантов ответов просто щелкните по нему.  Если вы ошиблись с выбором, нажмите кнопку «Назад» в броузере.  Если вы хотите отложить прохождение теста, сохраните полный адрес страницы (включая символы после #). Открыв эту ссылку, вы продолжите прохождение с того же самого вопроса.</small></p>

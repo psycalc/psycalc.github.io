@@ -11,7 +11,6 @@
     <meta property="og:image" content="https://psycalc.github.io/images/puzzle.jpg" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <script src="js/jquery.min.js"></script>
-    <script src="js/readmore.min.js"></script>
     <script src="js/main.js" type="text/javascript"></script>
     <link rel="stylesheet" href="css/main.css">
 </head>
@@ -19,103 +18,41 @@
 <body>
     <div id="fb-root"></div>
     <script src="js/facebook-script.js"></script>
-    <p>
-        <a href="javascript:$.redrawLanguage('eng');">English</a> <a href="javascript:$.redrawLanguage('rus');">Русский</a></p>
-    <p lng="lng_looking">(ищу граммотного переводчика, копирайтера, дизайнера который сможет упростить и перевести эту идею на Английский и другие языки) designofhumanity@gmail.com</p>
+    <!-- <h2>
+        <a href="javascript:$.redrawLanguage('eng');">English</a> <a href="javascript:$.redrawLanguage('rus');">Русский</a></h2> -->
+    <h2 lng="lng_looking"></h2>
+    <p lng="lng_select_languge"></p>
     <div class="tab menu">
-        <button class="tablinks" onclick="openTab(event, 'insp')" lng="lng_inspiration">Вдохновение</button>
+        <button class="lngtablinks" onclick="$.redrawLanguage(event,'eng')">English</button>
+        <button class="lngtablinks active" onclick="$.redrawLanguage(event,'rus')">Русский</button>
+    </div>
+    <div class="tab menu">
+        <!-- <button class="tablinks" onclick="openTab(event, 'insp')" lng="lng_inspiration">Вдохновение</button> -->
         <button class="tablinks active" onclick="openTab(event, 'short')" lng="lng_short">Кратко</button>
-        <button class="tablinks" onclick="openTab(event, 'detailed')" lng="lng_detailed">Подробно</button>
-        <button class="tablinks" onclick="openTab(event, 'statistic')" lng="lng_statistic">Cтатистика [В разработке]</button>
+        <!-- <button class="tablinks" onclick="openTab(event, 'detailed')" lng="lng_detailed">Подробно</button> -->
+        <!-- <button class="tablinks" onclick="openTab(event, 'statistic')" lng="lng_statistic">Cтатистика [В разработке]</button> -->
         <button class="tablinks" onclick="openTab(event, 'articles')" lng="lng_faq">Часто задаваемые вопросы [В разработке]</button>
-        <button class="tablinks" onclick="openTab(event, 'sphere')" lng="lng_sphere">Сферы применения [В разработке]</button>
+        <!-- <button class="tablinks" onclick="openTab(event, 'sphere')" lng="lng_sphere">Сферы применения [В разработке]</button> -->
     </div>
     <div class="main-wrapper ">
         <div class="main-flex-wrapper ">
             <div id="sphere" class="tabcontent ">
-                <!-- Look in main.js openTab function
-                ... 
-                    $.ajax({
-                    type: "GET",
-                    url: "parts/" + tabName + ".html",
-                    success: function(result) {
-                    $('#' + tabName).html(result);
-                }
-            }); 
-            ...
-            -->
             </div>
             <div id="insp" class="tabcontent">
-                <!-- Look in main.js openTab function
-                ... 
-                    $.ajax({
-                    type: "GET",
-                    url: "parts/" + tabName + ".html",
-                    success: function(result) {
-                    $('#' + tabName).html(result);
-                }
-            }); 
-            ...
-            -->
             </div>
             <div id="articles" class="tabcontent ">
-                <!-- Look in main.js openTab function
-                ... 
-                    $.ajax({
-                    type: "GET",
-                    url: "parts/" + tabName + ".html",
-                    success: function(result) {
-                    $('#' + tabName).html(result);
-                }
-            }); 
-            ...
-            -->
             </div>
             <div id="statistic" class="tabcontent ">
-                <!-- Look in main.js openTab function
-                ... 
-                    $.ajax({
-                    type: "GET",
-                    url: "parts/" + tabName + ".html",
-                    success: function(result) {
-                    $('#' + tabName).html(result);
-                }
-            }); 
-            ...
-            -->
             </div>
             <div id="short" class="tabcontent " style="display: flex; ">
-                <!-- Look in main.js openTab function
-                ... 
-                    $.ajax({
-                    type: "GET",
-                    url: "parts/" + tabName + ".html",
-                    success: function(result) {
-                    $('#' + tabName).html(result);
-                }
-            }); 
-            ...
-            -->
             </div>
             <div id="detailed" class="tabcontent ">
-                <!-- Look in main.js openTab function
-                ... 
-                    $.ajax({
-                    type: "GET",
-                    url: "parts/" + tabName + ".html",
-                    success: function(result) {
-                    $('#' + tabName).html(result);
-                }
-            }); 
-            ...
-            -->
             </div>
 
         </div>
     </div>
     <footer class="downfooter ">
-        <h2>Сообщество людей это платформа для поиска кадров, музыкантов, общения, знакомств, взаимопощи, быстрой самоорганизации. И Самое главное доверие (тяжело соврать если знаешь и можешь проверить тип человека)</h2>
-        <h3>Рассказать друзьям и знакомым это же не проблема? Правда же?</h3>
+        <h2>Рассказать друзьям и знакомым это же не проблема? Правда же?</h2>
         <!-- <iframe width="560 " height="315 " src="https://www.youtube.com/embed/2ZSux8UziOI " frameborder="0 " allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture " allowfullscreen></iframe> -->
         <iframe width="560" height="315" src="https://www.youtube.com/embed/G5bFY751-9Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p>Телеграмм: <a href="https://t.me/joinchat/FDAy4UqApE6p25S456Ti6Q ">Группа в телеграмме.</a></p>
