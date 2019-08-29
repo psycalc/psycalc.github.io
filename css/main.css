@@ -11,6 +11,13 @@ body {
     margin: 0;
 }
 
+._2tga ._3e2a {
+    border-radius: 4px;
+    font-size: 26px;
+    height: 28px;
+    padding: 0 4px 0 6px;
+}
+
 p {
     font-size: 3em;
 }
@@ -18,6 +25,7 @@ p {
 h2 {
     display: flex;
     justify-content: center;
+    font-size: 3.5em;
 }
 
 .swing {
@@ -170,9 +178,7 @@ iframe {
         margin-left: 0;
         margin-right: 0;
     }
-    h2 {
-        
-    }
+    h2 {}
     .main-flex-wrapper {
         padding: 0px;
     }
