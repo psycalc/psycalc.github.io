@@ -26,6 +26,7 @@ h2 {
     display: flex;
     justify-content: center;
     font-size: 3.5em;
+    padding-top: 2.5%;
 }
 
 .swing {
@@ -149,7 +150,7 @@ iframe {
 
 .flex-image-container {
     display: flex;
-    /* flex-direction: row; */
+    flex-direction: сolumn;
     justify-content: center
 }
 
