@@ -281,6 +281,18 @@ select {
 }
 
 
+/*Таблица стилей*/
+
+#environment {
+    display: block;
+    margin: 0 auto;
+}
+
+#background {
+    opacity: 0.3;
+}
+
+
 /* .menu {
             position: fixed;
             width: 100%;

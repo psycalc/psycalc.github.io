@@ -408,24 +408,26 @@ function(testElement, descriptionElement, onFinish) {
                     masks: []
                 }
             })
-        }, {
-            text: 'Обожаю английский юмор ',
-            answers: answers,
-            onanswer: fn_answer({
-                '0': {
-                    weight: 1.25,
-                    masks: ['В***', '*В**']
-                },
-                '1': {
-                    weight: 1.25,
-                    masks: []
-                },
-                '2': {
-                    weight: 1.25,
-                    masks: ['**В*', '***В']
-                }
-            })
-        }, {
+        },
+        //  {
+        //     text: 'Обожаю английский юмор ',
+        //     answers: answers,
+        //     onanswer: fn_answer({
+        //         '0': {
+        //             weight: 1.25,
+        //             masks: ['В***', '*В**']
+        //         },
+        //         '1': {
+        //             weight: 1.25,
+        //             masks: []
+        //         },
+        //         '2': {
+        //             weight: 1.25,
+        //             masks: ['**В*', '***В']
+        //         }
+        //     })
+        // },
+        {
             text: 'Мои “скелеты в шкафу” вряд ли кому-нибудь интересны ',
             answers: answers,
             onanswer: fn_answer({
