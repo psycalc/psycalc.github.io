@@ -9,17 +9,9 @@
 
 body {
     margin: 0;
-}
-
-._2tga ._3e2a {
-    border-radius: 4px;
-    font-size: 26px;
-    height: 28px;
-    padding: 0 4px 0 6px;
-}
-
-p {
-    font-size: 3em;
+    width: 100%;
+    height: 100%;
+    font-size: 35px;
 }
 
 h2 {
@@ -297,3 +289,41 @@ select {
             position: fixed;
             width: 100%;
         } */
+
+
+/* svg {
+            border: 1px dotted;
+            float: left;
+            display: block;
+            box-sizing: content-box;
+            width: 25%;
+            height: 25%;
+        }
+         */
+
+object {
+    height: 15%;
+    width: 50%;
+}
+
+.object-container {
+    display: flex;
+    align-content: row;
+}
+
+h2 {
+    /* text-align: center; */
+    font-size: 100px;
+}
+
+.description {
+    font-size: 50px;
+}
+
+img {
+    margin: 0 auto;
+}
+
+.page-container {
+    margin: 1.5%;
+}
