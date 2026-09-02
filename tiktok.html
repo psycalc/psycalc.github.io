@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Останні відео TikTok — Before We Build</title>
     <meta name="description" content="Останні відео TikTok профілю @olegraziel, які можна дивитися на цій сторінці." />
+    <meta name="theme-color" content="#74451f" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/icon.svg" />
     <link rel="stylesheet" href="assets/site.css" />
   </head>
   <body>
@@ -14,6 +18,7 @@
         <div class="nav-links">
           <a href="index.html">Тест</a>
           <a href="relations-calculator.html">Калькулятор</a>
+          <a href="wiki/">База знань</a>
         </div>
       </nav>
     </header>
@@ -34,5 +39,12 @@
       </section>
     </main>
     <script async src="https://www.tiktok.com/embed.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js');
+        });
+      }
+    </script>
   </body>
 </html>

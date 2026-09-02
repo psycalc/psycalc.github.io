@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Тест Before We Build</title>
     <meta name="description" content="Опитувальник Before We Build для самоспостереження. Відповіді обробляються локально у браузері й не надсилаються на сервер." />
+    <meta name="theme-color" content="#74451f" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/icon.svg" />
     <link rel="stylesheet" href="assets/site.css?v=20260728c" />
   </head>
   <body data-test-audience="people">
@@ -15,6 +19,7 @@
         <div class="nav-links">
           <a href="relations-calculator.html" data-i18n="nav.calculator">Калькулятор відношень</a>
           <a href="research-tests.html" data-i18n="nav.research">Research</a>
+          <a href="wiki/" data-i18n="nav.wiki">База знань</a>
           <a href="tiktok.html">TikTok</a>
           <span class="lang-switch" role="group" aria-label="Перемикач мови" data-i18n-aria-label="a11y.languageSwitcher">
             <button type="button" data-lang="uk">UK</button>
@@ -34,5 +39,12 @@
       </section>
     </main>
     <script type="module" src="assets/tests.js?v=20260728c"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js');
+        });
+      }
+    </script>
   </body>
 </html>

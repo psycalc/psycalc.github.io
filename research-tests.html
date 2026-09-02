@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Before We Build · Research questionnaires</title>
     <meta name="description" content="Дослідницька версія опитувальників Before We Build для повнолітніх учасників із локальним експортом відповідей." />
+    <meta name="theme-color" content="#74451f" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/icon.svg" />
     <link rel="stylesheet" href="assets/site.css?v=20260728c" />
   </head>
   <body data-test-audience="research">
@@ -14,6 +18,7 @@
         <a class="brand" href="index.html"><span class="ichthys-mark" aria-label="ΙΧΘΥΣ">ΙΧΘΥΣ</span><b data-i18n="brand.research">Before We Build · Research</b></a>
         <div class="nav-links">
           <a href="index.html" data-i18n="nav.public">Public test</a>
+          <a href="wiki/" data-i18n="nav.wiki">База знань</a>
           <span class="lang-switch" role="group" aria-label="Перемикач мови" data-i18n-aria-label="a11y.languageSwitcher">
             <button type="button" data-lang="uk">UK</button>
             <button type="button" data-lang="en">EN</button>
@@ -34,5 +39,12 @@
       </section>
     </main>
     <script type="module" src="assets/tests.js?v=20260728c"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js');
+        });
+      }
+    </script>
   </body>
 </html>

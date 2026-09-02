@@ -1,0 +1,19 @@
+{
+  "name": "Before We Build",
+  "short_name": "BWB",
+  "description": "Опитувальники та база знань Before We Build",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#fffdf8",
+  "theme_color": "#74451f",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
