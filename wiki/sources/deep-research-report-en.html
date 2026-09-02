@@ -1,0 +1,820 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Deep Research Report — Before We Build · Knowledge Base</title>
+    <meta name="theme-color" content="#74451f" />
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../../assets/icon.svg" />
+    <link rel="stylesheet" href="../../assets/site.css" />
+    <link rel="stylesheet" href="../wiki.css" />
+  </head>
+  <body class="wiki-body">
+    <header class="hero tests-hero">
+      <nav class="nav" aria-label="Основна навігація">
+        <a class="brand" href="../../index.html"><span class="ichthys-mark" aria-label="ΙΧΘΥΣ">ΙΧΘΥΣ</span><b>Before We Build</b></a>
+        <div class="nav-links">
+          <a href="../../index.html">Tests</a>
+          <a href="../../relations-calculator.html">Calculator</a>
+          <a href="../index.html" class="active">Knowledge Base</a>
+          <div class="lang-switch-peer"><a href="../sources/deep-research-report-uk.html">UK</a> <a href="../sources/deep-research-report-en.html" class="active">EN</a> <a href="../sources/deep-research-report-ru.html">RU</a></div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="wiki-container">
+      <aside class="wiki-sidebar">
+        <div class="search-box">
+          <input type="search" id="wikiSearchInput" placeholder="Search knowledge base..." aria-label="Search" />
+          <div id="searchResults" class="search-dropdown" hidden></div>
+        </div>
+        <div class="sidebar-nav">
+          <a href="../index.html" class="sidebar-hub-link">📚 Home Wiki</a>
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Theoretical Concepts</div>
+            <ul>
+              <li><a href="../concepts/latent-process-en.html">Latent Process</a></li>
+              <li><a href="../concepts/four-levels-of-compatibility-en.html">Four Levels</a></li>
+              <li><a href="../concepts/temporistics-temporal-orientations-en.html">Temporistics</a></li>
+              <li><a href="../concepts/psychosophy-action-synthesis-en.html">Psychosophy</a></li>
+              <li><a href="../concepts/socionics-reality-modeling-en.html">Socionics</a></li>
+            </ul>
+          </div>
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Glossary of terms</div>
+            <ul>
+              <li><a href="../glossary-core-en.html">Glossary Core</a></li>
+              <li><a href="../glossary-extended-en.html">Glossary Extended</a></li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+
+      <main class="wiki-content">
+        <article class="wiki-article">
+          <header class="article-header">
+            <div class="article-meta-top"><span class="badge badge-role">source-summary</span> <span class="badge badge-version">v1</span> <span class="badge badge-status">active</span></div>
+            <h1>Deep Research Report</h1>
+          </header>
+
+          <div class="article-layout">
+            <div class="article-body">
+              <h1 id="selection-of-agent-harnesses-frameworks-orchestration-systems-and-memory-for-agent-based-applications">Selection of Agent Harnesses, Frameworks, Orchestration Systems, and Memory for Agent-Based Applications <a class="anchor-link" href="#selection-of-agent-harnesses-frameworks-orchestration-systems-and-memory-for-agent-based-applications" aria-hidden="true">#</a></h1>
+<h2 id="executive-summary">Executive Summary <a class="anchor-link" href="#executive-summary" aria-hidden="true">#</a></h2>
+<p>The &quot;agent-based&quot; application market consists of several layers often mixed in one tool: <strong>agent logic (planning/acting/tool-calls)</strong>, <strong>orchestration (loops, branching, retries, durable execution)</strong>, <strong>memory and state (short/long-term, retrieval, persistence)</strong>, <strong>production operations (observability, security, deployment, cost)</strong>. In practice, it&#x27;s better to choose not &quot;one framework&quot; but a <strong>construction of 3–5 components</strong> with clear boundaries. This reduces lock-in, facilitates testing, and enables migrations.</p>
+<p>Key architectural divide: <strong>in-process orchestration</strong> vs <strong>durable orchestration</strong>. Library agent frameworks (LangChain / LlamaIndex / Haystack) provide the fastest path to prototype and convenient integration ecosystem (e.g., LangChain emphasizes unified API across providers and large number of integrations), but reliability for long-running tasks and execution repeatability usually need to be built as a separate layer (workers, queues, WF engine, idempotency). Durable engines (Temporal) inherently provide persistent execution and recovery from event history, which is better suited for &quot;long&quot; business processes and controlled fault tolerance.</p>
+<p>Regarding &quot;memory,&quot; it&#x27;s important to separate: <strong>working memory (dialog/thread context)</strong>, <strong>long-term memory (vector/hybrid database, persistence)</strong> and <strong>operational state (state machine/workflow state)</strong>. Vector databases (Weaviate / Milvus) and &quot;developer-first&quot; stores (Chroma) balance scale, search functionality (hybrid, filters), security (RBAC/TLS), observability (Prometheus/OpenTelemetry), and operational costs differently.</p>
+<p>If you need a <strong>quick start</strong>: LangChain or LlamaIndex + Chroma (local/embedded) is a common low-friction starting stack, with gradual scaling to Milvus/Weaviate as load grows. If you need <strong>production for multi-step/long processes</strong> with strict requirements for retries/idempotency/recovery, Temporal is a strong orchestration candidate, with agent framework code running inside workers. For <strong>compute scaling and serving</strong> (parallelism, GPU, batching), Ray and/or BentoML are useful depending on runtime preference. For <strong>batch ETL/cron/DAG</strong> processes, Airflow remains strong, but its model is not about low latency or &quot;durable agent loops.&quot;</p>
+<p>Important update: AutoGen is marked as <strong>maintenance mode</strong>; Microsoft positions Agent Framework as the recommended starting point for new projects and provides migration guidance.</p>
+<p>---</p>
+<h2 id="definitions-and-boundaries">Definitions and Boundaries <a class="anchor-link" href="#definitions-and-boundaries" aria-hidden="true">#</a></h2>
+<p>Below are practical definitions that help &quot;unfold&quot; the stack and avoid confusing tools with each other.</p>
+<p><strong>Agent harness</strong> — operational &quot;wrapper&quot; that transforms agent code into a managed system: run/stop control and limits, tracing and observability, tests/benchmarks, configuration management, secrets, log/trace retention, often — deployment and runtime for long-running tasks. Examples of harness characteristics: built-in eval/observability/bench tools (AutoGen Bench describes repeatable scenario runs in controlled conditions); platform observability and evaluation layer (LangSmith positions observability and evaluation as parts of the full lifecycle).</p>
+<p><strong>Agent framework</strong> — library/SDK for building agent logic: message abstractions, tool calling, &quot;think → call tool → process&quot; loops (e.g., LangChain describes agents as a system that can make sequential/parallel tool calls and maintain state between them). Some frameworks emphasize multi-agent communication (AutoGen documents multi-agent conversation framework). Important: framework is almost always <strong>not equal</strong> to production orchestrator.</p>
+<p><strong>Workflow system</strong> — task/process execution engine and model: DAG/graphs, schedules, retries, task distribution to workers, observability, sometimes — event-sourcing and deterministic replay. Airflow defines DAG as a model including schedule, tasks, and dependencies. Temporal describes durable execution through Workflows/Activities and Event History storage enabling failure survival. Prefect — Python pipeline orchestrator with monitoring and task/flow retries.</p>
+<p><strong>Memory system</strong> — storage and retrieval layer for state used by the agent: from &quot;short-term memory&quot; of dialog to long-term semantic memory and profiles. Here it&#x27;s useful to separate:</p>
+<ul>
+<li><strong>Short-term / thread memory</strong>: thread state and recent turns storage</li>
+<li><strong>Agent memory API</strong>: put/get interface with customizable implementations</li>
+<li><strong>Long-term semantic memory</strong>: vector index/DB, hybrid search, filters, multi-tenancy, RBAC</li>
+<li><strong>Retrieval pipelines</strong>: retriever selection, rerank, citations/provenance. Conceptual basis of RAG is the combination of model&#x27;s parametric memory and non-parametric memory (dense index).</li>
+</ul>
+<p>---</p>
+<h2 id="evaluation-criteria-and-typical-tradeoffs">Evaluation Criteria and Typical Tradeoffs <a class="anchor-link" href="#evaluation-criteria-and-typical-tradeoffs" aria-hidden="true">#</a></h2>
+<p>Below is the &quot;framework&quot; for evaluation. I deliberately formulate criteria so they can be used for both open-source and SaaS/managed options.</p>
+<h3 id="architecture-and-responsibility-boundaries">Architecture and Responsibility Boundaries <a class="anchor-link" href="#architecture-and-responsibility-boundaries" aria-hidden="true">#</a></h3>
+<p><strong>Architectural question #1: where does the agent loop live and how does it survive failures.</strong></p>
+<ul>
+<li><strong>In-process loop</strong> (inside single service/worker). Pros: minimal latency, easier debugging. Cons: if process crashes, need external recovery mechanism and idempotency of tools.</li>
+<li><strong>Durable loop</strong> (workflow engine). Pros: persistent execution and recovery. Temporal directly describes Workflow execution &quot;in a resilient manner&quot; with failure handling and retries. Con: cost in complexity and in &quot;determinism&quot;/code model constraints.</li>
+</ul>
+<p><strong>Architectural question #2: where is state stored.</strong></p>
+<ul>
+<li>&quot;Dialog state&quot; (chat history), &quot;operational state&quot; (state machine), &quot;knowledge memory&quot; (vector store) — these are different things and often require different stores.</li>
+<li>Good practice: <strong>explicitly separate</strong>: (a) workflow state, (b) chat-store, (c) vector DB/document store.</li>
+</ul>
+<h3 id="scaling-latency-throughput">Scaling, Latency, Throughput <a class="anchor-link" href="#scaling-latency-throughput" aria-hidden="true">#</a></h3>
+<p>For agent-based systems, it&#x27;s useful to evaluate latency along the chain:</p>
+<p>1. Pre-processing/routing</p>
+<p>2. Retrieval (vector/hybrid)</p>
+<p>3. Rerank</p>
+<p>4. LLM inference (often dominates)</p>
+<p>5. Tool calls (external APIs)</p>
+<p>6. Post-processing and streaming</p>
+<p>At the infrastructure level:</p>
+<ul>
+<li>Ray is positioned as a unified framework for scaling Python/AI applications from laptop to cluster with basic primitives (tasks, actors)</li>
+<li>For serving, Ray Serve describes optimizations for LLM (streaming, dynamic batching, multi-node/multi-GPU)</li>
+<li>BentoML focuses on model serving and explicitly mentions optimizations like dynamic batching and inference graph orchestration</li>
+</ul>
+<h3 id="reliability-fault-tolerance-state-consistency">Reliability, Fault Tolerance, State Consistency <a class="anchor-link" href="#reliability-fault-tolerance-state-consistency" aria-hidden="true">#</a></h3>
+<ul>
+<li>Temporal stores Event History for the entire workflow execution lifecycle and emphasizes that history is durable and will survive service crashes. There are limits on history size (important for &quot;chatty&quot; agents).</li>
+<li>Airflow and Prefect provide retry/observability, but the model is more about tasks and scheduling than deterministic &quot;event journal&quot; of long-running processes.</li>
+</ul>
+<h3 id="security-privacy-compliance">Security, Privacy, Compliance <a class="anchor-link" href="#security-privacy-compliance" aria-hidden="true">#</a></h3>
+<p>Security layer is usually different by tool class:</p>
+<ul>
+<li>Agent frameworks are libraries in your application; security is mostly your responsibility (secrets, network policies, log filtering).</li>
+<li>Memory databases and workflow engines are separate services where TLS, auth, RBAC, audit, tenant isolation matter.</li>
+</ul>
+<p>Facts by location:</p>
+<ul>
+<li>Weaviate documents RBAC and authorization model</li>
+<li>Milvus documents TLS (encryption in transit) and separately user authentication/RBAC</li>
+<li>Temporal documents security for self-hosted and Cloud; Temporal Cloud uses TLS in transit, while authentication can use API keys or mTLS certificates</li>
+<li>Chroma documents authentication in client-server mode and its absence in embedded mode</li>
+</ul>
+<h3 id="observability-and-manageability">Observability and Manageability <a class="anchor-link" href="#observability-and-manageability" aria-hidden="true">#</a></h3>
+<p>In production, evaluate not only &quot;are there metrics&quot; but also:</p>
+<ul>
+<li>Correlation: trace/span IDs</li>
+<li>Cardinality</li>
+<li>Ability to exclude/anonymize PII</li>
+<li>Presence of UI for run-level debugging</li>
+<li>Cost of trace storage</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li>Weaviate: Prometheus-compatible metrics and Prometheus/Grafana recommendations</li>
+<li>Milvus: separate documentation on monitoring framework (Prometheus+Grafana)</li>
+<li>Chroma: observability via OpenTelemetry (tracing/logging/metrics)</li>
+<li>Ray: dashboard and instructions for metrics/Prometheus+Grafana</li>
+<li>Airflow: UI described as main interface for inspecting DAG runs and task states</li>
+</ul>
+<h3 id="extensibility-integrations-api-languages-deployment">Extensibility, Integrations, API, Languages, Deployment <a class="anchor-link" href="#extensibility-integrations-api-languages-deployment" aria-hidden="true">#</a></h3>
+<ul>
+<li>LangChain emphasizes unified API across model providers and large set of integrations</li>
+<li>LlamaIndex separately lists integrations for LLMs and vector stores</li>
+<li>Haystack describes integration model (default + partner/community), and has separate core integrations repository</li>
+<li>Weaviate explicitly describes API (REST, GraphQL, gRPC)</li>
+<li>Milvus quickstart specifies REST and gRPC with client language set</li>
+<li>BentoML describes packaging services as &quot;Bento&quot; and containerize as OCI-compliant image</li>
+</ul>
+<p>---</p>
+<h2 id="comparison-of-popular-projects">Comparison of Popular Projects <a class="anchor-link" href="#comparison-of-popular-projects" aria-hidden="true">#</a></h2>
+<p>Below is a comparative &quot;slice&quot; across 12 popular projects. In the table I deliberately use compact values and sometimes &quot;author rating&quot; (qualitative) — because absolute latency/throughput numbers depend on model, prompts, retrieval strategy, load profile, and infrastructure. Where the statement is factual (license, support mode, RBAC/TLS presence, API, architectural formulations) — I reference official sources.</p>
+<h3 id="summary-comparative-table">Summary Comparative Table <a class="anchor-link" href="#summary-comparative-table" aria-hidden="true">#</a></h3>
+<p>Legend:</p>
+<ul>
+<li><strong>Type</strong>: AF=agent framework, WF=workflow system, RT=distributed runtime, SV=serving, VS=vector store/DB</li>
+<li><strong>Architecture</strong>: Lib (embeddable library), Server (service), Engine (durable/WF engine), Hybrid (both)</li>
+<li><strong>Scale</strong>: S=single node, H=horizontal scaling, C=cluster/multi-node</li>
+<li><strong>Reliability/FT</strong> (qual): Low/Med/High as &quot;how much the tool itself solves durable execution &amp; recovery&quot;</li>
+<li><strong>Observability</strong>: UI/metrics/OTel per docs</li>
+<li><strong>Security</strong>: presence of explicit TLS/auth/RBAC support in the product (not counting &quot;behind proxy&quot;)</li>
+</ul>
+<div class="table-container"><table>
+<thead><tr>
+<th>Project</th>
+<th>Type</th>
+<th>Architecture</th>
+<th>Languages</th>
+<th>Deployment</th>
+<th>API/Integrations</th>
+<th>LLM Support</th>
+<th>State &amp; Memory</th>
+<th>Persistence/Retrieval</th>
+<th>Scale</th>
+<th>Latency/Throughput</th>
+<th>Reliability/FT</th>
+<th>Observability</th>
+<th>Security &amp; Privacy</th>
+<th>Maturity/Activity</th>
+<th>License</th>
+</tr></thead><tbody>
+<tr>
+<td>LangChain</td>
+<td>AF (+ecosystem)</td>
+<td>Lib</td>
+<td>Python, JS/TS</td>
+<td>self-host as part of app; ecosystem includes LangSmith deployment</td>
+<td>1000+ integrations; unified API for providers</td>
+<td>many providers via provider packages</td>
+<td>memory as concept; agents with persistence across tool calls; short-term via checkpointer</td>
+<td>retrieval via integrations (vector stores and more) (often external VS)</td>
+<td>S/H (depends on your runtime)</td>
+<td>low library overhead; LLM/IO dominates</td>
+<td>Low–Med (depends on external WF/infra)</td>
+<td>via LangSmith (tracing/evals)</td>
+<td>mainly on you; PII-sensitive logs</td>
+<td>active OSS; product ecosystem</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>LlamaIndex</td>
+<td>AF/data+agents</td>
+<td>Lib</td>
+<td>Python (+TS)</td>
+<td>self-host; enterprise platform LlamaParse/Parse</td>
+<td>modular integrations; vector stores as integration points</td>
+<td>LLM integrations list (OpenAI/Anthropic/Google/…)</td>
+<td>memory put/get; chat stores; stateful chat engines</td>
+<td>retrieval oriented to RAG; VS integrations</td>
+<td>S/H (via your runtime/VS)</td>
+<td>low library overhead; LLM/VS dominates</td>
+<td>Low–Med</td>
+<td>depends on your wrapper</td>
+<td>on you (as library); enterprise options separately</td>
+<td>active, wide integration package set</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>Haystack</td>
+<td>AF (RAG/agents)</td>
+<td>Lib</td>
+<td>Python</td>
+<td>self-host; enterprise platform (HPE)</td>
+<td>directed multigraph pipelines; integrations in separate repo</td>
+<td>vendor-agnostic (providers listed in README)</td>
+<td>agent model + pipelines; transparent retrieval/memory/generation architecture</td>
+<td>retrieval via pipeline components and document stores</td>
+<td>S/H (via infra)</td>
+<td>low library overhead; throughput depends on runtime</td>
+<td>Low–Med</td>
+<td>tracing/metrics via your wrapper; telemetry section exists</td>
+<td>as library — on you; enterprise can add controls</td>
+<td>active OSS; docs and breaking change policy</td>
+<td>Apache-2.0</td>
+</tr>
+<tr>
+<td>AutoGen</td>
+<td>AF (multi-agent)</td>
+<td>Lib (+tools)</td>
+<td>Python (+.NET support mention in Core API)</td>
+<td>self-host; Studio (no-code)</td>
+<td>multi-agent chat framework; Extensions API</td>
+<td>via extensions (OpenAI/AzureOpenAI in examples)</td>
+<td>focus on multi-agent patterns (GroupChat etc.)</td>
+<td>depends on attached stores</td>
+<td>S/H (via infra)</td>
+<td>depends on implementation; prototyping fast</td>
+<td>Low–Med</td>
+<td>AutoGen Bench (benchmark suite)</td>
+<td>requires own prod security; security note; important: maintenance mode</td>
+<td><strong>maintenance mode</strong>; migration recommended</td>
+<td>MIT (code)</td>
+</tr>
+<tr>
+<td>Ray</td>
+<td>RT (distributed)</td>
+<td>Engine/RT</td>
+<td>Python (core)</td>
+<td>laptop→cluster→Kubernetes</td>
+<td>tasks/actors/objects; Serve/Dashboard</td>
+<td>not LLM framework itself, but serves as base for LLM workloads/serving</td>
+<td>stateful actors as state model</td>
+<td>not &quot;memory&quot; as VS; state needs separate storage</td>
+<td>C/H</td>
+<td>good for throughput/parallelism; latency depends on distribution</td>
+<td>Med (resilience at runtime level, but not durable business processes)</td>
+<td>Dashboard; Prometheus metrics; integrations</td>
+<td>security mainly at cluster/network level</td>
+<td>active, large library stack</td>
+<td>Apache-2.0</td>
+</tr>
+<tr>
+<td>Prefect</td>
+<td>WF</td>
+<td>Hybrid (Lib+Server)</td>
+<td>Python</td>
+<td>self-host server or Prefect Cloud</td>
+<td>flows/tasks; retries; event-based automations</td>
+<td>not directly about LLM, but fits as orchestrator</td>
+<td>state via run state; retryable tasks</td>
+<td>persistence depends on Prefect Server/Cloud backend</td>
+<td>H (via workers)</td>
+<td>higher overhead than in-process; not for ultra-low-latency</td>
+<td>Med</td>
+<td>UI+real-time monitoring</td>
+<td>security depends on self-host/Cloud; requires setup</td>
+<td>active; migration guides (Airflow→Prefect)</td>
+<td>Apache-2.0</td>
+</tr>
+<tr>
+<td>Temporal</td>
+<td>WF (durable)</td>
+<td>Engine (durable)</td>
+<td>multi-SDK; server in Go</td>
+<td>self-host or Temporal Cloud</td>
+<td>workflows/activities; event history; retry semantics</td>
+<td>not LLM framework; good as backbone for agent workflows</td>
+<td>state via deterministic workflow + history</td>
+<td>history durable; event history limits important</td>
+<td>C/H</td>
+<td>higher overhead, but gives &quot;guarantees&quot; and recovery</td>
+<td><strong>High</strong> (built-in durable execution)</td>
+<td>Web UI; metrics (Prometheus/OpenMetrics in Cloud)</td>
+<td>security docs (self-host), TLS/mTLS (Cloud)</td>
+<td>mature; frequent releases</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>Airflow</td>
+<td>WF (DAG, batch)</td>
+<td>Engine/Server</td>
+<td>Python</td>
+<td>from single-process to distributed</td>
+<td>DAGs: schedule/tasks/dependencies</td>
+<td>not LLM framework; suitable for batch ingestion/ETL (RAG ingestion)</td>
+<td>state in metadata and task/DAG run states</td>
+<td>task persistence via Airflow metadata</td>
+<td>H/C</td>
+<td>batch-oriented; latency seconds/minutes (scheduler)</td>
+<td>Med</td>
+<td>powerful UI for monitoring/debugging</td>
+<td>security model depends on configuration</td>
+<td>mature Apache project</td>
+<td>Apache-2.0</td>
+</tr>
+<tr>
+<td>BentoML</td>
+<td>SV (serving)</td>
+<td>Hybrid (Lib+tooling)</td>
+<td>Python</td>
+<td>local, Docker/OCI, Kubernetes; BentoCloud</td>
+<td>REST API, packaging; vLLM integration mentions OCI+K8s</td>
+<td>LLM serving via backends (vLLM and others)</td>
+<td>not &quot;memory&quot;; state usually external</td>
+<td>persistence/VS — external</td>
+<td>H/C (via containers/orchestrator)</td>
+<td>throughput optimizations (batching)</td>
+<td>Med (as serving layer)</td>
+<td>metrics via prometheus_client</td>
+<td>security depends on environment; endpoints need protection</td>
+<td>active OSS</td>
+<td>Apache-2.0</td>
+</tr>
+<tr>
+<td>Weaviate</td>
+<td>VS (vector DB)</td>
+<td>Server</td>
+<td>Go (+clients)</td>
+<td>self-host; Weaviate Cloud/Agents docs</td>
+<td>REST + GraphQL + gRPC</td>
+<td>model providers via modules/integrations (depends on setup)</td>
+<td>long-term memory: objects+vectors; multi-tenancy mentioned in repo</td>
+<td>hybrid search (BM25F + vector)</td>
+<td>C/H</td>
+<td>suitable for low-latency retrieval with correct indexing</td>
+<td>Med–High (as DB)</td>
+<td>Prometheus metrics</td>
+<td>RBAC and authn/authz docs</td>
+<td>active, frequent releases</td>
+<td>BSD-3-Clause</td>
+</tr>
+<tr>
+<td>Milvus</td>
+<td>VS (vector DB)</td>
+<td>Server</td>
+<td>Go/C++ (+clients)</td>
+<td>self-host; managed via Zilliz Cloud</td>
+<td>REST+gRPC; clients Python/Java/Go/C#/Node</td>
+<td>not directly about LLM; used as RAG memory</td>
+<td>long-term memory: ANN search</td>
+<td>HNSW/IVF/PQ indexes and more; docs explain trade-offs</td>
+<td>C/H</td>
+<td>high-perf ANN-oriented</td>
+<td>Med–High</td>
+<td>monitoring framework Prometheus+Grafana</td>
+<td>TLS + auth + RBAC docs</td>
+<td>mature project, under LF AI &amp; Data</td>
+<td>Apache-2.0</td>
+</tr>
+<tr>
+<td>Chroma</td>
+<td>VS (vector store)</td>
+<td>Hybrid (embedded+server)</td>
+<td>Python + JS + Go + Docker (docs)</td>
+<td>local/embedded; server; Chroma Cloud</td>
+<td>HTTP client for production; docs recommend async http client</td>
+<td>not directly about LLM; used as memory</td>
+<td>long-term memory (small/medium); embedded fast</td>
+<td>full-text and hybrid search (RRF) in docs</td>
+<td>S/H (Cloud/Server)</td>
+<td>often good for DX; scale depends on mode</td>
+<td>Med</td>
+<td>observability via OpenTelemetry</td>
+<td>auth available in client-server; no auth in embedded</td>
+<td>active, has Cloud</td>
+<td>Apache-2.0</td>
+</tr>
+</tbody></table></div>
+<h3 id="official-documentation-and-repository-links">Official Documentation and Repository Links <a class="anchor-link" href="#official-documentation-and-repository-links" aria-hidden="true">#</a></h3>
+<pre><code class="language-">LangChain
+- Repo: https://github.com/langchain-ai/langchain
+- Docs: https://docs.langchain.com/
+
+LlamaIndex
+- Repo: https://github.com/run-llama/llama_index
+- Docs: https://developers.llamaindex.ai/
+
+Haystack
+- Repo: https://github.com/deepset-ai/haystack
+- Docs: https://docs.haystack.deepset.ai/
+
+AutoGen
+- Repo: https://github.com/microsoft/autogen
+- Docs: https://microsoft.github.io/autogen/
+
+Ray
+- Repo: https://github.com/ray-project/ray
+- Docs: https://docs.ray.io/
+
+Prefect
+- Repo: https://github.com/PrefectHQ/prefect
+- Docs: https://docs.prefect.io/
+
+Temporal
+- Repo: https://github.com/temporalio/temporal
+- Docs: https://docs.temporal.io/
+
+Airflow
+- Repo: https://github.com/apache/airflow
+- Docs: https://airflow.apache.org/docs/
+
+BentoML
+- Repo: https://github.com/bentoml/BentoML
+- Docs: https://docs.bentoml.com/
+
+Weaviate
+- Repo: https://github.com/weaviate/weaviate
+- Docs: https://docs.weaviate.io/
+
+Milvus
+- Repo: https://github.com/milvus-io/milvus
+- Docs: https://milvus.io/docs/
+
+Chroma
+- Repo: https://github.com/chroma-core/chroma
+- Docs: https://docs.trychroma.com/</code></pre>
+<h3 id="short-notes-on-each-project">Short Notes on Each Project <a class="anchor-link" href="#short-notes-on-each-project" aria-hidden="true">#</a></h3>
+<p><strong>LangChain</strong></p>
+<p>LangChain is a library framework for building LLM applications and agents and simultaneously an &quot;ecosystem,&quot; with LangGraph (controlled agent workflows) and LangSmith (observability/evals/deployment) separately featured.</p>
+<p>Strengths: large integration layer and unified interface to providers; agent abstractions and tool calling; advanced observability and quality assessment platform (LangSmith). Weaknesses: in &quot;pure form&quot; doesn&#x27;t provide durable execution; security/compliance and data governance depend on your architecture. Typical use cases: prototyping, conversational agents, RAG, tool-using agents; in production often combined with separate workflow engine for long processes. Maturity: active OSS and active product line. License: MIT.</p>
+<p><strong>LlamaIndex</strong></p>
+<p>LlamaIndex is positioned as an open-source framework for agentic applications and &quot;data framework&quot; with large number of integration packages. Documentation explicitly reveals memory API (put/get), chat engines as stateful interface, and integrations with vector stores.</p>
+<p>Strengths: strong focus on data, ingestion and RAG, many connectors; explicit memory and chat layer abstractions. Weaknesses: as a library needs production wrapper (observability, external tool retries, deployment). Use cases: RAG chatbots, &quot;chat with your data,&quot; document agents. Maturity: active project; enterprise platform around parsing/OCR/agent deploy exists. License: MIT.</p>
+<p><strong>Haystack</strong></p>
+<p>Haystack is a Python &quot;AI orchestration&quot; framework with transparent pipeline/agent workflow model and integrations in separate repository.</p>
+<p>Strengths: &quot;explicit&quot; pipeline architecture (directed multigraph), convenient for production RAG (retrieval/routing control); vendor-agnostic model and advanced integration ecosystem. Weaknesses: for long-running/durable business processes usually need separate workflow engine; observability depends on your infrastructure. Use cases: production RAG, search/semantic systems, agents with transparent retrieval chains. License: Apache-2.0.</p>
+<p><strong>AutoGen</strong></p>
+<p>AutoGen is a multi-agent framework, but the repository explicitly states <strong>maintenance mode</strong> and recommends new projects start with Microsoft Agent Framework; migration guide exists. AutoGen offers Core API (message passing, event-driven agents, runtime) and AgentChat API for fast prototyping; also has Studio and Bench.</p>
+<p>Strengths: strong multi-agent patterns and ecosystem tools (bench/studio). Weaknesses: support mode (without new features), prod security/auth requirements need to be built yourself (README has direct warning). Use cases: multi-agent research, fast prototyping of group chats, approach comparison via Bench. License: MIT (code).</p>
+<p><strong>Ray</strong></p>
+<p>Ray is a distributed runtime with tasks/actors/objects primitives and library ecosystem; official docs emphasize tasks and actors as basic concepts, and README — scaling Python/AI from laptop to cluster and Kubernetes. Ray Dashboard and Prometheus metrics documented for observability.</p>
+<p>Strengths: throughput/parallelism, convenient as &quot;compute layer&quot; for agents, especially when many tool calls/subtasks exist and when GPU/cluster need exploitation. Weaknesses: doesn&#x27;t replace durable workflow engine (state consistency and business process recovery remain on you). Use cases: parallel document processing for ingestion, distributed agents, LLM serving via Ray Serve. License: Apache-2.0.</p>
+<p><strong>Prefect</strong></p>
+<p>Prefect is a workflow orchestrator for Python: flow/task, schedules, retries, UI monitoring, self-hosted server or managed Cloud. Documentation and examples emphasize retry and observability.</p>
+<p>Strengths: convenience for data/automation flows, dynamic execution flexibility, UI and simplicity &quot;raise server and look at graphs.&quot; Weaknesses: doesn&#x27;t provide the same class of durable execution semantics as Temporal; not designed for ultra-low-latency loops. Use cases: RAG ingestion pipeline, periodic jobs, ETL/ELT, background agent tasks. License: Apache-2.0.</p>
+<p><strong>Temporal</strong></p>
+<p>Temporal is a durable execution platform: README emphasizes &quot;resilient execution,&quot; automatic handling of intermittent failures and retries. Documentation explains Event History as durable journal surviving crashes. Choice of self-host or Temporal Cloud available.</p>
+<p>Strengths: guarantees for long-running process execution, deterministic replay tests, strong control over retries and state; fits as &quot;skeleton&quot; for agentic business processes. Weaknesses: complicates architecture and imposes deterministic workflow code discipline; need to watch Event History growth (limits). Use cases: multi-step agent processes, multi-agent orchestration as workflow/activities set, integrations with external systems with idempotency. License: MIT.</p>
+<p><strong>Airflow</strong></p>
+<p>Airflow is a batch-oriented workflow orchestrator; documentation defines DAG as model with schedule/tasks/dependencies and describes scheduler that monitors tasks/dags and triggers task instances. UI is main interface for DAG runs and task states diagnostics.</p>
+<p>Strengths: mature model for batch and schedules, huge operator/provider ecosystem, strong UI. Weaknesses: not designed for &quot;live&quot; agent loops with low latency; scheduler model (default cycles every minute) not about real-time. Use cases: RAG ingestion/ETL, nightly/periodic pipelines, backfills. License: Apache-2.0.</p>
+<p><strong>BentoML</strong></p>
+<p>BentoML is serving for AI/ML: README describes packaging and deploy via Docker and BentoCloud, mentions inference optimizations (dynamic batching). Documentation describes &quot;Bentos&quot; as standard packaging format and <code>bentoml containerize</code> as OCI-compliant image builder. Metrics documentation via Prometheus client.</p>
+<p>Strengths: quickly makes inference code a managed service; helps with containerization, batching and scaling; fits LLM-serving in connection with backends (example with vLLM). Weaknesses: doesn&#x27;t solve orchestration of agent processes and &quot;memory&quot; by itself. Use cases: production API for model/agent, embedder/reranker services, inference pipelines. License: Apache-2.0.</p>
+<p><strong>Weaviate</strong></p>
+<p>Weaviate is vector DB with REST/GraphQL/gRPC API, hybrid search (BM25F + vector fusion) and RBAC documentation. Prometheus metrics for monitoring available.</p>
+<p>Strengths: rich retrieval functionality (hybrid, operators), security and multi-user mode (RBAC) as part of product, mature operations. Weaknesses: as full-featured DB requires operational effort (cluster, updates, capacity planning). Use cases: long-term memory/knowledge base, RAG at scale, hybrid search. License: BSD-3-Clause.</p>
+<p><strong>Milvus</strong></p>
+<p>Milvus is cloud-native vector DB for ANN search; README mentions project under LF AI &amp; Data Foundation, and managed option on Zilliz Cloud. Documentation describes indexes (HNSW, IVF_PQ) and memory/latency trade-offs, also security (TLS, auth, RBAC) and monitoring (Prometheus/Grafana).</p>
+<p>Strengths: performance and scale for large vector collections, advanced indexes, production operations. Weaknesses: more complex than &quot;lightweight&quot; options; requires competent index and parameter choice. Use cases: high-load retrieval, long-term memory, large RAG bases. License: Apache-2.0.</p>
+<p><strong>Chroma</strong></p>
+<p>Chroma is &quot;developer-first&quot; vector store: embedded mode and client-server support, simple API; repository shows Python and JS clients and <code>chroma run</code> command for server mode. Documentation specifies Apache-2.0 and managed Chroma Cloud availability. Hybrid search and full-text capabilities exist (in docs), observability via OpenTelemetry and authentication documentation for client-server mode.</p>
+<p>Strengths: prototyping speed, &quot;embed in application&quot; without separate cluster, understandable operations at small scale. Weaknesses: embedded mode without authentication; scaling and enterprise controls usually better served by full-featured DBs. Use cases: RAG prototypes, small memory bases, dev/staging environments.</p>
+<p>---</p>
+<h2 id="selecting-solutions-by-use-cases-and-decision-flow">Selecting Solutions by Use Cases and Decision Flow <a class="anchor-link" href="#selecting-solutions-by-use-cases-and-decision-flow" aria-hidden="true">#</a></h2>
+<h3 id="practical-selection-criteria-by-use-case">Practical Selection Criteria by Use Case <a class="anchor-link" href="#practical-selection-criteria-by-use-case" aria-hidden="true">#</a></h3>
+<p><strong>Prototyping (days–weeks, fast iterations)</strong></p>
+<ul>
+<li>What&#x27;s important: DX, simple integrations, fast start, minimal infrastructure</li>
+<li>Typical stack: LangChain or LlamaIndex as agent framework + Chroma embedded/server. For quality observability — quickly add tracing/evals (LangSmith as example of platform layer)</li>
+</ul>
+<p><strong>Production conversational agents (SLA, monitoring, secure tool calls)</strong></p>
+<ul>
+<li>What&#x27;s important: observability &quot;along agent trajectory,&quot; tool call control, thread state, PII protection, stable integrations</li>
+<li>Typical stack: LangChain + short-term memory/checkpointing + vector DB for long-term memory (Weaviate/Milvus; Chroma for smaller scales). For production orchestration of long tasks — move background processes to WF engine (Temporal/Prefect)</li>
+</ul>
+<p><strong>Multi-agent orchestration (role coordination, group chat, task distribution)</strong></p>
+<ul>
+<li>What&#x27;s important: communication model (agents-as-actors vs agents-as-workflows), group state management, repeatability, stopping policy, debug</li>
+<li>If goal is research/prototype: AutoGen is convenient, but account for maintenance mode and migration plan</li>
+<li>For production: often more useful to make &quot;agent roles&quot; as activities/workers under Temporal control (durable orchestration), keeping multi-agent logic in library framework code</li>
+</ul>
+<p><strong>RAG pipelines (ingestion + retrieval + generation)</strong></p>
+<ul>
+<li>What&#x27;s important: retrieval quality (hybrid/rerank), ingestion reproducibility, observability, ability for backfill</li>
+<li>For quick RAG: LlamaIndex or Haystack (both focused on retrieval/pipelines)</li>
+<li>For scheduled ingestion: Airflow (DAG and scheduler) or Prefect. Retrieval memory: Weaviate (hybrid) or Milvus (indexes and scale)</li>
+</ul>
+<p><strong>Long-term memory (personalization, profiles, knowledge, &quot;evergreen&quot; memory)</strong></p>
+<ul>
+<li>What&#x27;s important: persistence, ACL/RBAC, audit, multi-tenancy, retention strategy, hybrid search</li>
+<li>Weaviate: RBAC + hybrid search + Prometheus monitoring</li>
+<li>Milvus: TLS/auth/RBAC + advanced indexes + Prometheus/Grafana</li>
+<li>Chroma: convenient, but security and scale need evaluation by mode (embedded vs server)</li>
+</ul>
+<p><strong>Real-time control (low latency, reactive management, event-driven)</strong></p>
+<ul>
+<li>What&#x27;s important: p95/p99 latency, predictability, concurrency management, backpressure, secure tool calls</li>
+<li>Usually avoid heavy DAG engines as &quot;inner loop.&quot; Ray actors fit well as stateful workers model. For inference/serving — Ray Serve or BentoML (batching/streaming)</li>
+<li>For &quot;long&quot; compensating transactions over real-time circuit — separate durable workflow (Temporal)</li>
+</ul>
+<h3 id="recommended-decision-flow-selection-checklist">Recommended Decision Flow / Selection Checklist <a class="anchor-link" href="#recommended-decision-flow-selection-checklist" aria-hidden="true">#</a></h3>
+<p>Below is a practical sequence that usually eliminates 70–80% of uncertainty.</p>
+<p>1) <strong>Determine work type:</strong> interactive chat/realtime or batch/background. Airflow is directly oriented toward batch-oriented workflows — this is a good &quot;flag&quot; that for realtime agents it&#x27;s rarely optimal.</p>
+<p>2) <strong>Is durable execution semantics needed?</strong></p>
+<p>If process can last minutes/hours/days, must survive restarts and have reproducibility — Temporal as class of solutions. Temporal documents Event History as durable journal surviving crashes.</p>
+<p>3) <strong>Where will state be?</strong></p>
+<ul>
+<li>Thread memory (dialog) — need checkpointer/storage (LangChain)?</li>
+<li>Long-term memory — need RBAC/multi-tenancy/hybrid search (Weaviate/Milvus)?</li>
+</ul>
+<p>4) <strong>What is the retrieval profile?</strong></p>
+<ul>
+<li>Need hybrid (keyword+semantic) — Weaviate hybrid search (BM25F+vector fusion) or Chroma hybrid search (RRF)</li>
+<li>Need scale and ANN index choice — Milvus (HNSW/IVF/PQ with trade-off explanation)</li>
+</ul>
+<p>5) <strong>Observability and eval in production:</strong></p>
+<ul>
+<li>Want &quot;agent-level&quot; traces and quality assessment — separate harness/eval layer (e.g., LangSmith describes observability and evaluation)</li>
+<li>For infrastructure components: Prometheus/Grafana or OpenTelemetry (Weaviate, Milvus, Chroma, Ray have official materials)</li>
+</ul>
+<p>6) <strong>Security/compliance constraints (PII, keys, audit):</strong></p>
+<ul>
+<li>If RBAC in memory store is required — Weaviate/Milvus documentation confirm such mechanisms</li>
+<li>If mTLS for orchestration layer is required — Temporal Cloud describes mTLS and certificates</li>
+</ul>
+<h3 id="mini-decision-matrix-example-shortlists-by-use-case">Mini Decision Matrix: Example Shortlists By Use Case <a class="anchor-link" href="#mini-decision-matrix-example-shortlists-by-use-case" aria-hidden="true">#</a></h3>
+<div class="table-container"><table>
+<thead><tr>
+<th>Use Case</th>
+<th>Example shortlist</th>
+<th>Why</th>
+</tr></thead><tbody>
+<tr>
+<td>Agent prototype</td>
+<td>LangChain; LlamaIndex; Chroma</td>
+<td>Fast start and integrations (LangChain), strong data/RAG layer (LlamaIndex), simple memory without cluster (Chroma)</td>
+</tr>
+<tr>
+<td>Production chat + memory</td>
+<td>LangChain; Weaviate; Milvus</td>
+<td>Agent layer + short-term memory (LangChain); RBAC/hybrid (Weaviate) or scale/indexes/TLS+RBAC (Milvus)</td>
+</tr>
+<tr>
+<td>Multi-agent orchestration</td>
+<td>Temporal; LangChain; Ray</td>
+<td>Temporal as durable backbone; LangChain for agent/tool logic; Ray for parallel subtask scaling</td>
+</tr>
+<tr>
+<td>RAG pipeline (prod)</td>
+<td>Haystack; Milvus; Airflow</td>
+<td>Haystack as transparent pipeline/agent orchestration; Milvus as high-perf retrieval; Airflow for scheduled ingestion/backfills</td>
+</tr>
+<tr>
+<td>Long-term memory/knowledge base</td>
+<td>Weaviate; Milvus; Chroma</td>
+<td>Weaviate — hybrid+RBAC; Milvus — scale+indexes+TLS+RBAC; Chroma — lightweight alternative for smaller volumes</td>
+</tr>
+<tr>
+<td>Realtime circuit + serving</td>
+<td>Ray Serve; BentoML; Temporal</td>
+<td>Ray Serve and BentoML for throughput/streaming/batching; Temporal for &quot;long&quot; compensation/orchestration outside realtime loop</td>
+</tr>
+</tbody></table></div>
+<p>---</p>
+<h2 id="reference-architectures">Reference Architectures <a class="anchor-link" href="#reference-architectures" aria-hidden="true">#</a></h2>
+<p>Below are three typical schemes. The idea is not that &quot;this is how it must always be,&quot; but to <strong>explicitly delineate boundaries</strong>: where is agent loop, where is durable orchestration, where is memory, where is observability.</p>
+<h3 id="simple-conversational-agent-with-short-memory">Simple Conversational Agent with Short Memory <a class="anchor-link" href="#simple-conversational-agent-with-short-memory" aria-hidden="true">#</a></h3>
+<pre><code class="language-mermaid">flowchart LR
+  U[User / Client] --&gt; GW[API Gateway]
+  GW --&gt; APP[Agent Service]
+  APP --&gt;|prompt + tools spec| LLM[LLM Provider]
+  APP --&gt;|tool call| TOOL[External Tool/API]
+  TOOL --&gt; APP
+
+  APP --&gt; MEM[Short-term Memory\n(thread store/checkpointer)]
+  MEM --&gt; APP
+
+  APP --&gt; OBS[Tracing/Logs/Metrics]</code></pre>
+<p>Key decisions: (1) store thread-level state separately (checkpointer/DB/Redis), (2) don&#x27;t log PII in traces, (3) make tool calls idempotent.</p>
+<h3 id="rag-pipeline-with-vector-db-and-long-term-memory">RAG Pipeline with Vector DB and Long-Term Memory <a class="anchor-link" href="#rag-pipeline-with-vector-db-and-long-term-memory" aria-hidden="true">#</a></h3>
+<pre><code class="language-mermaid">flowchart TB
+  subgraph Ingestion
+    SRC[Docs / DB / Files] --&gt; SPLIT[Chunking + Metadata]
+    SPLIT --&gt; EMB[Embedding Model]
+    EMB --&gt; VDB[(Vector DB)]
+  end
+
+  subgraph QueryTime
+    Q[User Query] --&gt; QEMB[Query Embedding]
+    QEMB --&gt; RET[Retriever (vector/hybrid)]
+    RET --&gt; RERANK[Reranker (optional)]
+    RERANK --&gt; CTX[Context Builder]
+    CTX --&gt; GEN[LLM Generation]
+    GEN --&gt; A[Answer + citations]
+  end
+
+  VDB --&gt; RET
+  GEN --&gt; OBS[Tracing/Evals/Monitoring]</code></pre>
+<p>Conceptually this corresponds to the idea of RAG as combination of LLM&#x27;s parametric memory and non-parametric memory (dense vector index). Practically, key quality parameters are chunking strategy, filters, hybrid search (where needed), rerank, and index update policy.</p>
+<h3 id="multi-agent-workflow-orchestration">Multi-Agent Workflow + Orchestration <a class="anchor-link" href="#multi-agent-workflow-orchestration" aria-hidden="true">#</a></h3>
+<pre><code class="language-mermaid">flowchart LR
+  subgraph Orchestrator
+    WF[Durable Workflow Engine]
+    HIST[(Event History / State)]
+    WF &lt;--&gt; HIST
+  end
+
+  WF --&gt; A1[Agent Worker: Planner]
+  WF --&gt; A2[Agent Worker: Researcher]
+  WF --&gt; A3[Agent Worker: Executor]
+
+  A1 --&gt;|task| A2
+  A2 --&gt;|tool calls| TOOLS[APIs/DBs/SaaS]
+  A3 --&gt;|writes| MEM[(Long-term Memory / Vector DB)]
+
+  WF --&gt; OBS[Metrics/Tracing/UI]</code></pre>
+<p>If using Temporal-like engine, critically important: (a) event history storage, (b) replay tests and non-determinism control, (c) history growth management (limits).</p>
+<p>---</p>
+<h2 id="performance-cost-and-benchmarks">Performance, Cost, and Benchmarks <a class="anchor-link" href="#performance-cost-and-benchmarks" aria-hidden="true">#</a></h2>
+<h3 id="where-latency-and-cost-actually-burn">Where Latency and Cost Actually &quot;Burn&quot; <a class="anchor-link" href="#where-latency-and-cost-actually-burn" aria-hidden="true">#</a></h3>
+<p>1) <strong>LLM inference</strong> (usually dominates): input tokens (context) + output tokens. Cost and latency are function of model, provider, and mode (streaming, batch).</p>
+<p>2) <strong>Tool calls</strong>: external APIs often give p95/p99 &quot;tails,&quot; network timeouts, rate limits.</p>
+<p>3) <strong>Retrieval</strong>: vector DB query latency; index affects it (HNSW vs IVF_PQ and others), collection size and filters. Milvus directly describes trade-off: HNSW — low latency/high accuracy at higher memory overhead; IVF_PQ — often saves memory at cost of speed/accuracy.</p>
+<p>4) <strong>Orchestration</strong>: durable execution adds overhead, but buys guarantees (e.g., Event History and recovery).</p>
+<h3 id="what-to-look-for-in-benchmarks-and-what-s-often-missing">What to Look for in Benchmarks (and What&#x27;s Often Missing) <a class="anchor-link" href="#what-to-look-for-in-benchmarks-and-what-s-often-missing" aria-hidden="true">#</a></h3>
+<p>For <strong>agent frameworks</strong>:</p>
+<ul>
+<li>End-to-end measurement including tool calls and retrieval, not just single LLM request latency</li>
+<li>Stability and quality (win rate, task success) on representative scenarios</li>
+<li>Reproducibility of conditions (fixing initial state, environment)</li>
+</ul>
+<p>AutoGen Bench is directly oriented toward repeatable scenario runs in controlled conditions. For production quality, eval and real-time quality monitoring are also important; LangSmith describes offline/online evaluation and connection with observability.</p>
+<p>For <strong>vector DBs</strong>:</p>
+<ul>
+<li>p50/p95/p99 latency on <code>topK</code> and typical filters</li>
+<li>recall@K (if comparing ANN indexes)</li>
+<li>Ingestion/index build speed</li>
+<li>RAM cost (especially for HNSW)</li>
+<li>Stability during updates/compaction</li>
+</ul>
+<p>For <strong>serving</strong>:</p>
+<ul>
+<li>Tokens/sec (throughput) and tail latency</li>
+<li>Batching efficiency (BentoML describes adaptive batching as mechanism improving throughput and utilization)</li>
+<li>Cold start, replica scaling</li>
+</ul>
+<h3 id="recommended-tests-to-run-before-selection">Recommended Tests to Run Before Selection <a class="anchor-link" href="#recommended-tests-to-run-before-selection" aria-hidden="true">#</a></h3>
+<p>Test set that usually pays off in 1–2 weeks of work and prevents &quot;migration after 3 months.&quot;</p>
+<p><strong>Load tests</strong></p>
+<ul>
+<li>3 profiles: steady QPS, bursty (peaks), long-tail (rare heavy queries)</li>
+<li>Metrics: p50/p95/p99 per pipeline stage (retrieval, LLM, tools) + overall end-to-end</li>
+<li>For Ray Serve/BentoML: tests with batching on/off and different max latency windows</li>
+</ul>
+<p><strong>Failure tests</strong></p>
+<ul>
+<li>Forced tool call timeouts</li>
+<li>Worker/pod crash</li>
+<li>Vector DB degradation (delays, partial failure)</li>
+<li>Idempotency and re-execution verification (especially in WF engine)</li>
+</ul>
+<p><strong>Quality (evaluation) tests</strong></p>
+<ul>
+<li>Golden queries set with reference answers or criteria</li>
+<li>Hallucination rate and citation correctness measurement</li>
+<li>A/B comparison of retrieval strategies (vector vs hybrid vs rerank)</li>
+</ul>
+<p><strong>Cost tests</strong></p>
+<ul>
+<li>Tokens per query, average context size</li>
+<li>Embeddings and storage cost</li>
+<li>Observability cost (log/trace volume; retention)</li>
+</ul>
+<p>---</p>
+<h2 id="security-compliance-data-privacy-and-migrations">Security, Compliance, Data Privacy, and Migrations <a class="anchor-link" href="#security-compliance-data-privacy-and-migrations" aria-hidden="true">#</a></h2>
+<h3 id="security-privacy-checklist-practical">Security &amp; Privacy Checklist (Practical) <a class="anchor-link" href="#security-privacy-checklist-practical" aria-hidden="true">#</a></h3>
+<p><strong>Data Control</strong></p>
+<ul>
+<li>Classify data (PII/PHI/secrets/commercial secret)</li>
+<li>Determine what can be sent to model provider and what must stay on-prem</li>
+<li>Implement retention policies for chat history and vector store</li>
+</ul>
+<p><strong>Encryption</strong></p>
+<ul>
+<li>TLS in transit between services (especially to DB/WF engine). Milvus describes TLS for gRPC and REST traffic</li>
+<li>For managed orchestration — mTLS when needed. Temporal Cloud describes TLS as encryption and mTLS as identity proof method</li>
+</ul>
+<p><strong>Authentication and Authorization</strong></p>
+<ul>
+<li>RBAC for long-term memory (Weaviate RBAC overview)</li>
+<li>RBAC/auth in Milvus when tenant isolation is needed</li>
+<li>For Chroma: ensure you&#x27;re not using embedded mode where auth is needed (docs directly say auth only for client-server)</li>
+</ul>
+<p><strong>Audit and Security Observability</strong></p>
+<ul>
+<li>Authorization decision logging (Weaviate mentions authorization decision logs for RBAC)</li>
+<li>Separate channels: security audit vs debug logs (PII minimization)</li>
+</ul>
+<p><strong>Secrets Management</strong></p>
+<ul>
+<li>Store tool call secrets and LLM provider keys in secret manager</li>
+<li>Rotations + rollback</li>
+</ul>
+<p><strong>Supply Chain</strong></p>
+<ul>
+<li>Pin versions, SBOM, dependency scanning</li>
+<li>Separately evaluate licenses (see table)</li>
+</ul>
+<h3 id="observability-compliance-checklist">Observability/Compliance Checklist <a class="anchor-link" href="#observability-compliance-checklist" aria-hidden="true">#</a></h3>
+<ul>
+<li>Metrics: QPS, p95/p99 latency, error rates, retries, token usage</li>
+<li>Tracing: end-to-end trace per request (retrieval + LLM + tools)</li>
+<li>For infrastructure: Prometheus/Grafana standardly supported by Weaviate and Milvus; Chroma claims OpenTelemetry observability; Ray emits Prometheus-format metrics and has dashboard</li>
+<li>For Temporal Cloud: metrics export via OpenMetrics endpoint documented</li>
+</ul>
+<h3 id="migration-and-interoperability">Migration and Interoperability <a class="anchor-link" href="#migration-and-interoperability" aria-hidden="true">#</a></h3>
+<p><strong>How to reduce lock-in between agent frameworks</strong></p>
+<ul>
+<li>Keep &quot;agent core&quot; as pure functions/classes with minimal dependencies on specific SDK</li>
+<li>Introduce your own abstractions:</li>
+<li><code>Message</code> (role/content/metadata)</li>
+<li><code>Tool</code> (schema, timeouts, retry policy)</li>
+<li><code>Memory</code> (interface put/get, serialization)</li>
+<li>Then switching LangChain ↔ LlamaIndex ↔ Haystack becomes adapter migration, not business logic rewriting. This is especially important because &quot;tool calling&quot; is common model-application interaction pattern</li>
+</ul>
+<p><strong>How to switch vector DBs</strong></p>
+<ul>
+<li>Isolate retrieval layer:</li>
+<li>Unified contract &quot;query → document/chunk list + scores + metadata&quot;</li>
+<li>Separate indexing and hybrid search settings</li>
+<li>If using hybrid: move fusion logic (RRF/weights) to application level or choose DB where this is native</li>
+<li>Data migration plan:</li>
+<li>Export embeddings + metadata</li>
+<li>Re-indexing and recall/latency validation</li>
+<li>Parallel dual run (shadow reads) during switch period</li>
+</ul>
+<p><strong>How to migrate between orchestrators</strong></p>
+<ul>
+<li>Separate process definitions (graph) from action implementation</li>
+<li>Reduce &quot;actions&quot; to idempotent activities/tasks. This is especially critical for durable engines</li>
+<li>Watch history/log limits. Temporal has limits on Event History — this affects design (e.g., don&#x27;t write every token to history)</li>
+</ul>
+<p><strong>Migration tips when ecosystem &quot;moves&quot;</strong></p>
+<ul>
+<li>Account for support statuses. AutoGen is in maintenance mode and Microsoft recommends Agent Framework for new projects. If you still choose AutoGen, build a boundary layer and migration tests early.</li>
+</ul>
+<p>---</p>
+<h2 id="brief-recommendations">Brief Recommendations <a class="anchor-link" href="#brief-recommendations" aria-hidden="true">#</a></h2>
+<p>If your goal is to build agent application &quot;as product,&quot; it&#x27;s usually reasonable to:</p>
+<p>1) Choose <strong>agent framework</strong> by DX and integrations (LangChain / LlamaIndex / Haystack), not trying to solve reliability and production operations with it. This matches how projects position themselves: LangChain as framework and ecosystem, Haystack as orchestration framework for production RAG/agents.</p>
+<p>2) For <strong>long business processes</strong> and multi-step tasks with recovery requirements — put <strong>Temporal</strong> as backbone and run agent logic in workers/activities, using Event History and replay approach where critical.</p>
+<p>3) For <strong>memory</strong>:</p>
+<ul>
+<li>Chroma — great start and low friction, but account for embedded vs server difference in authentication</li>
+<li>As you grow and security/tenant requirements increase — Weaviate (RBAC + hybrid) or Milvus (indexes + TLS/RBAC)</li>
+</ul>
+<p>4) For <strong>compute scaling</strong> and high throughput workloads — Ray as distributed runtime, and for serving and batching — Ray Serve and/or BentoML (choice depends on whether you want unified runtime or specialized serving layer).</p>
+<p>5) In production don&#x27;t skimp on <strong>observability+eval</strong>: without traces and systematic quality assessment, &quot;agent&quot; quality degrades unnoticed. Use approaches like offline/online evaluation and trajectory tracing (positioning example — LangSmith).</p>
+<p>6) When choosing AutoGen, plan for migration because the project is in maintenance mode and Microsoft recommends Agent Framework for new projects.</p>
+<h2 id="source-assessment">Source Assessment <a class="anchor-link" href="#source-assessment" aria-hidden="true">#</a></h2>
+<h3 id="what-the-source-claims">What the Source Claims <a class="anchor-link" href="#what-the-source-claims" aria-hidden="true">#</a></h3>
+<p>The report compares software components and architectural tradeoffs for conversational, retrieval, workflow, and observability systems.</p>
+<h3 id="data-or-evidence-provided">Data or Evidence Provided <a class="anchor-link" href="#data-or-evidence-provided" aria-hidden="true">#</a></h3>
+<p>It summarizes official documentation, repositories, and published benchmarks; it does not provide one controlled benchmark across all listed projects.</p>
+<h3 id="limitations">Limitations <a class="anchor-link" href="#limitations" aria-hidden="true">#</a></h3>
+<p>Versions, pricing, performance, and security features change, while vendor benchmarks and heterogeneous workloads are not directly comparable.</p>
+<h3 id="what-bwb-accepts">What BWB Accepts <a class="anchor-link" href="#what-bwb-accepts" aria-hidden="true">#</a></h3>
+<p>BWB accepts the engineering decision criteria, reproducibility questions, and privacy and observability checklists for weak-assistant tooling.</p>
+<h3 id="what-remains-contested-or-open">What Remains Contested or Open <a class="anchor-link" href="#what-remains-contested-or-open" aria-hidden="true">#</a></h3>
+<p>Current comparative performance, operational cost, and best fit for a particular deployment remain open and require local testing.</p>
+<h3 id="rejected-or-historical-only">Rejected or Historical-Only <a class="anchor-link" href="#rejected-or-historical-only" aria-hidden="true">#</a></h3>
+<p>BWB rejects treating software capability as evidence about a person&#x27;s psychology or using infrastructure output as an automatic relationship decision.</p>
+            </div>
+            <nav class="page-toc"><h4>Table of contents</h4><ul><li class="toc-level-2"><a href="#executive-summary">Executive Summary</a></li><li class="toc-level-2"><a href="#definitions-and-boundaries">Definitions and Boundaries</a></li><li class="toc-level-2"><a href="#evaluation-criteria-and-typical-tradeoffs">Evaluation Criteria and Typical Tradeoffs</a></li><li class="toc-level-3"><a href="#architecture-and-responsibility-boundaries">Architecture and Responsibility Boundaries</a></li><li class="toc-level-3"><a href="#scaling-latency-throughput">Scaling, Latency, Throughput</a></li><li class="toc-level-3"><a href="#reliability-fault-tolerance-state-consistency">Reliability, Fault Tolerance, State Consistency</a></li><li class="toc-level-3"><a href="#security-privacy-compliance">Security, Privacy, Compliance</a></li><li class="toc-level-3"><a href="#observability-and-manageability">Observability and Manageability</a></li><li class="toc-level-3"><a href="#extensibility-integrations-api-languages-deployment">Extensibility, Integrations, API, Languages, Deployment</a></li><li class="toc-level-2"><a href="#comparison-of-popular-projects">Comparison of Popular Projects</a></li><li class="toc-level-3"><a href="#summary-comparative-table">Summary Comparative Table</a></li><li class="toc-level-3"><a href="#official-documentation-and-repository-links">Official Documentation and Repository Links</a></li><li class="toc-level-3"><a href="#short-notes-on-each-project">Short Notes on Each Project</a></li><li class="toc-level-2"><a href="#selecting-solutions-by-use-cases-and-decision-flow">Selecting Solutions by Use Cases and Decision Flow</a></li><li class="toc-level-3"><a href="#practical-selection-criteria-by-use-case">Practical Selection Criteria by Use Case</a></li><li class="toc-level-3"><a href="#recommended-decision-flow-selection-checklist">Recommended Decision Flow / Selection Checklist</a></li><li class="toc-level-3"><a href="#mini-decision-matrix-example-shortlists-by-use-case">Mini Decision Matrix: Example Shortlists By Use Case</a></li><li class="toc-level-2"><a href="#reference-architectures">Reference Architectures</a></li><li class="toc-level-3"><a href="#simple-conversational-agent-with-short-memory">Simple Conversational Agent with Short Memory</a></li><li class="toc-level-3"><a href="#rag-pipeline-with-vector-db-and-long-term-memory">RAG Pipeline with Vector DB and Long-Term Memory</a></li><li class="toc-level-3"><a href="#multi-agent-workflow-orchestration">Multi-Agent Workflow + Orchestration</a></li><li class="toc-level-2"><a href="#performance-cost-and-benchmarks">Performance, Cost, and Benchmarks</a></li><li class="toc-level-3"><a href="#where-latency-and-cost-actually-burn">Where Latency and Cost Actually &quot;Burn&quot;</a></li><li class="toc-level-3"><a href="#what-to-look-for-in-benchmarks-and-what-s-often-missing">What to Look for in Benchmarks (and What&#x27;s Often Missing)</a></li><li class="toc-level-3"><a href="#recommended-tests-to-run-before-selection">Recommended Tests to Run Before Selection</a></li><li class="toc-level-2"><a href="#security-compliance-data-privacy-and-migrations">Security, Compliance, Data Privacy, and Migrations</a></li><li class="toc-level-3"><a href="#security-privacy-checklist-practical">Security &amp; Privacy Checklist (Practical)</a></li><li class="toc-level-3"><a href="#observability-compliance-checklist">Observability/Compliance Checklist</a></li><li class="toc-level-3"><a href="#migration-and-interoperability">Migration and Interoperability</a></li><li class="toc-level-2"><a href="#brief-recommendations">Brief Recommendations</a></li><li class="toc-level-2"><a href="#source-assessment">Source Assessment</a></li><li class="toc-level-3"><a href="#what-the-source-claims">What the Source Claims</a></li><li class="toc-level-3"><a href="#data-or-evidence-provided">Data or Evidence Provided</a></li><li class="toc-level-3"><a href="#limitations">Limitations</a></li><li class="toc-level-3"><a href="#what-bwb-accepts">What BWB Accepts</a></li><li class="toc-level-3"><a href="#what-remains-contested-or-open">What Remains Contested or Open</a></li><li class="toc-level-3"><a href="#rejected-or-historical-only">Rejected or Historical-Only</a></li></ul></nav>
+          </div>
+        </article>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <a href="../../index.html">← Back to Before We Build tests</a> · Before We Build
+    </footer>
+
+    <script src="../wiki-search.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('../../sw.js');
+        });
+      }
+    </script>
+  </body>
+</html>

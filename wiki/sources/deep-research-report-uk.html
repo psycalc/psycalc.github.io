@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Огляд agent-фреймворків, оркестрації та пам&#x27;яті — Before We Build · База знань</title>
+    <meta name="theme-color" content="#74451f" />
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../../assets/icon.svg" />
+    <link rel="stylesheet" href="../../assets/site.css" />
+    <link rel="stylesheet" href="../wiki.css" />
+  </head>
+  <body class="wiki-body">
+    <header class="hero tests-hero">
+      <nav class="nav" aria-label="Основна навігація">
+        <a class="brand" href="../../index.html"><span class="ichthys-mark" aria-label="ΙΧΘΥΣ">ΙΧΘΥΣ</span><b>Before We Build</b></a>
+        <div class="nav-links">
+          <a href="../../index.html">Тести</a>
+          <a href="../../relations-calculator.html">Калькулятор</a>
+          <a href="../index.html" class="active">База знань</a>
+          <div class="lang-switch-peer"><a href="../sources/deep-research-report-uk.html" class="active">UK</a> <a href="../sources/deep-research-report-en.html">EN</a> <a href="../sources/deep-research-report-ru.html">RU</a></div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="wiki-container">
+      <aside class="wiki-sidebar">
+        <div class="search-box">
+          <input type="search" id="wikiSearchInput" placeholder="Пошук по базі знань..." aria-label="Search" />
+          <div id="searchResults" class="search-dropdown" hidden></div>
+        </div>
+        <div class="sidebar-nav">
+          <a href="../index.html" class="sidebar-hub-link">📚 Головна Wiki</a>
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Теоретичні концепти</div>
+            <ul>
+              <li><a href="../concepts/latent-process-uk.html">Latent Process</a></li>
+              <li><a href="../concepts/four-levels-of-compatibility-uk.html">Four Levels</a></li>
+              <li><a href="../concepts/temporistics-temporal-orientations-uk.html">Temporistics</a></li>
+              <li><a href="../concepts/psychosophy-action-synthesis-uk.html">Psychosophy</a></li>
+              <li><a href="../concepts/socionics-reality-modeling-uk.html">Socionics</a></li>
+            </ul>
+          </div>
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Словники термінів</div>
+            <ul>
+              <li><a href="../glossary-core-uk.html">Glossary Core</a></li>
+              <li><a href="../glossary-extended-uk.html">Glossary Extended</a></li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+
+      <main class="wiki-content">
+        <article class="wiki-article">
+          <header class="article-header">
+            <div class="article-meta-top"><span class="badge badge-role">source-summary</span> <span class="badge badge-version">v1</span> <span class="badge badge-status">active</span></div>
+            <h1>Огляд agent-фреймворків, оркестрації та пам&#x27;яті</h1>
+          </header>
+
+          <div class="article-layout">
+            <div class="article-body">
+              <h1 id="вибір-agent-harnesses-фреймворків-оркестрації-та-пам-яті">Вибір agent harnesses, фреймворків, оркестрації та пам&#x27;яті <a class="anchor-link" href="#вибір-agent-harnesses-фреймворків-оркестрації-та-пам-яті" aria-hidden="true">#</a></h1>
+<h2 id="короткий-висновок">Короткий висновок <a class="anchor-link" href="#короткий-висновок" aria-hidden="true">#</a></h2>
+<p>Універсального стеку немає. Agent framework організує LLM-виклики й інструменти; workflow orchestrator забезпечує довговічне виконання; serving/runtime відповідає за масштабування; vector/database layer — за дані й пошук. Вибір має починатися з конкретного процесу, вимог до приватності та відмовостійкості, а не з популярності продукту.</p>
+<p>Це технічний орієнтаційний звіт, а не актуальний benchmark. Можливості проєктів змінюються; перед рішенням треба звіряти офіційну документацію й власні вимірювання.</p>
+<h2 id="визначення-та-межі">Визначення та межі <a class="anchor-link" href="#визначення-та-межі" aria-hidden="true">#</a></h2>
+<ul>
+<li><strong>Agent harness/framework:</strong> prompts, tools, state і переходи.</li>
+<li><strong>Workflow orchestrator:</strong> retries, durable state, schedules і human approval.</li>
+<li><strong>Serving/runtime:</strong> deployment, concurrency, resource control.</li>
+<li><strong>RAG/data layer:</strong> ingestion, retrieval, metadata, permissions.</li>
+<li><strong>Memory:</strong> явно спроєктований коротко- або довгостроковий стан, не «розуміння користувача».</li>
+</ul>
+<h2 id="критерії-й-компроміси">Критерії й компроміси <a class="anchor-link" href="#критерії-й-компроміси" aria-hidden="true">#</a></h2>
+<h3 id="архітектура-та-відповідальність">Архітектура та відповідальність <a class="anchor-link" href="#архітектура-та-відповідальність" aria-hidden="true">#</a></h3>
+<p>Розділяти бізнес-процес, недетермінований LLM-крок, довговічний стан і джерело істини. Не віддавати моделі приховану владу над критичними рішеннями.</p>
+<h3 id="масштабування-затримка-й-throughput">Масштабування, затримка й throughput <a class="anchor-link" href="#масштабування-затримка-й-throughput" aria-hidden="true">#</a></h3>
+<p>Вимірювати весь ланцюжок: чергу, model latency, tool calls, retrieval, serialization та retries. Довгі контексти й послідовні виклики часто важливіші за overhead framework.</p>
+<h3 id="надійність-і-узгодженість">Надійність і узгодженість <a class="anchor-link" href="#надійність-і-узгодженість" aria-hidden="true">#</a></h3>
+<p>Потрібні idempotency, timeouts, обмежені retries, checkpointing, versioned state і явна поведінка за часткової відмови.</p>
+<h3 id="безпека-приватність-і-compliance">Безпека, приватність і compliance <a class="anchor-link" href="#безпека-приватність-і-compliance" aria-hidden="true">#</a></h3>
+<p>Мінімізувати дані, обмежувати інструменти, ізолювати tenants, захищати secrets і логувати рішення без витоку користувацького змісту.</p>
+<h3 id="спостережуваність">Спостережуваність <a class="anchor-link" href="#спостережуваність" aria-hidden="true">#</a></h3>
+<p>Відстежувати кроки, тривалість, вартість, версії prompt/model/tool, помилки й людські втручання. Trace не замінює оцінювання якості результату.</p>
+<h3 id="розширюваність-і-deployment">Розширюваність і deployment <a class="anchor-link" href="#розширюваність-і-deployment" aria-hidden="true">#</a></h3>
+<p>Оцінювати мови, API, self-hosting, екосистему, portability і вартість виходу з продукту.</p>
+<h2 id="порівняння-популярних-проєктів">Порівняння популярних проєктів <a class="anchor-link" href="#порівняння-популярних-проєктів" aria-hidden="true">#</a></h2>
+<h3 id="підсумок">Підсумок <a class="anchor-link" href="#підсумок" aria-hidden="true">#</a></h3>
+<div class="table-container"><table>
+<thead><tr>
+<th>Категорія</th>
+<th>Приклади</th>
+<th>Сильна сторона</th>
+<th>Основне обмеження</th>
+</tr></thead><tbody>
+<tr>
+<td>agent/RAG framework</td>
+<td>LangChain, LlamaIndex, Haystack</td>
+<td>швидка композиція інструментів і retrieval</td>
+<td>API churn і прихована складність</td>
+</tr>
+<tr>
+<td>multi-agent framework</td>
+<td>AutoGen</td>
+<td>діалоги ролей та експерименти</td>
+<td>контроль циклів і відтворюваність</td>
+</tr>
+<tr>
+<td>distributed runtime</td>
+<td>Ray</td>
+<td>масштабування Python-завдань</td>
+<td>операційна складність</td>
+</tr>
+<tr>
+<td>workflow orchestration</td>
+<td>Prefect, Temporal, Airflow</td>
+<td>retries, state, schedules</td>
+<td>не замінює agent semantics</td>
+</tr>
+<tr>
+<td>model serving</td>
+<td>BentoML</td>
+<td>packaging і serving</td>
+<td>окреме проєктування workflow</td>
+</tr>
+<tr>
+<td>vector stores</td>
+<td>Weaviate, Milvus, Chroma</td>
+<td>semantic retrieval</td>
+<td>якість залежить від даних та evaluation</td>
+</tr>
+</tbody></table></div>
+<h3 id="офіційні-посилання">Офіційні посилання <a class="anchor-link" href="#офіційні-посилання" aria-hidden="true">#</a></h3>
+<ul>
+<li>LangChain: https://github.com/langchain-ai/langchain · https://docs.langchain.com/</li>
+<li>LlamaIndex: https://github.com/run-llama/llama_index · https://developers.llamaindex.ai/</li>
+<li>Haystack: https://github.com/deepset-ai/haystack · https://docs.haystack.deepset.ai/</li>
+<li>AutoGen: https://github.com/microsoft/autogen · https://microsoft.github.io/autogen/</li>
+<li>Ray: https://github.com/ray-project/ray · https://docs.ray.io/</li>
+<li>Prefect: https://github.com/PrefectHQ/prefect · https://docs.prefect.io/</li>
+<li>Temporal: https://github.com/temporalio/temporal · https://docs.temporal.io/</li>
+<li>Airflow: https://github.com/apache/airflow · https://airflow.apache.org/docs/</li>
+<li>BentoML: https://github.com/bentoml/BentoML · https://docs.bentoml.com/</li>
+<li>Weaviate: https://github.com/weaviate/weaviate · https://docs.weaviate.io/</li>
+<li>Milvus: https://github.com/milvus-io/milvus · https://milvus.io/docs/</li>
+<li>Chroma: https://github.com/chroma-core/chroma · https://docs.trychroma.com/</li>
+</ul>
+<h3 id="короткі-нотатки">Короткі нотатки <a class="anchor-link" href="#короткі-нотатки" aria-hidden="true">#</a></h3>
+<p>Frameworks пришвидшують прототип; orchestrators підвищують довговічність; runtimes масштабують; vector stores надають пошук. Зазвичай виробнича система комбінує кілька шарів і зберігає доменну логіку поза framework-specific abstractions.</p>
+<h2 id="вибір-за-сценарієм">Вибір за сценарієм <a class="anchor-link" href="#вибір-за-сценарієм" aria-hidden="true">#</a></h2>
+<h3 id="практичні-критерії">Практичні критерії <a class="anchor-link" href="#практичні-критерії" aria-hidden="true">#</a></h3>
+<ul>
+<li>проста розмова: мінімальний harness і явний стан;</li>
+<li>RAG: ingestion quality, permissions та retrieval evaluation;</li>
+<li>регульований workflow: durable orchestrator і approval gates;</li>
+<li>високе навантаження: виміряний serving/runtime;</li>
+<li>дослідницький multi-agent: строгі ліміти, trace та evaluation.</li>
+</ul>
+<h3 id="рекомендований-процес-рішення">Рекомендований процес рішення <a class="anchor-link" href="#рекомендований-процес-рішення" aria-hidden="true">#</a></h3>
+<p>1. Описати I/O, стан, authority і failure modes.</p>
+<p>2. Зробити мінімальний reference flow без важкої платформи.</p>
+<p>3. Виміряти якість, затримку, вартість і відновлення.</p>
+<p>4. Додавати окремий шар лише для спостережуваної потреби.</p>
+<p>5. Перевірити migration/exit plan.</p>
+<h3 id="мініматриця-варіантів">Мініматриця варіантів <a class="anchor-link" href="#мініматриця-варіантів" aria-hidden="true">#</a></h3>
+<p>Shortlist є початком випробування, а не рекомендацією купівлі. Порівняння має використовувати однакові дані, моделі й навантаження.</p>
+<h2 id="референсні-архітектури">Референсні архітектури <a class="anchor-link" href="#референсні-архітектури" aria-hidden="true">#</a></h2>
+<h3 id="проста-розмова-з-короткою-пам-яттю">Проста розмова з короткою пам&#x27;яттю <a class="anchor-link" href="#проста-розмова-з-короткою-пам-яттю" aria-hidden="true">#</a></h3>
+<p>API → policy/input validation → model/tool loop → bounded conversation state → audit metadata.</p>
+<h3 id="rag-із-довгостроковою-пам-яттю">RAG із довгостроковою пам&#x27;яттю <a class="anchor-link" href="#rag-із-довгостроковою-пам-яттю" aria-hidden="true">#</a></h3>
+<p>Ingestion → parsing/chunking → ACL-aware index → retrieval/reranking → grounded generation → citation/evaluation. «Memory» повинна мати мету, строк зберігання, джерело й можливість видалення.</p>
+<h3 id="multi-agent-workflow">Multi-agent workflow <a class="anchor-link" href="#multi-agent-workflow" aria-hidden="true">#</a></h3>
+<p>Orchestrator → обмежені ролі → shared typed state → approval/termination rules → evaluator. Кількість агентів не є метрикою якості.</p>
+<h2 id="продуктивність-вартість-і-benchmarks">Продуктивність, вартість і benchmarks <a class="anchor-link" href="#продуктивність-вартість-і-benchmarks" aria-hidden="true">#</a></h2>
+<h3 id="де-витрачаються-затримка-й-вартість">Де витрачаються затримка й вартість <a class="anchor-link" href="#де-витрачаються-затримка-й-вартість" aria-hidden="true">#</a></h3>
+<p>Модельні токени, послідовні виклики інструментів, retrieval, повторні спроби й великий контекст.</p>
+<h3 id="що-шукати-в-benchmark">Що шукати в benchmark <a class="anchor-link" href="#що-шукати-в-benchmark" aria-hidden="true">#</a></h3>
+<p>Однакові завдання, якість відповіді, p50/p95 latency, вартість успішного завдання, failure rate, recovery та human correction. Маркетингові demo не замінюють навантажувальний тест.</p>
+<h3 id="обов-язкові-випробування">Обов&#x27;язкові випробування <a class="anchor-link" href="#обов-язкові-випробування" aria-hidden="true">#</a></h3>
+<p>Golden set, adversarial inputs, tool failures, stale retrieval, concurrency, permission leakage, restore from checkpoint і provider migration.</p>
+<h2 id="безпека-compliance-і-міграції">Безпека, compliance і міграції <a class="anchor-link" href="#безпека-compliance-і-міграції" aria-hidden="true">#</a></h2>
+<h3 id="практичний-checklist">Практичний checklist <a class="anchor-link" href="#практичний-checklist" aria-hidden="true">#</a></h3>
+<p>Least privilege, secret isolation, consent, retention/deletion, encryption, prompt-injection boundaries, human approval для високоризикових дій і безпечні логи.</p>
+<h3 id="observability-compliance">Observability/compliance <a class="anchor-link" href="#observability-compliance" aria-hidden="true">#</a></h3>
+<p>Версії компонентів, trace IDs, причина втручання, provenance даних і відтворюваний audit trail.</p>
+<h3 id="interoperability">Interoperability <a class="anchor-link" href="#interoperability" aria-hidden="true">#</a></h3>
+<p>Зберігати доменні дані й події у власних стабільних схемах; ізолювати адаптери; тестувати експорт і заміну provider/framework.</p>
+<h2 id="короткі-рекомендації">Короткі рекомендації <a class="anchor-link" href="#короткі-рекомендації" aria-hidden="true">#</a></h2>
+<p>Починати з найменшого перевірюваного стеку. Для Before We Build AI залишається помічником для організації та питань, тому інфраструктура не повинна перетворювати модель на автономного діагноста чи передбачувача людей.</p>
+<h2 id="оцінка-джерела">Оцінка джерела <a class="anchor-link" href="#оцінка-джерела" aria-hidden="true">#</a></h2>
+<h3 id="що-стверджує-джерело">Що стверджує джерело <a class="anchor-link" href="#що-стверджує-джерело" aria-hidden="true">#</a></h3>
+<p>Звіт порівнює програмні компоненти й архітектурні компроміси розмовних, пошукових, workflow- та observability-систем.</p>
+<h3 id="які-дані-або-свідчення-наведено">Які дані або свідчення наведено <a class="anchor-link" href="#які-дані-або-свідчення-наведено" aria-hidden="true">#</a></h3>
+<p>Він зводить офіційну документацію, репозиторії й опубліковані benchmarks; єдиного контрольованого тесту всіх проєктів у ньому немає.</p>
+<h3 id="обмеження">Обмеження <a class="anchor-link" href="#обмеження" aria-hidden="true">#</a></h3>
+<p>Версії, ціни, продуктивність і функції безпеки змінюються, а vendor benchmarks та неоднорідні навантаження не можна прямо порівнювати.</p>
+<h3 id="що-приймає-bwb">Що приймає BWB <a class="anchor-link" href="#що-приймає-bwb" aria-hidden="true">#</a></h3>
+<p>BWB приймає інженерні критерії рішення, питання відтворюваності й checklists приватності та спостережуваності для інструментів слабкого помічника.</p>
+<h3 id="що-лишається-спірним-або-відкритим">Що лишається спірним або відкритим <a class="anchor-link" href="#що-лишається-спірним-або-відкритим" aria-hidden="true">#</a></h3>
+<p>Поточна порівняльна продуктивність, експлуатаційна вартість і придатність для конкретного розгортання лишаються відкритими й потребують локальних тестів.</p>
+<h3 id="що-відкинуто-або-зберігається-лише-історично">Що відкинуто або зберігається лише історично <a class="anchor-link" href="#що-відкинуто-або-зберігається-лише-історично" aria-hidden="true">#</a></h3>
+<p>BWB відкидає подання можливостей ПЗ як свідчень про психологію людини та автоматичне рішення про стосунки за інфраструктурним результатом.</p>
+            </div>
+            <nav class="page-toc"><h4>Зміст статті</h4><ul><li class="toc-level-2"><a href="#короткий-висновок">Короткий висновок</a></li><li class="toc-level-2"><a href="#визначення-та-межі">Визначення та межі</a></li><li class="toc-level-2"><a href="#критерії-й-компроміси">Критерії й компроміси</a></li><li class="toc-level-3"><a href="#архітектура-та-відповідальність">Архітектура та відповідальність</a></li><li class="toc-level-3"><a href="#масштабування-затримка-й-throughput">Масштабування, затримка й throughput</a></li><li class="toc-level-3"><a href="#надійність-і-узгодженість">Надійність і узгодженість</a></li><li class="toc-level-3"><a href="#безпека-приватність-і-compliance">Безпека, приватність і compliance</a></li><li class="toc-level-3"><a href="#спостережуваність">Спостережуваність</a></li><li class="toc-level-3"><a href="#розширюваність-і-deployment">Розширюваність і deployment</a></li><li class="toc-level-2"><a href="#порівняння-популярних-проєктів">Порівняння популярних проєктів</a></li><li class="toc-level-3"><a href="#підсумок">Підсумок</a></li><li class="toc-level-3"><a href="#офіційні-посилання">Офіційні посилання</a></li><li class="toc-level-3"><a href="#короткі-нотатки">Короткі нотатки</a></li><li class="toc-level-2"><a href="#вибір-за-сценарієм">Вибір за сценарієм</a></li><li class="toc-level-3"><a href="#практичні-критерії">Практичні критерії</a></li><li class="toc-level-3"><a href="#рекомендований-процес-рішення">Рекомендований процес рішення</a></li><li class="toc-level-3"><a href="#мініматриця-варіантів">Мініматриця варіантів</a></li><li class="toc-level-2"><a href="#референсні-архітектури">Референсні архітектури</a></li><li class="toc-level-3"><a href="#проста-розмова-з-короткою-пам-яттю">Проста розмова з короткою пам&#x27;яттю</a></li><li class="toc-level-3"><a href="#rag-із-довгостроковою-пам-яттю">RAG із довгостроковою пам&#x27;яттю</a></li><li class="toc-level-3"><a href="#multi-agent-workflow">Multi-agent workflow</a></li><li class="toc-level-2"><a href="#продуктивність-вартість-і-benchmarks">Продуктивність, вартість і benchmarks</a></li><li class="toc-level-3"><a href="#де-витрачаються-затримка-й-вартість">Де витрачаються затримка й вартість</a></li><li class="toc-level-3"><a href="#що-шукати-в-benchmark">Що шукати в benchmark</a></li><li class="toc-level-3"><a href="#обов-язкові-випробування">Обов&#x27;язкові випробування</a></li><li class="toc-level-2"><a href="#безпека-compliance-і-міграції">Безпека, compliance і міграції</a></li><li class="toc-level-3"><a href="#практичний-checklist">Практичний checklist</a></li><li class="toc-level-3"><a href="#observability-compliance">Observability/compliance</a></li><li class="toc-level-3"><a href="#interoperability">Interoperability</a></li><li class="toc-level-2"><a href="#короткі-рекомендації">Короткі рекомендації</a></li><li class="toc-level-2"><a href="#оцінка-джерела">Оцінка джерела</a></li><li class="toc-level-3"><a href="#що-стверджує-джерело">Що стверджує джерело</a></li><li class="toc-level-3"><a href="#які-дані-або-свідчення-наведено">Які дані або свідчення наведено</a></li><li class="toc-level-3"><a href="#обмеження">Обмеження</a></li><li class="toc-level-3"><a href="#що-приймає-bwb">Що приймає BWB</a></li><li class="toc-level-3"><a href="#що-лишається-спірним-або-відкритим">Що лишається спірним або відкритим</a></li><li class="toc-level-3"><a href="#що-відкинуто-або-зберігається-лише-історично">Що відкинуто або зберігається лише історично</a></li></ul></nav>
+          </div>
+        </article>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <a href="../../index.html">← До тестів Before We Build</a> · Before We Build
+    </footer>
+
+    <script src="../wiki-search.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('../../sw.js');
+        });
+      }
+    </script>
+  </body>
+</html>

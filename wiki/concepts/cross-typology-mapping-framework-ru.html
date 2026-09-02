@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Рамка межтипологического сопоставления — Before We Build · База знаний</title>
+    <meta name="theme-color" content="#74451f" />
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../../assets/icon.svg" />
+    <link rel="stylesheet" href="../../assets/site.css" />
+    <link rel="stylesheet" href="../wiki.css" />
+  </head>
+  <body class="wiki-body">
+    <header class="hero tests-hero">
+      <nav class="nav" aria-label="Основна навігація">
+        <a class="brand" href="../../index.html"><span class="ichthys-mark" aria-label="ΙΧΘΥΣ">ΙΧΘΥΣ</span><b>Before We Build</b></a>
+        <div class="nav-links">
+          <a href="../../index.html">Тесты</a>
+          <a href="../../relations-calculator.html">Калькулятор</a>
+          <a href="../index.html" class="active">База знаний</a>
+          <div class="lang-switch-peer"><a href="../concepts/cross-typology-mapping-framework-uk.html">UK</a> <a href="../concepts/cross-typology-mapping-framework-en.html">EN</a> <a href="../concepts/cross-typology-mapping-framework-ru.html" class="active">RU</a></div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="wiki-container">
+      <aside class="wiki-sidebar">
+        <div class="search-box">
+          <input type="search" id="wikiSearchInput" placeholder="Поиск по базе знаний..." aria-label="Search" />
+          <div id="searchResults" class="search-dropdown" hidden></div>
+        </div>
+        <div class="sidebar-nav">
+          <a href="../index.html" class="sidebar-hub-link">📚 Главная Wiki</a>
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Теоретические концепты</div>
+            <ul>
+              <li><a href="../concepts/latent-process-ru.html">Latent Process</a></li>
+              <li><a href="../concepts/four-levels-of-compatibility-ru.html">Four Levels</a></li>
+              <li><a href="../concepts/temporistics-temporal-orientations-ru.html">Temporistics</a></li>
+              <li><a href="../concepts/psychosophy-action-synthesis-ru.html">Psychosophy</a></li>
+              <li><a href="../concepts/socionics-reality-modeling-ru.html">Socionics</a></li>
+            </ul>
+          </div>
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Словари терминов</div>
+            <ul>
+              <li><a href="../glossary-core-ru.html">Glossary Core</a></li>
+              <li><a href="../glossary-extended-ru.html">Glossary Extended</a></li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+
+      <main class="wiki-content">
+        <article class="wiki-article">
+          <header class="article-header">
+            <div class="article-meta-top"><span class="badge badge-role">research-appendix</span> <span class="badge badge-version">v1</span> <span class="badge badge-status">active</span></div>
+            <h1>Рамка межтипологического сопоставления</h1>
+          </header>
+
+          <div class="article-layout">
+            <div class="article-body">
+              <h1 id="рамка-межтипологического-сопоставления">Рамка межтипологического сопоставления <a class="anchor-link" href="#рамка-межтипологического-сопоставления" aria-hidden="true">#</a></h1>
+<h2 id="обзор">Обзор <a class="anchor-link" href="#обзор" aria-hidden="true">#</a></h2>
+<p>Предлагаемый процесс для экспериментов с мостами между тремя типологическими системами (темпористикой, психософией, соционикой) и более распространёнными моделями черт. Эта страница фиксирует архитектурные идеи проекта и подход к эмпирической проверке через опросы, а не симуляцию или установленный стандарт сопоставления.</p>
+<h2 id="архитектура-процесса">Архитектура процесса <a class="anchor-link" href="#архитектура-процесса" aria-hidden="true">#</a></h2>
+<pre><code class="language-text">┌─────────────────────────────────────────────────────────┐
+│  СЛОЙ МЕЖТИПОЛОГИЧЕСКОГО СОПОСТАВЛЕНИЯ                 │
+│                                                         │
+│  Темпористика (24 типа) ──→ MBTI/Юнг (16 типов)         │
+│  Психософия (81 тип)   ──→ MBTI/Юнг (16 типов)          │
+│  Соционика (16 типов)  ──→ MBTI/Юнг (16 типов)          │
+│                        ↓                                │
+│              PersonaNexus (мост черт)                   │
+│              OCEAN ↔ DISC ↔ Юнг ↔ пользовательские      │
+└─────────────────────────────────────────────────────────┘
+                        ↓
+┌─────────────────────────────────────────────────────────┐
+│  СЛОЙ ЭМПИРИЧЕСКОЙ ПРОВЕРКИ ОПРОСАМИ (OASIS-platform)  │
+│                                                         │
+│  - опросные интервью и анкеты с помощью ИИ              │
+│  - полуструктурированные руководства для интервью       │
+│  - поддержка транскрибации/кодирования разными LLM      │
+│  - экспорт данных по принципам FAIR                     │
+└─────────────────────────────────────────────────────────┘</code></pre>
+<h2 id="межсистемное-сопоставление">Межсистемное сопоставление <a class="anchor-link" href="#межсистемное-сопоставление" aria-hidden="true">#</a></h2>
+<h3 id="соционика-mbti-распространённое-но-спорное-приближение">Соционика → MBTI (распространённое, но спорное приближение) <a class="anchor-link" href="#соционика-mbti-распространённое-но-спорное-приближение" aria-hidden="true">#</a></h3>
+<div class="table-container"><table>
+<thead><tr>
+<th>Соционика</th>
+<th>Распространённое приближение MBTI</th>
+<th>Примечание</th>
+</tr></thead><tbody>
+<tr>
+<td>ILE</td>
+<td>ENTP</td>
+<td>Распространённое сопоставление в сообществе</td>
+</tr>
+<tr>
+<td>LIE</td>
+<td>ENTJ</td>
+<td>Распространённое сопоставление в сообществе</td>
+</tr>
+<tr>
+<td>EIE</td>
+<td>ENFJ</td>
+<td>Распространённое сопоставление в сообществе</td>
+</tr>
+<tr>
+<td>IEE</td>
+<td>ENFP</td>
+<td>Распространённое сопоставление в сообществе</td>
+</tr>
+<tr>
+<td>ILI</td>
+<td>INTP или INTJ</td>
+<td>Спорно</td>
+</tr>
+<tr>
+<td>LII</td>
+<td>INTP или INTJ</td>
+<td>Спорно</td>
+</tr>
+<tr>
+<td>EII</td>
+<td>INFJ</td>
+<td>Распространённое, но всё равно приблизительное</td>
+</tr>
+<tr>
+<td>SEE</td>
+<td>ESFP</td>
+<td>Приблизительно</td>
+</tr>
+</tbody></table></div>
+<h3 id="темпористика-mbti-гипотеза">Темпористика → MBTI (гипотеза) <a class="anchor-link" href="#темпористика-mbti-гипотеза" aria-hidden="true">#</a></h3>
+<p>Измерение временной рамки сопоставляется с предпочтениями когнитивного стиля:</p>
+<div class="table-container"><table>
+<thead><tr>
+<th>Рамка темпористики</th>
+<th>Основное предпочтение</th>
+<th>Вторичное</th>
+</tr></thead><tbody>
+<tr>
+<td>Типы Настоящего (1-4N)</td>
+<td>Сенсорика (конкретное)</td>
+<td>Se/Si</td>
+</tr>
+<tr>
+<td>Типы Будущего (1-4F)</td>
+<td>Интуиция (абстрактное)</td>
+<td>Ne/Ni</td>
+</tr>
+<tr>
+<td>Типы Вечности (1-4E)</td>
+<td>Рефлексия (Ni/Si)</td>
+<td>Сбалансированное</td>
+</tr>
+<tr>
+<td>Типы Прошлого (1-4P)</td>
+<td>Ориентация на память</td>
+<td>Преобладание Si</td>
+</tr>
+</tbody></table></div>
+<p><strong>Подход к сопоставлению:</strong> сочетания аспектов темпористики сопоставляются с юнгианскими дихотомиями:</p>
+<ul>
+<li>временной фокус (P/N/F/E) → предварительные признаки ориентации;</li>
+<li>плотность аспекта → предпочтение S/N;</li>
+<li>роль аспекта → T/F и J/P.</li>
+</ul>
+<h3 id="психософия-mbti-гипотеза">Психософия → MBTI (гипотеза) <a class="anchor-link" href="#психософия-mbti-гипотеза" aria-hidden="true">#</a></h3>
+<p>Четырёхаспектная структура сопоставляется через взвешивание функций:</p>
+<div class="table-container"><table>
+<thead><tr>
+<th>Паттерн психософии</th>
+<th>Возможное подобие MBTI</th>
+<th>Примечания</th>
+</tr></thead><tbody>
+<tr>
+<td>Преобладание Логики</td>
+<td>Акцент на мышлении</td>
+<td>Только приближение</td>
+</tr>
+<tr>
+<td>Преобладание Эмоции</td>
+<td>Акцент на чувстве</td>
+<td>Только приближение</td>
+</tr>
+<tr>
+<td>Преобладание Физики</td>
+<td>Акцент на сенсорике</td>
+<td>Только приближение</td>
+</tr>
+<tr>
+<td>Преобладание Воли</td>
+<td>Акцент на суждении / агентности</td>
+<td>Только приближение</td>
+</tr>
+</tbody></table></div>
+<h2 id="пример-гипотезы-для-проверки">Пример гипотезы для проверки <a class="anchor-link" href="#пример-гипотезы-для-проверки" aria-hidden="true">#</a></h2>
+<h3 id="сочетание-темпористики-и-соционики-предсказывает-удовлетворённость-лучше-чем-каждая-система-отдельно">Сочетание темпористики и соционики предсказывает удовлетворённость лучше, чем каждая система отдельно <a class="anchor-link" href="#сочетание-темпористики-и-соционики-предсказывает-удовлетворённость-лучше-чем-каждая-система-отдельно" aria-hidden="true">#</a></h3>
+<ul>
+<li><strong>Метод:</strong> интервью и структурированные опросы на OASIS-platform с 200 реальными парами.</li>
+<li><strong>Метрика:</strong> многофакторная регрессия с перекрёстной проверкой.</li>
+<li><strong>Ожидание:</strong> проверить, улучшают ли объединённые признаки прогноз по сравнению с базовыми моделями одной системы.</li>
+</ul>
+<h2 id="справка-об-инструментах">Справка об инструментах <a class="anchor-link" href="#справка-об-инструментах" aria-hidden="true">#</a></h2>
+<h3 id="personanexus">PersonaNexus <a class="anchor-link" href="#personanexus" aria-hidden="true">#</a></h3>
+<ul>
+<li><strong>Назначение:</strong> декларативное описание личности с сопоставлением между моделями.</li>
+<li><strong>Основные возможности:</strong> двунаправленное OCEAN↔DISC↔Jungian, файлы идентичности YAML, наследование архетипов.</li>
+<li><strong>Команда:</strong> <code>pip install personanexus</code></li>
+<li><strong>Пример:</strong> <code>personanexus personality jungian-to-traits --preset intj</code></li>
+</ul>
+<p><strong>Примечание аудита:</strong> проверка поставщика и источников этого набора инструментов в текущем репозитории не завершена; ссылки на инструменты следует считать исследовательскими указателями.</p>
+<h3 id="oasis-platform-опросные-интервью">OASIS-platform (опросные интервью) <a class="anchor-link" href="#oasis-platform-опросные-интервью" aria-hidden="true">#</a></h3>
+<ul>
+<li><strong>Назначение:</strong> качественные исследовательские интервью и сбор опросов.</li>
+<li><strong>Основные возможности:</strong> помощь в голосовых/текстовых интервью, транскрибация и кодирование с несколькими LLM, развёртывание Docker, соответствие FAIR.</li>
+<li><strong>Установка:</strong> <code>git clone https://github.com/oasis-surveys/oasis-platform &amp;&amp; docker compose up</code></li>
+<li><strong>Лицензия:</strong> Open Non-Commercial Research License v1.0.</li>
+</ul>
+<h2 id="следующие-шаги">Следующие шаги <a class="anchor-link" href="#следующие-шаги" aria-hidden="true">#</a></h2>
+<p>1. <strong>Проверить сопоставление соционика→MBTI</strong> на архетипах PersonaNexus.</p>
+<p>2. <strong>Сформулировать гипотезы темпористика→MBTI</strong> на основе паттернов аспектов.</p>
+<p>3. <strong>Эмпирическая проверка:</strong> интервью OASIS-platform с реальными типированными участниками.</p>
+            </div>
+            <nav class="page-toc"><h4>Содержание статьи</h4><ul><li class="toc-level-2"><a href="#обзор">Обзор</a></li><li class="toc-level-2"><a href="#архитектура-процесса">Архитектура процесса</a></li><li class="toc-level-2"><a href="#межсистемное-сопоставление">Межсистемное сопоставление</a></li><li class="toc-level-3"><a href="#соционика-mbti-распространённое-но-спорное-приближение">Соционика → MBTI (распространённое, но спорное приближение)</a></li><li class="toc-level-3"><a href="#темпористика-mbti-гипотеза">Темпористика → MBTI (гипотеза)</a></li><li class="toc-level-3"><a href="#психософия-mbti-гипотеза">Психософия → MBTI (гипотеза)</a></li><li class="toc-level-2"><a href="#пример-гипотезы-для-проверки">Пример гипотезы для проверки</a></li><li class="toc-level-3"><a href="#сочетание-темпористики-и-соционики-предсказывает-удовлетворённость-лучше-чем-каждая-система-отдельно">Сочетание темпористики и соционики предсказывает удовлетворённость лучше, чем каждая система отдельно</a></li><li class="toc-level-2"><a href="#справка-об-инструментах">Справка об инструментах</a></li><li class="toc-level-3"><a href="#personanexus">PersonaNexus</a></li><li class="toc-level-3"><a href="#oasis-platform-опросные-интервью">OASIS-platform (опросные интервью)</a></li><li class="toc-level-2"><a href="#следующие-шаги">Следующие шаги</a></li></ul></nav>
+          </div>
+        </article>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <a href="../../index.html">← К тестам Before We Build</a> · Before We Build
+    </footer>
+
+    <script src="../wiki-search.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('../../sw.js');
+        });
+      }
+    </script>
+  </body>
+</html>

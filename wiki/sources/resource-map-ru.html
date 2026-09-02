@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Карта интернет-ресурсов — Before We Build · База знаний</title>
+    <meta name="theme-color" content="#74451f" />
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../../assets/icon.svg" />
+    <link rel="stylesheet" href="../../assets/site.css" />
+    <link rel="stylesheet" href="../wiki.css" />
+  </head>
+  <body class="wiki-body">
+    <header class="hero tests-hero">
+      <nav class="nav" aria-label="Основна навігація">
+        <a class="brand" href="../../index.html"><span class="ichthys-mark" aria-label="ΙΧΘΥΣ">ΙΧΘΥΣ</span><b>Before We Build</b></a>
+        <div class="nav-links">
+          <a href="../../index.html">Тесты</a>
+          <a href="../../relations-calculator.html">Калькулятор</a>
+          <a href="../index.html" class="active">База знаний</a>
+          <div class="lang-switch-peer"><a href="../sources/resource-map-uk.html">UK</a> <a href="../sources/resource-map-en.html">EN</a> <a href="../sources/resource-map-ru.html" class="active">RU</a></div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="wiki-container">
+      <aside class="wiki-sidebar">
+        <div class="search-box">
+          <input type="search" id="wikiSearchInput" placeholder="Поиск по базе знаний..." aria-label="Search" />
+          <div id="searchResults" class="search-dropdown" hidden></div>
+        </div>
+        <div class="sidebar-nav">
+          <a href="../index.html" class="sidebar-hub-link">📚 Главная Wiki</a>
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Теоретические концепты</div>
+            <ul>
+              <li><a href="../concepts/latent-process-ru.html">Latent Process</a></li>
+              <li><a href="../concepts/four-levels-of-compatibility-ru.html">Four Levels</a></li>
+              <li><a href="../concepts/temporistics-temporal-orientations-ru.html">Temporistics</a></li>
+              <li><a href="../concepts/psychosophy-action-synthesis-ru.html">Psychosophy</a></li>
+              <li><a href="../concepts/socionics-reality-modeling-ru.html">Socionics</a></li>
+            </ul>
+          </div>
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Словари терминов</div>
+            <ul>
+              <li><a href="../glossary-core-ru.html">Glossary Core</a></li>
+              <li><a href="../glossary-extended-ru.html">Glossary Extended</a></li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+
+      <main class="wiki-content">
+        <article class="wiki-article">
+          <header class="article-header">
+            <div class="article-meta-top"><span class="badge badge-role">source-summary</span> <span class="badge badge-version">v1</span> <span class="badge badge-status">active</span></div>
+            <h1>Карта интернет-ресурсов</h1>
+          </header>
+
+          <div class="article-layout">
+            <div class="article-body">
+              <h1 id="карта-интернет-ресурсов">Карта интернет-ресурсов <a class="anchor-link" href="#карта-интернет-ресурсов" aria-hidden="true">#</a></h1>
+<p>Эта страница — кураторская карта интернет-ресурсов, которые могут быть полезны для исследований Before We Build, пополнения источников и отслеживания происхождения утверждений.</p>
+<p>Это <strong>не</strong> список признанных авторитетов. Наличие ресурса в карте означает только: «этот ресурс стоит проверить». Любое теоретическое утверждение всё равно требует отдельной проверки перед использованием в wiki.</p>
+<p>См. также <a class="wiki-link" href="concepts/multilingual-translation-policy-ru.html">multilingual-translation-policy-ru</a>, <a class="wiki-link" href="concepts/epistemic-status-and-inference-limits-ru.html">epistemic-status-and-inference-limits-ru</a> и <a class="wiki-link" href="concepts/epistemic-status-and-inference-limits-ru.html">epistemic-status-and-inference-limits-ru</a>.</p>
+<h2 id="зачем-нужна-карта">Зачем нужна карта <a class="anchor-link" href="#зачем-нужна-карта" aria-hidden="true">#</a></h2>
+<p>Карта помогает:</p>
+<ul>
+<li>отличать первоисточники от пересказов и комментариев;</li>
+<li>не терять нестабильные веб-материалы;</li>
+<li>фиксировать язык, школу, контекст и оговорки по надёжности;</li>
+<li>направлять будущий ingest в <code>raw/</code>, <code>wiki/sources/</code> и производные concept pages;</li>
+<li>отделять интерпретации Before We Build от того, что реально утверждает внешний источник.</li>
+</ul>
+<h2 id="типы-источников">Типы источников <a class="anchor-link" href="#типы-источников" aria-hidden="true">#</a></h2>
+<div class="table-container"><table>
+<thead><tr>
+<th>Метка</th>
+<th>Значение</th>
+<th>Типичное использование</th>
+</tr></thead><tbody>
+<tr>
+<td><code>primary-source</code></td>
+<td>Оригинальный текст автора, прямой архив школы, интервью, первичная публикация</td>
+<td>Базовые теоретические утверждения</td>
+</tr>
+<tr>
+<td><code>secondary-summary</code></td>
+<td>Обзор, учебное объяснение, статья, перевод с комментариями</td>
+<td>Ориентация и сравнение</td>
+</tr>
+<tr>
+<td><code>critique</code></td>
+<td>Методологическая, эмпирическая, богословская, этическая или скептическая критика</td>
+<td>Оговорки и non-claims</td>
+</tr>
+<tr>
+<td><code>archive</code></td>
+<td>Зеркало, web archive, репозиторий документов</td>
+<td>Сохранение и восстановление источников</td>
+</tr>
+<tr>
+<td><code>community</code></td>
+<td>Форум, группа, обсуждение, неформальная практика типирования</td>
+<td>Слабое свидетельство, варианты терминов</td>
+</tr>
+<tr>
+<td><code>tool</code></td>
+<td>Тест, калькулятор, поисковый индекс, датасет, утилита</td>
+<td>Практические эксперименты, не доказательство</td>
+</tr>
+<tr>
+<td><code>project-hypothesis</code></td>
+<td>Внутренний синтез или расширение Before We Build</td>
+<td>Нельзя приписывать внешнему источнику</td>
+</tr>
+<tr>
+<td><code>unverified</code></td>
+<td>Найдено, но ещё не проверено вручную</td>
+<td>Только очередь на проверку</td>
+</tr>
+</tbody></table></div>
+<h2 id="метки-надёжности">Метки надёжности <a class="anchor-link" href="#метки-надёжности" aria-hidden="true">#</a></h2>
+<p>Надёжность отделяется от типа источника.</p>
+<div class="table-container"><table>
+<thead><tr>
+<th>Метка</th>
+<th>Значение</th>
+</tr></thead><tbody>
+<tr>
+<td><code>high</code></td>
+<td>Первоисточник, стабильный архив, рецензируемая или хорошо документированная публикация</td>
+</tr>
+<tr>
+<td><code>medium</code></td>
+<td>Известный тематический сайт с авторами или редактурой</td>
+</tr>
+<tr>
+<td><code>low</code></td>
+<td>Форум, анонимный блог, компиляция без ссылок, AI-текст, нестабильный пост</td>
+</tr>
+<tr>
+<td><code>unknown</code></td>
+<td>Ещё не проверено</td>
+</tr>
+</tbody></table></div>
+<h2 id="метки-доступности">Метки доступности <a class="anchor-link" href="#метки-доступности" aria-hidden="true">#</a></h2>
+<div class="table-container"><table>
+<thead><tr>
+<th>Метка</th>
+<th>Значение</th>
+</tr></thead><tbody>
+<tr>
+<td><code>active</code></td>
+<td>URL работает и выглядит поддерживаемым</td>
+</tr>
+<tr>
+<td><code>stale</code></td>
+<td>URL работает, но ресурс выглядит старым или неподдерживаемым</td>
+</tr>
+<tr>
+<td><code>archived</code></td>
+<td>Основной доступ через архив или зеркало</td>
+</tr>
+<tr>
+<td><code>dead</code></td>
+<td>Исходный URL не работает</td>
+</tr>
+<tr>
+<td><code>restricted</code></td>
+<td>Paywall, логин или другой ограниченный доступ</td>
+</tr>
+<tr>
+<td><code>offline-copy</code></td>
+<td>Сохранено локально или вручную, публично недоступно</td>
+</tr>
+</tbody></table></div>
+<h2 id="шаблон-карточки-ресурса">Шаблон карточки ресурса <a class="anchor-link" href="#шаблон-карточки-ресурса" aria-hidden="true">#</a></h2>
+<pre><code class="language-md">### Название ресурса
+
+- **URL:**
+- **Архивный URL:**
+- **Автор / организация:**
+- **Дата публикации:**
+- **Дата доступа:** YYYY-MM-DD
+- **Язык:** en / ru / uk / other
+- **Система:** socionics / psychosophy / temporistics / methodology / theology / psychology / general
+- **Тип:** primary-source / secondary-summary / critique / archive / community / tool / unverified
+- **Надёжность:** high / medium / low / unknown
+- **Доступность:** active / stale / archived / dead / restricted / offline-copy
+- **Чем полезно для Before We Build:**
+- **Какие утверждения проверить перед использованием:**
+- **Риски / оговорки:**
+- **Связанные wiki-страницы:**</code></pre>
+<h2 id="очередь-на-наполнение">Очередь на наполнение <a class="anchor-link" href="#очередь-на-наполнение" aria-hidden="true">#</a></h2>
+<p>Эти разделы — заготовки для будущих проверенных записей. Пустой раздел не означает, что ресурсов не существует.</p>
+<h3 id="соционика">Соционика <a class="anchor-link" href="#соционика" aria-hidden="true">#</a></h3>
+<p>Сюда заносятся ресурсы по Model A, информационным аспектам, интертипным отношениям, признакам Рейнина, школьным расширениям и вариантам терминологии.</p>
+<p>Порядок предпочтения:</p>
+<p>1. первичные материалы или тексты конкретных школ;</p>
+<p>2. стабильные справочные сайты и архивы;</p>
+<p>3. вторичные объяснения;</p>
+<p>4. сообщества и инструменты.</p>
+<div class="table-container"><table>
+<thead><tr>
+<th>Ресурс</th>
+<th>URL</th>
+<th>Тип</th>
+<th>Язык</th>
+<th>Чем полезен для Before We Build</th>
+<th>Caveat</th>
+</tr></thead><tbody>
+<tr>
+<td>Wikisocion Archive</td>
+<td>https://wikisocion.github.io/</td>
+<td>archive / secondary-summary</td>
+<td>EN</td>
+<td>Удобный вход в Model A, информационные аспекты, интертипные отношения, дихотомии и страницы типов</td>
+<td>Архив сообщества, не официальная школа; качество статей неровное</td>
+</tr>
+<tr>
+<td>Classic Socionics</td>
+<td>https://classicsocionics.wordpress.com/</td>
+<td>primary-source / archive</td>
+<td>EN</td>
+<td>Переводы и подборки классических текстов ранней соционики, включая материалы вокруг Аушры</td>
+<td>Переводческий/редакторский проект; для key claims сверять исходную публикацию</td>
+</tr>
+<tr>
+<td>International Institute of Socionics</td>
+<td>https://socionic.info/en/esocjur.html#top</td>
+<td>primary-source / school</td>
+<td>EN/RU/UA</td>
+<td>Журналы, конференции и институциональный слой Букалова/ИИС</td>
+<td>Заявления о научном статусе требуют независимой оценки</td>
+</tr>
+<tr>
+<td>Гуманитарная соционика / Гуленко</td>
+<td>https://socioniks.net/</td>
+<td>primary-source / school</td>
+<td>RU/UA/EN</td>
+<td>Материалы школы Гуленко: Model G, подтипы, отношения, признаки</td>
+<td>Школьная трактовка, не нейтральный канон Model A; Model G помечать отдельно</td>
+</tr>
+<tr>
+<td>Socionika.info</td>
+<td>https://socionika.info/</td>
+<td>secondary-summary / tool</td>
+<td>RU</td>
+<td>Популярный хаб: Model A, аспекты, признаки Рейнина, таблицы отношений, тесты</td>
+<td>Популяризаторский/компилятивный ресурс; глубина источников разная</td>
+</tr>
+<tr>
+<td>Socionavigator</td>
+<td>https://socionavigator.com/</td>
+<td>tool / secondary-summary</td>
+<td>RU/EN</td>
+<td>Диагностические материалы, схемы, FAQ и авторские инструменты</td>
+<td>Авторская методология требует отдельной проверки</td>
+</tr>
+<tr>
+<td>World Socionics Society</td>
+<td>https://worldsocionics.org/</td>
+<td>secondary-summary</td>
+<td>EN</td>
+<td>Современный англоязычный вход и учебные материалы</td>
+<td>Авторский/коммерческий слой; может упрощать спорные пункты</td>
+</tr>
+<tr>
+<td>The16types forum</td>
+<td>https://www.the16types.info/</td>
+<td>community</td>
+<td>EN</td>
+<td>Исторические обсуждения, споры школ, переводы, типирования</td>
+<td>Шумный форумный evidence; не использовать для базовых claims</td>
+</tr>
+<tr>
+<td>Reddit r/Socionics</td>
+<td>https://www.reddit.com/r/Socionics/</td>
+<td>community</td>
+<td>EN</td>
+<td>Текущие вопросы аудитории и путаница терминов, особенно с MBTI</td>
+<td>Низкая надёжность; только как сигнал reception history</td>
+</tr>
+<tr>
+<td>Wikipedia — Socionics</td>
+<td>https://en.wikipedia.org/wiki/Socionics</td>
+<td>critique / overview</td>
+<td>EN</td>
+<td>Внешний критический framing и быстрая библиографическая ориентация</td>
+<td>Не первоисточник; framing статьи может быть спорным</td>
+</tr>
+</tbody></table></div>
+<h3 id="психософия">Психософия <a class="anchor-link" href="#психософия" aria-hidden="true">#</a></h3>
+<p>Сюда заносятся ресурсы по модели Афанасьева, четырём аспектам, позициям функций, описаниям типов, отношениям и методам типирования.</p>
+<p>Порядок предпочтения:</p>
+<p>1. первичные тексты и архивы, связанные с Афанасьевым;</p>
+<p>2. материалы прямых школ;</p>
+<p>3. вторичные описания и переводы;</p>
+<p>4. тесты и материалы сообществ.</p>
+<div class="table-container"><table>
+<thead><tr>
+<th>Ресурс</th>
+<th>URL</th>
+<th>Тип</th>
+<th>Язык</th>
+<th>Чем полезен для Before We Build</th>
+<th>Caveat</th>
+</tr></thead><tbody>
+<tr>
+<td>Psychosophy.ru</td>
+<td>https://psychosophy.ru/</td>
+<td>community / secondary-summary</td>
+<td>RU</td>
+<td>Крупный современный хаб по типам, функциям, тестам, книгам и экосистеме</td>
+<td>Не первичный текст Афанасьева; возможен редакторский и коммерческий слой</td>
+</tr>
+<tr>
+<td>Психософия А. Ю. Афанасьева</td>
+<td>https://psychosophy.ru/psychosophy</td>
+<td>secondary-summary</td>
+<td>RU</td>
+<td>Вводная сводка по четырём аспектам, позициям и базовым понятиям</td>
+<td>Интерпретирующий обзор, не канонический исходный текст</td>
+</tr>
+<tr>
+<td>Тесты Psychosophy.ru</td>
+<td>https://psychosophy.ru/tests</td>
+<td>tool</td>
+<td>RU</td>
+<td>Карта актуальных онлайн-инструментов типирования</td>
+<td>Тесты не являются валидированной психометрикой без отдельной документации</td>
+</tr>
+<tr>
+<td>Синтаксис любви — страница книги</td>
+<td>https://psychosophy.ru/books/sintaksislubvi</td>
+<td>primary-source / bibliography</td>
+<td>RU</td>
+<td>Библиографическая привязка к ключевому тексту Афанасьева</td>
+<td>Это страница о книге; редакцию и полный текст проверять отдельно</td>
+</tr>
+<tr>
+<td>Типология Афанасьева — Google Books</td>
+<td>https://books.google.com/books/about/Типология_Афанасьева.html?id=IEptDwAAQBAJ</td>
+<td>archive / bibliography</td>
+<td>RU</td>
+<td>Библиографические метаданные и поиск по книжной традиции</td>
+<td>Доступ фрагментарный; не заменяет полный первичный текст</td>
+</tr>
+<tr>
+<td>xsp.ru Psychosophy</td>
+<td>https://www.xsp.ru/psychosophy/</td>
+<td>archive</td>
+<td>RU</td>
+<td>Старый архивный слой описаний типов и исторического контекста</td>
+<td>Возможны устаревшие и слабо атрибутированные формулировки</td>
+</tr>
+<tr>
+<td>Единый Типологический Проект — Психософия</td>
+<td>http://typologies.ru/psycheyoga/</td>
+<td>archive / secondary-summary</td>
+<td>RU</td>
+<td>Ранние сводки типологического рунета и межсистемный контекст</td>
+<td>Старый ресурс; возможны битые ссылки и смешение школ</td>
+</tr>
+<tr>
+<td>Большой тест по психософии</td>
+<td>http://typtest.ru/psychosofy.htm</td>
+<td>tool</td>
+<td>RU</td>
+<td>Практический тестовый ресурс для слоя tools</td>
+<td>Методология и валидность неочевидны</td>
+</tr>
+<tr>
+<td>Тест Афанасьева</td>
+<td>https://typtest.ru/aleafan.htm</td>
+<td>tool</td>
+<td>RU</td>
+<td>Альтернативный тестовый вход</td>
+<td>Название не гарантирует авторскую аутентичность методики</td>
+</tr>
+<tr>
+<td>Психософия Афанасьева — Психологи.рф</td>
+<td>https://психологи.рф/психософия-афанасьева/</td>
+<td>secondary-summary</td>
+<td>RU</td>
+<td>Внешний популярный обзор вне основного сообщества</td>
+<td>Нужна сверка с первичными и архивными материалами</td>
+</tr>
+</tbody></table></div>
+<h3 id="темпористика">Темпористика <a class="anchor-link" href="#темпористика" aria-hidden="true">#</a></h3>
+<p>Сюда заносятся ресурсы по Прошлому, Настоящему, Будущему, Вечности, позиционным архетипам, полным типам и возможной логике отношений.</p>
+<p>Порядок предпочтения:</p>
+<p>1. оригинальные тексты по темпористике и авторские источники;</p>
+<p>2. архивные страницы, уже представленные в <code>raw/temporistics/</code>;</p>
+<p>3. вторичные обзоры;</p>
+<p>4. гипотезы Before We Build, строго помеченные как <code>project-hypothesis</code>.</p>
+<div class="table-container"><table>
+<thead><tr>
+<th>Ресурс</th>
+<th>URL</th>
+<th>Тип</th>
+<th>Язык</th>
+<th>Чем полезен для Before We Build</th>
+<th>Caveat</th>
+</tr></thead><tbody>
+<tr>
+<td>Описание теории — Темпористика</td>
+<td>http://temporistics.ru/?q=theory_description</td>
+<td>primary-source</td>
+<td>RU</td>
+<td>Базовая теория: аспекты, позиции и общая рамка</td>
+<td>Сайт может быть нестабилен; авторская типология, не эмпирически валидированная модель</td>
+</tr>
+<tr>
+<td>Типы — Темпористика</td>
+<td>http://temporistics.ru/?q=types</td>
+<td>primary-source</td>
+<td>RU</td>
+<td>Индекс 24 полных типов, 16 архетипов, тетрад и алиасов</td>
+<td>Краткий справочник; не заменяет полные описания</td>
+</tr>
+<tr>
+<td>Комета в мозгу, или рождение Темпористики</td>
+<td>http://temporistics.ru/?q=node/66</td>
+<td>primary-source</td>
+<td>RU</td>
+<td>История происхождения, авторский контекст, связи с Бердяевым и Афанасьевым</td>
+<td>Авторское свидетельство, не нейтральная история</td>
+</tr>
+<tr>
+<td>Как отличить Автора от Критика</td>
+<td>http://temporistics.ru/?q=node/70</td>
+<td>primary-source</td>
+<td>RU</td>
+<td>Различение близких архетипов Прошлого, особенно 1П и 3П</td>
+<td>Узкая статья, не общий обзор</td>
+</tr>
+<tr>
+<td>Тайна третьего аспекта</td>
+<td>http://temporistics.ru/?q=node/90</td>
+<td>primary-source</td>
+<td>RU</td>
+<td>Важный текст для понимания динамики третьей позиции</td>
+<td>Ключевая авторская статья о третьем (болевом) аспекте</td>
+</tr>
+<tr>
+<td>Wayback для temporistics.ru</td>
+<td>https://web.archive.org/web/<em>/http://temporistics.ru/</em></td>
+<td>archive</td>
+<td>multi</td>
+<td>Восстановление нестабильных/мёртвых страниц и фиксация версий</td>
+<td>Снапшоты могут быть неполными; проверять даты и целостность</td>
+</tr>
+<tr>
+<td>Personality Database / Temporistics pages</td>
+<td>https://www.personality-database.com/subcategory/22184/temporistics-personality-type</td>
+<td>community</td>
+<td>EN</td>
+<td>Англоязычные алиасы и неканоничная reception history</td>
+<td>URL требует проверки (доступ может быть заблокирован Cloudflare, возвращает 403 для ботов); фанатский/комьюнити-синтез, не канон</td>
+</tr>
+<tr>
+<td>Форумные обсуждения Темпористики</td>
+<td>https://socioforum.su/viewforum.php?f=959</td>
+<td>community</td>
+<td>RU</td>
+<td>История восприятия, примеры, спорные интерпретации</td>
+<td>URL требует проверки; низкая доказательная сила, только с жёсткими оговорками</td>
+</tr>
+</tbody></table></div>
+<h3 id="межсистемные-типологические-ресурсы">Межсистемные типологические ресурсы <a class="anchor-link" href="#межсистемные-типологические-ресурсы" aria-hidden="true">#</a></h3>
+<p>Используйте этот раздел для баз данных, форумов и теоретических концепций, которые пытаются сравнивать, синтезировать или размещать несколько типологических систем (например, соционику, психософию, темпористику и MBTI) на одной платформе.</p>
+<div class="table-container"><table>
+<thead><tr>
+<th>Ресурс</th>
+<th>URL</th>
+<th>Тип</th>
+<th>Язык</th>
+<th>Чем полезен для Before We Build</th>
+<th>Caveat</th>
+</tr></thead><tbody>
+<tr>
+<td>Единый типологический проект</td>
+<td>http://typologies.ru/</td>
+<td>archive / secondary-summary</td>
+<td>RU</td>
+<td>Картографирование и сопоставление различных типологий с использованием логических уровней на базе пирамиды Дилтса</td>
+<td>Высокотеоретический ресурс; содержит устаревшие ссылки и смешивает допущения разных школ</td>
+</tr>
+<tr>
+<td>Personality Database</td>
+<td>https://www.personality-database.com/</td>
+<td>community / tool</td>
+<td>EN</td>
+<td>Крупная база краудсорсинговых типологических профилей по нескольким системам</td>
+<td>Низкая надёжность; профили создаются голосованием пользователей без строгой методологии. Примечание: бот-доступ может быть заблокирован Cloudflare (возвращает 403), требуется ручная проверка.</td>
+</tr>
+<tr>
+<td>Социофорум</td>
+<td>https://socioforum.su/</td>
+<td>community</td>
+<td>RU</td>
+<td>Крупнейший русскоязычный форум для кросс-системных дискуссий, дневников типирования и споров о корреляциях</td>
+<td>Неструктурированные форумные обсуждения; низкая ценность для канонических claims, но богатая история восприятия</td>
+</tr>
+</tbody></table></div>
+<h4 id="внутренняя-синтетическая-заметка-психософия-и-соционика-в-исследовательском-слое-before-we-build">Внутренняя синтетическая заметка: психософия и соционика в исследовательском слое Before We Build <a class="anchor-link" href="#внутренняя-синтетическая-заметка-психософия-и-соционика-в-исследовательском-слое-before-we-build" aria-hidden="true">#</a></h4>
+<ul>
+<li><strong>Тип:</strong> <code>project-hypothesis</code></li>
+<li><strong>Система:</strong> межсистемная / психософия / соционика</li>
+<li><strong>Чем полезно для Before We Build:</strong> помогает не склеивать психософию и соционику только потому, что обе могут говорить о «логике», «процессе», «структуре» или «действии».</li>
+<li><strong>Рабочее различение:</strong> соционика рассматривается как карта информационного моделирования: как человек моделирует ситуацию и взаимодействие через информационные каналы. Например, структурная логика моделирует через соотношения, соответствия, порядок, противоречия, классификации, иерархии и правила; деловая логика моделирует через процессы, результат, последовательность действий, превращение ресурсов, эффективность и применимость.</li>
+<li><strong>Различение психософии:</strong> психософия рассматривается как карта внутренней организации действия: что человек пытается синтезировать, что вынужден анализировать, и сколько энергии, уверенности, напряжения, потребности доказывать, избегания или запроса поддержки появляется вокруг этого процесса.</li>
+<li><strong>Исследовательская оговорка:</strong> это интерпретационная гипотеза Before We Build, а не внешне проверенное утверждение и не детерминирующее описание человека. Использовать как слой перевода для принципа: «типовые характеры, не типы человека».</li>
+</ul>
+<h3 id="методология-и-психометрика">Методология и психометрика <a class="anchor-link" href="#методология-и-психометрика" aria-hidden="true">#</a></h3>
+<p>Сюда заносятся ресурсы по валидации, надёжности, construct validity, measurement invariance, оценке личности, исходам совместимости и базовым моделям вроде Big Five или HEXACO.</p>
+<div class="table-container"><table>
+<thead><tr>
+<th>Ресурс</th>
+<th>URL</th>
+<th>Тип</th>
+<th>Язык</th>
+<th>Чем полезен для Before We Build</th>
+<th>Caveat</th>
+</tr></thead><tbody>
+<tr>
+<td>Standards for Educational and Psychological Testing</td>
+<td>https://www.testingstandards.net/</td>
+<td>methodology / tool</td>
+<td>EN</td>
+<td>Стандарты валидности, надёжности, fairness и интерпретации скорингов</td>
+<td>Не про типологии специально; часть материалов может быть не полностью open-access</td>
+</tr>
+<tr>
+<td>COSMIN checklists</td>
+<td>https://www.cosmin.nl/tools/checklists-assessing-methodological-study-qualities/</td>
+<td>methodology / tool</td>
+<td>EN</td>
+<td>Практические критерии качества измерительных инструментов</td>
+<td>Исходно health/PROM-контекст; перенос на personality требует осторожности</td>
+</tr>
+<tr>
+<td>Cronbach &amp; Meehl — Construct Validity in Psychological Tests</td>
+<td>https://doi.org/10.1037/h0040957</td>
+<td>primary-source / methodology</td>
+<td>EN</td>
+<td>Классическая рамка construct validity</td>
+<td>Старый источник; не покрывает современные CFA/IRT/invariance-практики</td>
+</tr>
+<tr>
+<td>Messick — Validity of Psychological Assessment</td>
+<td>https://doi.org/10.1037/0003-066X.50.9.741</td>
+<td>primary-source / methodology</td>
+<td>EN</td>
+<td>Валидность как обоснованность выводов из score data</td>
+<td>Сильная теория, но не простой чеклист внедрения</td>
+</tr>
+<tr>
+<td>Flake, Pek &amp; Hehman — Construct Validation</td>
+<td>https://doi.org/10.1177/1948550617693063</td>
+<td>critique / methodology</td>
+<td>EN</td>
+<td>Современная критика слабой валидации в social/personality research</td>
+<td>Не про типологии напрямую</td>
+</tr>
+<tr>
+<td>Soto &amp; John — BFI-2</td>
+<td>https://doi.org/10.1037/pspp0000096</td>
+<td>primary-source / baseline</td>
+<td>EN</td>
+<td>Big Five baseline для сравнения personality assessment</td>
+<td>Trait baseline, не окончательная истина о личности</td>
+</tr>
+<tr>
+<td>International Personality Item Pool</td>
+<td>https://ipip.ori.org/</td>
+<td>tool / baseline</td>
+<td>EN</td>
+<td>Открытый item pool для baseline-шкал</td>
+<td>Качество зависит от выбранной шкалы и процедуры</td>
+</tr>
+<tr>
+<td>HEXACO Personality Inventory-Revised</td>
+<td>https://hexaco.org/</td>
+<td>tool / baseline</td>
+<td>EN</td>
+<td>Альтернативный trait baseline, включая Honesty-Humility</td>
+<td>Self-report trait model; не прямой тест типологических категорий</td>
+</tr>
+<tr>
+<td>McCrae &amp; Costa — MBTI from the Five-Factor Model perspective</td>
+<td>https://doi.org/10.1111/j.1467-6494.1989.tb00759.x</td>
+<td>critique</td>
+<td>EN</td>
+<td>Мост между типологическими ярлыками и continuous traits</td>
+<td>MBTI-specific; нельзя автоматически переносить на все типологии</td>
+</tr>
+<tr>
+<td>Pittenger — Measuring the MBTI... And Coming Up Short</td>
+<td>https://web.archive.org/web/*/https://www.indiana.edu/~jobtalk/HRMWebsite/hrm/articles/develop/mbti.pdf</td>
+<td>critique / archive</td>
+<td>EN</td>
+<td>Классическая критика надёжности, валидности и принудительных дихотомий</td>
+<td>Старый источник, посвящённый MBTI; для формального цитирования нужно выбрать и проверить конкретный архивный снимок</td>
+</tr>
+<tr>
+<td>Boyle — MBTI: Some Psychometric Limitations</td>
+<td>https://doi.org/10.1111/j.1742-9544.1995.tb01750.x</td>
+<td>critique</td>
+<td>EN</td>
+<td>Часто цитируемая критика психометрических ограничений типологических дихотомий</td>
+<td>Источник посвящён MBTI; DOI может требовать доступа через издателя и ручной проверки перед цитированием</td>
+</tr>
+<tr>
+<td>Волков, Волоскова, Гладких — Влияние психологической совместимости...</td>
+<td>https://humanization.ru/wp-content/uploads/2026/04/%D0%93%D0%9E-4-2025.pdf#page=41</td>
+<td>primary-source / psychology</td>
+<td>RU</td>
+<td>Академическое подтверждение тезиса: «психологическая совместимость — это многоуровневое явление» и анализ СПК</td>
+<td>Рецензируемая публикация (ВАК); контекст профессиональных групп, требует сопоставления с диадическими отношениями</td>
+</tr>
+</tbody></table></div>
+<h3 id="богословие-этика-и-пастырские-границы">Богословие, этика и пастырские границы <a class="anchor-link" href="#богословие-этика-и-пастырские-границы" aria-hidden="true">#</a></h3>
+<p>Сюда заносятся ресурсы, помогающие отделять типологические эвристики от христианской антропологии, пастырского рассуждения, нравственной ответственности и принципов формирования семьи.</p>
+<div class="table-container"><table>
+<thead><tr>
+<th>Ресурс</th>
+<th>URL</th>
+<th>Тип</th>
+<th>Язык</th>
+<th>Чем полезен для Before We Build</th>
+<th>Caveat</th>
+</tr></thead><tbody>
+<tr>
+<td>Ресурсы 9Marks о церковном служении и ученичестве</td>
+<td>https://www.9marks.org/</td>
+<td>critique / pastoral-methodology</td>
+<td>EN</td>
+<td>Пастырская рамка: удерживать идентичность, святость, членство и ученичество в библейских категориях, а не в типологических ярлыках</td>
+<td>Главная страница проверена; перед цитированием нужно найти конкретную статью через поиск по сайту</td>
+</tr>
+<tr>
+<td>Ресурсы CCEF о библейском консультировании</td>
+<td>https://www.ccef.org/</td>
+<td>critique / methodology</td>
+<td>EN</td>
+<td>Рамка библейского консультирования для различения наблюдений о «сердце», христианской антропологии, покаяния и освящения</td>
+<td>Главная страница проверена; перед цитированием нужно найти конкретную статью через поиск по сайту</td>
+</tr>
+<tr>
+<td>The State of Theology</td>
+<td>https://thestateoftheology.com/</td>
+<td>primary-source / tool</td>
+<td>EN</td>
+<td>Базовое исследование богословских убеждений и этических конструктов, показывающее отклонения от классического христианства</td>
+<td>Сосредоточено на доктринальных позициях, а не на чертах характера, но является эталоном оценки мировоззрения</td>
+</tr>
+<tr>
+<td>The Enneagram: Gnostic or Just Silly?</td>
+<td>https://www.thegospelcoalition.org/article/enneagram-gnostic-silly/</td>
+<td>critique</td>
+<td>EN</td>
+<td>Критика современных типологических трендов, выявление редукционистских ловушек и гностических корней</td>
+<td>URL требует проверки (доступ может быть заблокирован Cloudflare, возвращает 403 для ботов); относится к Эннеаграмме, но выводы применимы ко всему увлечению типологиями</td>
+</tr>
+</tbody></table></div>
+<h2 id="правила-использования-утверждений">Правила использования утверждений <a class="anchor-link" href="#правила-использования-утверждений" aria-hidden="true">#</a></h2>
+<p>1. Одного URL недостаточно. Важные утверждения требуют конкретной source page, цитаты или близкого пересказа и даты доступа.</p>
+<p>2. Не использовать community-ресурсы для базовых теоретических утверждений без более сильного источника.</p>
+<p>3. Если Before We Build расширяет источник, помечать расширение как <code>project-hypothesis</code>.</p>
+<p>4. Если источники расходятся, фиксировать расхождение, а не склеивать его в ложный консенсус.</p>
+<p>5. AI-сводки не являются доказательством. Они могут только помочь найти источники для человеческой проверки.</p>
+<p>6. Битые ссылки лучше помечать и заменять архивами, а не молча удалять.</p>
+<h2 id="ритм-поддержки">Ритм поддержки <a class="anchor-link" href="#ритм-поддержки" aria-hidden="true">#</a></h2>
+<ul>
+<li>Добавлять карточку при нахождении нового веб-ресурса.</li>
+<li>При ingest переносить проверенные материалы в <code>raw/</code> и создавать/обновлять страницу в <code>wiki/sources/</code>.</li>
+<li>Проверять важные ссылки раз в квартал или перед крупной публикацией.</li>
+<li>Помечать мёртвые ссылки как <code>dead</code> и добавлять архивный URL, если он есть.</li>
+<li>Держать карту навигационной; подробный анализ выносить в отдельные source pages.</li>
+</ul>
+<h2 id="оценка-источника">Оценка источника <a class="anchor-link" href="#оценка-источника" aria-hidden="true">#</a></h2>
+<h3 id="что-утверждает-источник">Что утверждает источник <a class="anchor-link" href="#что-утверждает-источник" aria-hidden="true">#</a></h3>
+<p>Карта ресурсов утверждает, что каталогизирует основные raw-материалы, wiki-сводки и исследовательские маршруты репозитория.</p>
+<h3 id="какие-данные-или-свидетельства-приведены">Какие данные или свидетельства приведены <a class="anchor-link" href="#какие-данные-или-свидетельства-приведены" aria-hidden="true">#</a></h3>
+<p>Её свидетельства — пути репозитория, метаданные источников и ссылки на поддерживаемые страницы; собственного эмпирического результата в ней нет.</p>
+<h3 id="ограничения">Ограничения <a class="anchor-link" href="#ограничения" aria-hidden="true">#</a></h3>
+<p>Охват может быть неполным или устаревшим, категории являются редакционными, а наличие ресурса не оценивает его качество.</p>
+<h3 id="что-принимает-bwb">Что принимает BWB <a class="anchor-link" href="#что-принимает-bwb" aria-hidden="true">#</a></h3>
+<p>BWB принимает карту как инфраструктуру навигации и происхождения.</p>
+<h3 id="что-остаётся-спорным-или-открытым">Что остаётся спорным или открытым <a class="anchor-link" href="#что-остаётся-спорным-или-открытым" aria-hidden="true">#</a></h3>
+<p>Полнота, приоритет и текущая релевантность отдельных записей остаются открытыми для периодического аудита.</p>
+<h3 id="что-отвергнуто-или-хранится-только-исторически">Что отвергнуто или хранится только исторически <a class="anchor-link" href="#что-отвергнуто-или-хранится-только-исторически" aria-hidden="true">#</a></h3>
+<p>BWB отвергает понимание включения как одобрения, согласия, эмпирической опоры или разрешения пропустить соответствующую оценку источника.</p>
+            </div>
+            <nav class="page-toc"><h4>Содержание статьи</h4><ul><li class="toc-level-2"><a href="#зачем-нужна-карта">Зачем нужна карта</a></li><li class="toc-level-2"><a href="#типы-источников">Типы источников</a></li><li class="toc-level-2"><a href="#метки-надёжности">Метки надёжности</a></li><li class="toc-level-2"><a href="#метки-доступности">Метки доступности</a></li><li class="toc-level-2"><a href="#шаблон-карточки-ресурса">Шаблон карточки ресурса</a></li><li class="toc-level-2"><a href="#очередь-на-наполнение">Очередь на наполнение</a></li><li class="toc-level-3"><a href="#соционика">Соционика</a></li><li class="toc-level-3"><a href="#психософия">Психософия</a></li><li class="toc-level-3"><a href="#темпористика">Темпористика</a></li><li class="toc-level-3"><a href="#межсистемные-типологические-ресурсы">Межсистемные типологические ресурсы</a></li><li class="toc-level-3"><a href="#методология-и-психометрика">Методология и психометрика</a></li><li class="toc-level-3"><a href="#богословие-этика-и-пастырские-границы">Богословие, этика и пастырские границы</a></li><li class="toc-level-2"><a href="#правила-использования-утверждений">Правила использования утверждений</a></li><li class="toc-level-2"><a href="#ритм-поддержки">Ритм поддержки</a></li><li class="toc-level-2"><a href="#оценка-источника">Оценка источника</a></li><li class="toc-level-3"><a href="#что-утверждает-источник">Что утверждает источник</a></li><li class="toc-level-3"><a href="#какие-данные-или-свидетельства-приведены">Какие данные или свидетельства приведены</a></li><li class="toc-level-3"><a href="#ограничения">Ограничения</a></li><li class="toc-level-3"><a href="#что-принимает-bwb">Что принимает BWB</a></li><li class="toc-level-3"><a href="#что-остаётся-спорным-или-открытым">Что остаётся спорным или открытым</a></li><li class="toc-level-3"><a href="#что-отвергнуто-или-хранится-только-исторически">Что отвергнуто или хранится только исторически</a></li></ul></nav>
+          </div>
+        </article>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <a href="../../index.html">← К тестам Before We Build</a> · Before We Build
+    </footer>
+
+    <script src="../wiki-search.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('../../sw.js');
+        });
+      }
+    </script>
+  </body>
+</html>

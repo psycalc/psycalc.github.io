@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cross-Typology Mapping Framework — Before We Build · Knowledge Base</title>
+    <meta name="theme-color" content="#74451f" />
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../../assets/icon.svg" />
+    <link rel="stylesheet" href="../../assets/site.css" />
+    <link rel="stylesheet" href="../wiki.css" />
+  </head>
+  <body class="wiki-body">
+    <header class="hero tests-hero">
+      <nav class="nav" aria-label="Основна навігація">
+        <a class="brand" href="../../index.html"><span class="ichthys-mark" aria-label="ΙΧΘΥΣ">ΙΧΘΥΣ</span><b>Before We Build</b></a>
+        <div class="nav-links">
+          <a href="../../index.html">Tests</a>
+          <a href="../../relations-calculator.html">Calculator</a>
+          <a href="../index.html" class="active">Knowledge Base</a>
+          <div class="lang-switch-peer"><a href="../concepts/cross-typology-mapping-framework-uk.html">UK</a> <a href="../concepts/cross-typology-mapping-framework-en.html" class="active">EN</a> <a href="../concepts/cross-typology-mapping-framework-ru.html">RU</a></div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="wiki-container">
+      <aside class="wiki-sidebar">
+        <div class="search-box">
+          <input type="search" id="wikiSearchInput" placeholder="Search knowledge base..." aria-label="Search" />
+          <div id="searchResults" class="search-dropdown" hidden></div>
+        </div>
+        <div class="sidebar-nav">
+          <a href="../index.html" class="sidebar-hub-link">📚 Home Wiki</a>
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Theoretical Concepts</div>
+            <ul>
+              <li><a href="../concepts/latent-process-en.html">Latent Process</a></li>
+              <li><a href="../concepts/four-levels-of-compatibility-en.html">Four Levels</a></li>
+              <li><a href="../concepts/temporistics-temporal-orientations-en.html">Temporistics</a></li>
+              <li><a href="../concepts/psychosophy-action-synthesis-en.html">Psychosophy</a></li>
+              <li><a href="../concepts/socionics-reality-modeling-en.html">Socionics</a></li>
+            </ul>
+          </div>
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Glossary of terms</div>
+            <ul>
+              <li><a href="../glossary-core-en.html">Glossary Core</a></li>
+              <li><a href="../glossary-extended-en.html">Glossary Extended</a></li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+
+      <main class="wiki-content">
+        <article class="wiki-article">
+          <header class="article-header">
+            <div class="article-meta-top"><span class="badge badge-role">research-appendix</span> <span class="badge badge-version">v1</span> <span class="badge badge-status">active</span></div>
+            <h1>Cross-Typology Mapping Framework</h1>
+          </header>
+
+          <div class="article-layout">
+            <div class="article-body">
+              <h1 id="cross-typology-mapping-framework">Cross-Typology Mapping Framework <a class="anchor-link" href="#cross-typology-mapping-framework" aria-hidden="true">#</a></h1>
+<h2 id="overview">Overview <a class="anchor-link" href="#overview" aria-hidden="true">#</a></h2>
+<p>Proposed pipeline for experimenting with bridges between three typological systems (Temporistics, Psychosophy, Socionics) and more mainstream trait frameworks. This page records project architecture ideas and empirical survey validation, not simulation or an established mapping standard.</p>
+<h2 id="pipeline-architecture">Pipeline Architecture <a class="anchor-link" href="#pipeline-architecture" aria-hidden="true">#</a></h2>
+<pre><code class="language-">┌─────────────────────────────────────────────────────────┐
+│  CROSS-TYPOLOGY MAPPING LAYER                           │
+│                                                         │
+│  Temporistics (24 types) ──→ MBTI/Jungian (16 types)    │
+│  Psychosophy (81 types)  ──→ MBTI/Jungian (16 types)    │
+│  Socionics (16 types)    ──→ MBTI/Jungian (16 types)    │
+│                        ↓                                │
+│              PersonaNexus (trait bridge)                │
+│              OCEAN ↔ DISC ↔ Jungian ↔ Custom            │
+└─────────────────────────────────────────────────────────┘
+                        ↓
+┌─────────────────────────────────────────────────────────┐
+│  EMPIRICAL SURVEY VALIDATION LAYER (OASIS-platform)     │
+│                                                         │
+│  - AI-assisted survey interviews and questionnaires     │
+│  - Semi-structured interview guides                     │
+│  - Multi-provider LLM support for transcription/coding  │
+│  - FAIR-compliant data export                           │
+└─────────────────────────────────────────────────────────┘</code></pre>
+<h2 id="cross-system-mapping">Cross-System Mapping <a class="anchor-link" href="#cross-system-mapping" aria-hidden="true">#</a></h2>
+<h3 id="socionics-mbti-common-but-disputed-approximation">Socionics → MBTI (Common But Disputed Approximation) <a class="anchor-link" href="#socionics-mbti-common-but-disputed-approximation" aria-hidden="true">#</a></h3>
+<div class="table-container"><table>
+<thead><tr>
+<th>Socionics</th>
+<th>Common MBTI Approximation</th>
+<th>Note</th>
+</tr></thead><tbody>
+<tr>
+<td>ILE</td>
+<td>ENTP</td>
+<td>Common community mapping</td>
+</tr>
+<tr>
+<td>LIE</td>
+<td>ENTJ</td>
+<td>Common community mapping</td>
+</tr>
+<tr>
+<td>EIE</td>
+<td>ENFJ</td>
+<td>Common community mapping</td>
+</tr>
+<tr>
+<td>IEE</td>
+<td>ENFP</td>
+<td>Common community mapping</td>
+</tr>
+<tr>
+<td>ILI</td>
+<td>INTP or INTJ</td>
+<td>Disputed</td>
+</tr>
+<tr>
+<td>LII</td>
+<td>INTP or INTJ</td>
+<td>Disputed</td>
+</tr>
+<tr>
+<td>EII</td>
+<td>INFJ</td>
+<td>Common but still approximate</td>
+</tr>
+<tr>
+<td>SEE</td>
+<td>ESFP</td>
+<td>Approximate</td>
+</tr>
+</tbody></table></div>
+<h3 id="temporistics-mbti-hypothesized">Temporistics → MBTI (Hypothesized) <a class="anchor-link" href="#temporistics-mbti-hypothesized" aria-hidden="true">#</a></h3>
+<p>Temporal framing dimension maps to cognitive style preferences:</p>
+<div class="table-container"><table>
+<thead><tr>
+<th>Temporistics Frame</th>
+<th>Primary Preference</th>
+<th>Secondary</th>
+</tr></thead><tbody>
+<tr>
+<td>Present types (1-4N)</td>
+<td>Sensing (concrete)</td>
+<td>Se/Si</td>
+</tr>
+<tr>
+<td>Future types (1-4F)</td>
+<td>Intuitive (abstract)</td>
+<td>Ne/Ni</td>
+</tr>
+<tr>
+<td>Eternity types (1-4E)</td>
+<td>Reflective (Ni/Si)</td>
+<td>Balanced</td>
+</tr>
+<tr>
+<td>Past types (1-4P)</td>
+<td>Memory-oriented</td>
+<td>Si-heavy</td>
+</tr>
+</tbody></table></div>
+<p><strong>Mapping approach:</strong> Temporistics aspect combinations map to Jungian dichotomies:</p>
+<ul>
+<li>Temporal focus (P/N/F/E) → tentative orientation cues</li>
+<li>Aspect density → S/N preference</li>
+<li>Aspect role → T/F and J/P</li>
+</ul>
+<h3 id="psychosophy-mbti-hypothesized">Psychosophy → MBTI (Hypothesized) <a class="anchor-link" href="#psychosophy-mbti-hypothesized" aria-hidden="true">#</a></h3>
+<p>4-aspect structure maps through function weighting:</p>
+<div class="table-container"><table>
+<thead><tr>
+<th>Psychosophy Pattern</th>
+<th>Possible MBTI-Like Echo</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<tr>
+<td>Logic-heavy</td>
+<td>Thinking emphasis</td>
+<td>Approximate only</td>
+</tr>
+<tr>
+<td>Emotion-heavy</td>
+<td>Feeling emphasis</td>
+<td>Approximate only</td>
+</tr>
+<tr>
+<td>Physics-heavy</td>
+<td>Sensing emphasis</td>
+<td>Approximate only</td>
+</tr>
+<tr>
+<td>Will-heavy</td>
+<td>Judgment / agency emphasis</td>
+<td>Approximate only</td>
+</tr>
+</tbody></table></div>
+<h2 id="validation-hypothesis-example">Validation Hypothesis Example <a class="anchor-link" href="#validation-hypothesis-example" aria-hidden="true">#</a></h2>
+<h3 id="combined-temporistics-socionics-predicts-satisfaction-better-than-either-alone">Combined Temporistics + Socionics predicts satisfaction better than either alone <a class="anchor-link" href="#combined-temporistics-socionics-predicts-satisfaction-better-than-either-alone" aria-hidden="true">#</a></h3>
+<ul>
+<li><strong>Method:</strong> OASIS-platform interviews and structured surveys with 200 real couples</li>
+<li><strong>Metric:</strong> Multi-factor regression, cross-validated</li>
+<li><strong>Expected:</strong> test whether combined features improve prediction over single-system baselines</li>
+</ul>
+<h2 id="tooling-reference">Tooling Reference <a class="anchor-link" href="#tooling-reference" aria-hidden="true">#</a></h2>
+<h3 id="personanexus">PersonaNexus <a class="anchor-link" href="#personanexus" aria-hidden="true">#</a></h3>
+<ul>
+<li><strong>Purpose:</strong> Declarative personality definition with framework mapping</li>
+<li><strong>Key features:</strong> OCEAN↔DISC↔Jungian bidirectional, YAML identity files, archetype inheritance</li>
+<li><strong>Command:</strong> <code>pip install personanexus</code></li>
+<li><strong>Example:</strong> <code>personanexus personality jungian-to-traits --preset intj</code></li>
+</ul>
+<p><strong>Audit note:</strong> Vendor/source verification for this tooling stack is incomplete in the current repo; treat these tool references as exploratory pointers.</p>
+<h3 id="oasis-platform-survey-interviews">OASIS-platform (Survey Interviews) <a class="anchor-link" href="#oasis-platform-survey-interviews" aria-hidden="true">#</a></h3>
+<ul>
+<li><strong>Purpose:</strong> Qualitative research interviews and survey intake</li>
+<li><strong>Key features:</strong> Voice/text interview assistance, multi-LLM transcription and coding support, Docker deploy, FAIR-compliant</li>
+<li><strong>Install:</strong> <code>git clone https://github.com/oasis-surveys/oasis-platform &amp;&amp; docker compose up</code></li>
+<li><strong>License:</strong> Open Non-Commercial Research License v1.0</li>
+</ul>
+<h2 id="next-steps">Next Steps <a class="anchor-link" href="#next-steps" aria-hidden="true">#</a></h2>
+<p>1. <strong>Verify Socionics→MBTI mapping</strong> using PersonaNexus archetypes</p>
+<p>2. <strong>Hypothesize Temporistics→MBTI</strong> based on aspect patterns</p>
+<p>3. <strong>Empirical check:</strong> OASIS-platform interviews with real typed participants</p>
+            </div>
+            <nav class="page-toc"><h4>Table of contents</h4><ul><li class="toc-level-2"><a href="#overview">Overview</a></li><li class="toc-level-2"><a href="#pipeline-architecture">Pipeline Architecture</a></li><li class="toc-level-2"><a href="#cross-system-mapping">Cross-System Mapping</a></li><li class="toc-level-3"><a href="#socionics-mbti-common-but-disputed-approximation">Socionics → MBTI (Common But Disputed Approximation)</a></li><li class="toc-level-3"><a href="#temporistics-mbti-hypothesized">Temporistics → MBTI (Hypothesized)</a></li><li class="toc-level-3"><a href="#psychosophy-mbti-hypothesized">Psychosophy → MBTI (Hypothesized)</a></li><li class="toc-level-2"><a href="#validation-hypothesis-example">Validation Hypothesis Example</a></li><li class="toc-level-3"><a href="#combined-temporistics-socionics-predicts-satisfaction-better-than-either-alone">Combined Temporistics + Socionics predicts satisfaction better than either alone</a></li><li class="toc-level-2"><a href="#tooling-reference">Tooling Reference</a></li><li class="toc-level-3"><a href="#personanexus">PersonaNexus</a></li><li class="toc-level-3"><a href="#oasis-platform-survey-interviews">OASIS-platform (Survey Interviews)</a></li><li class="toc-level-2"><a href="#next-steps">Next Steps</a></li></ul></nav>
+          </div>
+        </article>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <a href="../../index.html">← Back to Before We Build tests</a> · Before We Build
+    </footer>
+
+    <script src="../wiki-search.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('../../sw.js');
+        });
+      }
+    </script>
+  </body>
+</html>

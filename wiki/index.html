@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>База знань — Before We Build</title>
+    <meta name="theme-color" content="#74451f" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="icon" href="../assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../assets/icon.svg" />
+    <link rel="stylesheet" href="../assets/site.css" />
+    <link rel="stylesheet" href="wiki.css" />
+  </head>
+  <body class="wiki-body">
+    <header class="hero tests-hero">
+      <nav class="nav" aria-label="Основна навігація">
+        <a class="brand" href="../index.html"><span class="ichthys-mark" aria-label="ΙΧΘΥΣ">ΙΧΘΥΣ</span><b>Before We Build</b></a>
+        <div class="nav-links">
+          <a href="../index.html">Тести</a>
+          <a href="../relations-calculator.html">Калькулятор</a>
+          <a href="index.html" class="active">База знань</a>
+        </div>
+      </nav>
+    </header>
+
+    <div class="wiki-hub-hero">
+      <h1>База знань Before We Build</h1>
+      <p class="lead">Дослідницький простір, онтологія 4 рівнів сумісності, розбір латентних процесів та практичні питання для діалогу пар.</p>
+      <div class="search-box hub-search">
+        <input type="search" id="wikiSearchInput" placeholder="Пошук по всій базі знань (поняття, типи, шкали)..." />
+        <div id="searchResults" class="search-dropdown" hidden></div>
+      </div>
+    </div>
+
+    <main class="wiki-hub-container">
+      <div class="hub-grid">
+        <div class="hub-card">
+          <div class="hub-icon">🧭</div>
+          <h2>4 Рівні сумісності</h2>
+          <p>Ціннісно-моральний фундамент, Темпористика, Психософія та Соціоніка як моделі латентних процесів.</p>
+          <a href="concepts/four-levels-of-compatibility-uk.html" class="hub-link">Читати розділ →</a>
+        </div>
+
+        <div class="hub-card">
+          <div class="hub-icon">⏳</div>
+          <h2>Темпористика</h2>
+          <p>Сприйняття часу, синхронізація планів, бачення минулого, теперішнього, майбутнього та вічності.</p>
+          <a href="concepts/temporistics-temporal-orientations-uk.html" class="hub-link">Читати розділ →</a>
+        </div>
+
+        <div class="hub-card">
+          <div class="hub-icon">⚡</div>
+          <h2>Психософія</h2>
+          <p>Організація енергії та дій: Фізика, Логіка, Воля, Емоція. Ролі 1–4 позицій без ярликів.</p>
+          <a href="concepts/psychosophy-action-synthesis-uk.html" class="hub-link">Читати розділ →</a>
+        </div>
+
+        <div class="hub-card">
+          <div class="hub-icon">🧩</div>
+          <h2>Соціоніка</h2>
+          <p>Інформаційний фрейм та моделювання реальності. 8 операцій і позиційні ролі Моделі А.</p>
+          <a href="concepts/socionics-reality-modeling-uk.html" class="hub-link">Читати розділ →</a>
+        </div>
+
+        <div class="hub-card">
+          <div class="hub-icon">📖</div>
+          <h2>Словник термінів</h2>
+          <p>Точні визначення понять проекту для уникнення неоднозначностей і плутанини термінів.</p>
+          <a href="glossary-core-uk.html" class="hub-link">Відкрити словник →</a>
+        </div>
+
+        <div class="hub-card">
+          <div class="hub-icon">🤝</div>
+          <h2>Відношення та пара</h2>
+          <p>Аналіз ресурсів, зон тертя та питань для взаємної звірки в парі.</p>
+          <a href="concepts/latent-process-uk.html" class="hub-link">Основи діалогу →</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <a href="../index.html">← До тестів Before We Build</a> · типові характери, не типи людини
+    </footer>
+
+    <script src="wiki-search.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('../sw.js');
+        });
+      }
+    </script>
+  </body>
+</html>
