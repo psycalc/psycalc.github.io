@@ -2862,6 +2862,54 @@
     ]
   },
   {
+    "title": "Attitudes Toward Technology and Future Positions in Temporistics",
+    "url": "concepts/temporistics-future-technology-attitudes-en.html",
+    "lang": "en",
+    "group": "temporistics-future-technology-attitudes",
+    "role": "explanation",
+    "tags": [
+      "temporistics",
+      "future",
+      "technology",
+      "techno-enthusiasm",
+      "techno-skepticism",
+      "research-hypothesis",
+      "en"
+    ]
+  },
+  {
+    "title": "Отношение к технологиям и позиции Будущего в темпористике",
+    "url": "concepts/temporistics-future-technology-attitudes-ru.html",
+    "lang": "ru",
+    "group": "temporistics-future-technology-attitudes",
+    "role": "explanation",
+    "tags": [
+      "temporistics",
+      "future",
+      "technology",
+      "techno-enthusiasm",
+      "techno-skepticism",
+      "research-hypothesis",
+      "ru"
+    ]
+  },
+  {
+    "title": "Ставлення до технологій та позиції Майбутнього в темпористиці",
+    "url": "concepts/temporistics-future-technology-attitudes-uk.html",
+    "lang": "uk",
+    "group": "temporistics-future-technology-attitudes",
+    "role": "explanation",
+    "tags": [
+      "temporistics",
+      "future",
+      "technology",
+      "techno-enthusiasm",
+      "techno-skepticism",
+      "research-hypothesis",
+      "uk"
+    ]
+  },
+  {
     "title": "Temporistics Model",
     "url": "concepts/temporistics-model-en.html",
     "lang": "en",
