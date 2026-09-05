@@ -8401,6 +8401,51 @@
     ]
   },
   {
+    "title": "Scientific Narrative Intelligence Layer (SNIL)",
+    "url": "sources/scientific-narrative-intelligence-layer-en.html",
+    "lang": "en",
+    "group": "scientific-narrative-intelligence-layer",
+    "role": "source-summary",
+    "tags": [
+      "agents",
+      "methodology",
+      "science-communication",
+      "latent-process",
+      "epistemic-drift",
+      "source-summary"
+    ]
+  },
+  {
+    "title": "Слой научной нарративной аналитики (SNIL)",
+    "url": "sources/scientific-narrative-intelligence-layer-ru.html",
+    "lang": "ru",
+    "group": "scientific-narrative-intelligence-layer",
+    "role": "source-summary",
+    "tags": [
+      "agents",
+      "methodology",
+      "science-communication",
+      "latent-process",
+      "epistemic-drift",
+      "source-summary"
+    ]
+  },
+  {
+    "title": "Шар наукової наративної аналітики (SNIL)",
+    "url": "sources/scientific-narrative-intelligence-layer-uk.html",
+    "lang": "uk",
+    "group": "scientific-narrative-intelligence-layer",
+    "role": "source-summary",
+    "tags": [
+      "agents",
+      "methodology",
+      "science-communication",
+      "latent-process",
+      "epistemic-drift",
+      "source-summary"
+    ]
+  },
+  {
     "title": "Socionics Detailed",
     "url": "sources/socionics-detailed-en.html",
     "lang": "en",
