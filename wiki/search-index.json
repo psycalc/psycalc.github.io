@@ -1184,6 +1184,48 @@
     ]
   },
   {
+    "title": "A History of Attempts to Solve Human Compatibility",
+    "url": "concepts/human-compatibility-history-en.html",
+    "lang": "en",
+    "group": "human-compatibility-history",
+    "role": "research-appendix",
+    "tags": [
+      "compatibility",
+      "history",
+      "timeline",
+      "research-methodology",
+      "universal-core"
+    ]
+  },
+  {
+    "title": "История попыток решить проблему человеческой совместимости",
+    "url": "concepts/human-compatibility-history-ru.html",
+    "lang": "ru",
+    "group": "human-compatibility-history",
+    "role": "research-appendix",
+    "tags": [
+      "compatibility",
+      "history",
+      "timeline",
+      "research-methodology",
+      "universal-core"
+    ]
+  },
+  {
+    "title": "Історія спроб розв’язати проблему людської сумісності",
+    "url": "concepts/human-compatibility-history-uk.html",
+    "lang": "uk",
+    "group": "human-compatibility-history",
+    "role": "research-appendix",
+    "tags": [
+      "compatibility",
+      "history",
+      "timeline",
+      "research-methodology",
+      "universal-core"
+    ]
+  },
+  {
     "title": "Intertype Relation Naming Audit",
     "url": "concepts/intertype-relation-naming-audit-en.html",
     "lang": "en",
