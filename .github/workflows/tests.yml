@@ -36,7 +36,7 @@ jobs:
       - name: Verify canonical bank and immutable snapshot
         run: >-
           node scripts/verify-instrument-release.mjs
-          --canonical before-we-build-research/instruments/pilot-question-bank.md
+          --canonical before-we-build-research/research/instruments/pilot-question-bank.md
 
       - name: Verify append-only history against base commit
         env:
