@@ -7345,6 +7345,51 @@
     ]
   },
   {
+    "title": "Temporal Interpersonal Emotion Systems: The 'TIES' That Form Relationships",
+    "url": "sources/butler-temporal-interpersonal-emotion-systems-2011-en.html",
+    "lang": "en",
+    "group": "butler-temporal-interpersonal-emotion-systems-2011",
+    "role": "source-summary",
+    "tags": [
+      "emotion",
+      "dynamical-systems",
+      "interpersonal-linkage",
+      "dyadic-coordination",
+      "physiology",
+      "academic"
+    ]
+  },
+  {
+    "title": "Временные межличностные эмоциональные системы: динамика TIES в отношениях",
+    "url": "sources/butler-temporal-interpersonal-emotion-systems-2011-ru.html",
+    "lang": "ru",
+    "group": "butler-temporal-interpersonal-emotion-systems-2011",
+    "role": "source-summary",
+    "tags": [
+      "emotion",
+      "dynamical-systems",
+      "interpersonal-linkage",
+      "dyadic-coordination",
+      "physiology",
+      "academic"
+    ]
+  },
+  {
+    "title": "Часові міжособистісні емоційні системи: динаміка TIES у стосунках",
+    "url": "sources/butler-temporal-interpersonal-emotion-systems-2011-uk.html",
+    "lang": "uk",
+    "group": "butler-temporal-interpersonal-emotion-systems-2011",
+    "role": "source-summary",
+    "tags": [
+      "emotion",
+      "dynamical-systems",
+      "interpersonal-linkage",
+      "dyadic-coordination",
+      "physiology",
+      "academic"
+    ]
+  },
+  {
     "title": "Civilian Career Role Families",
     "url": "sources/civilian-career-role-families-en.html",
     "lang": "en",
@@ -7517,6 +7562,51 @@
     ]
   },
   {
+    "title": "Transactive Goal Dynamics",
+    "url": "sources/fitzsimons-finkel-vandellen-transactive-goal-dynamics-2015-en.html",
+    "lang": "en",
+    "group": "fitzsimons-finkel-vandellen-transactive-goal-dynamics-2015",
+    "role": "source-summary",
+    "tags": [
+      "goal-pursuit",
+      "self-regulation",
+      "dyadic-systems",
+      "motivation",
+      "action",
+      "academic"
+    ]
+  },
+  {
+    "title": "Трансактивная динамика целей",
+    "url": "sources/fitzsimons-finkel-vandellen-transactive-goal-dynamics-2015-ru.html",
+    "lang": "ru",
+    "group": "fitzsimons-finkel-vandellen-transactive-goal-dynamics-2015",
+    "role": "source-summary",
+    "tags": [
+      "goal-pursuit",
+      "self-regulation",
+      "dyadic-systems",
+      "motivation",
+      "action",
+      "academic"
+    ]
+  },
+  {
+    "title": "Трансактивна динаміка цілей",
+    "url": "sources/fitzsimons-finkel-vandellen-transactive-goal-dynamics-2015-uk.html",
+    "lang": "uk",
+    "group": "fitzsimons-finkel-vandellen-transactive-goal-dynamics-2015",
+    "role": "source-summary",
+    "tags": [
+      "goal-pursuit",
+      "self-regulation",
+      "dyadic-systems",
+      "motivation",
+      "action",
+      "academic"
+    ]
+  },
+  {
     "title": "Fourth Physics (4Ф) in Psychosophy — Deep Research",
     "url": "sources/fourth-physics-deep-research-en.html",
     "lang": "en",
@@ -7556,6 +7646,54 @@
       "fourth-function",
       "physics",
       "deep-research"
+    ]
+  },
+  {
+    "title": "Acute Stress Impacts Executive-Social Function: Evidence From Prefrontal Activation and fNIRS-Based Hyperscanning",
+    "url": "sources/guo-gong-yang-executive-social-hyperscanning-2026-en.html",
+    "lang": "en",
+    "group": "guo-gong-yang-executive-social-hyperscanning-2026",
+    "role": "source-summary",
+    "tags": [
+      "neuroscience",
+      "fnirs",
+      "hyperscanning",
+      "stress",
+      "executive-function",
+      "dyadic-coordination",
+      "academic"
+    ]
+  },
+  {
+    "title": "Влияние острого стресса на исполнительно-социальные функции: данные префронтальной активации и fNIRS-гиперсканирования",
+    "url": "sources/guo-gong-yang-executive-social-hyperscanning-2026-ru.html",
+    "lang": "ru",
+    "group": "guo-gong-yang-executive-social-hyperscanning-2026",
+    "role": "source-summary",
+    "tags": [
+      "neuroscience",
+      "fnirs",
+      "hyperscanning",
+      "stress",
+      "executive-function",
+      "dyadic-coordination",
+      "academic"
+    ]
+  },
+  {
+    "title": "Вплив гострого стресу на виконавчо-соціальні функції: дані префронтальної активації та fNIRS-гіперсканування",
+    "url": "sources/guo-gong-yang-executive-social-hyperscanning-2026-uk.html",
+    "lang": "uk",
+    "group": "guo-gong-yang-executive-social-hyperscanning-2026",
+    "role": "source-summary",
+    "tags": [
+      "neuroscience",
+      "fnirs",
+      "hyperscanning",
+      "stress",
+      "executive-function",
+      "dyadic-coordination",
+      "academic"
     ]
   },
   {
@@ -7610,6 +7748,51 @@
       "ai",
       "hallucinations",
       "source-note"
+    ]
+  },
+  {
+    "title": "Machine learning uncovers the most robust self-report predictors of relationship quality across 43 longitudinal couples studies",
+    "url": "sources/joel-eastwick-finkel-machine-learning-relationships-2020-en.html",
+    "lang": "en",
+    "group": "joel-eastwick-finkel-machine-learning-relationships-2020",
+    "role": "source-summary",
+    "tags": [
+      "machine-learning",
+      "relationship-quality",
+      "longitudinal",
+      "empirical",
+      "dyadic-prediction",
+      "academic"
+    ]
+  },
+  {
+    "title": "Машинное обучение выявляет наиболее надёжные предикторы качества отношений в 43 лонгитюдных исследованиях пар",
+    "url": "sources/joel-eastwick-finkel-machine-learning-relationships-2020-ru.html",
+    "lang": "ru",
+    "group": "joel-eastwick-finkel-machine-learning-relationships-2020",
+    "role": "source-summary",
+    "tags": [
+      "machine-learning",
+      "relationship-quality",
+      "longitudinal",
+      "empirical",
+      "dyadic-prediction",
+      "academic"
+    ]
+  },
+  {
+    "title": "Машинне навчання виявляє найбільш надійні предиктори якості стосунків у 43 лонгітюдних дослідженнях пар",
+    "url": "sources/joel-eastwick-finkel-machine-learning-relationships-2020-uk.html",
+    "lang": "uk",
+    "group": "joel-eastwick-finkel-machine-learning-relationships-2020",
+    "role": "source-summary",
+    "tags": [
+      "machine-learning",
+      "relationship-quality",
+      "longitudinal",
+      "empirical",
+      "dyadic-prediction",
+      "academic"
     ]
   },
   {
@@ -8125,6 +8308,96 @@
       "sources",
       "internet",
       "governance"
+    ]
+  },
+  {
+    "title": "Merged Minds: Generalized Shared Reality in Dyadic Relationships",
+    "url": "sources/rossignac-milon-bolger-higgins-merged-minds-2021-en.html",
+    "lang": "en",
+    "group": "rossignac-milon-bolger-higgins-merged-minds-2021",
+    "role": "source-summary",
+    "tags": [
+      "shared-reality",
+      "dyadic-relationships",
+      "cognition",
+      "epistemic-trust",
+      "communication",
+      "academic"
+    ]
+  },
+  {
+    "title": "Соединённые умы: генерализованная разделяемая реальность в диадических отношениях",
+    "url": "sources/rossignac-milon-bolger-higgins-merged-minds-2021-ru.html",
+    "lang": "ru",
+    "group": "rossignac-milon-bolger-higgins-merged-minds-2021",
+    "role": "source-summary",
+    "tags": [
+      "shared-reality",
+      "dyadic-relationships",
+      "cognition",
+      "epistemic-trust",
+      "communication",
+      "academic"
+    ]
+  },
+  {
+    "title": "З'єднані уми: генералізована розділювана реальність у діадичних стосунках",
+    "url": "sources/rossignac-milon-bolger-higgins-merged-minds-2021-uk.html",
+    "lang": "uk",
+    "group": "rossignac-milon-bolger-higgins-merged-minds-2021",
+    "role": "source-summary",
+    "tags": [
+      "shared-reality",
+      "dyadic-relationships",
+      "cognition",
+      "epistemic-trust",
+      "communication",
+      "academic"
+    ]
+  },
+  {
+    "title": "Do Opposites Detract? Intrahousehold Preference Heterogeneity and Inefficient Strategic Savings",
+    "url": "sources/schaner-intrahousehold-preference-heterogeneity-2015-en.html",
+    "lang": "en",
+    "group": "schaner-intrahousehold-preference-heterogeneity-2015",
+    "role": "source-summary",
+    "tags": [
+      "intertemporal-choice",
+      "household-economics",
+      "field-experiment",
+      "temporal-horizons",
+      "finance",
+      "academic"
+    ]
+  },
+  {
+    "title": "Вредят ли противоположности? Гетерогенность предпочтений в домохозяйстве и неэффективность сбережений",
+    "url": "sources/schaner-intrahousehold-preference-heterogeneity-2015-ru.html",
+    "lang": "ru",
+    "group": "schaner-intrahousehold-preference-heterogeneity-2015",
+    "role": "source-summary",
+    "tags": [
+      "intertemporal-choice",
+      "household-economics",
+      "field-experiment",
+      "temporal-horizons",
+      "finance",
+      "academic"
+    ]
+  },
+  {
+    "title": "Чи шкодять протилежності? Гетерогенність уподобань у домогосподарстві та неефективність заощаджень",
+    "url": "sources/schaner-intrahousehold-preference-heterogeneity-2015-uk.html",
+    "lang": "uk",
+    "group": "schaner-intrahousehold-preference-heterogeneity-2015",
+    "role": "source-summary",
+    "tags": [
+      "intertemporal-choice",
+      "household-economics",
+      "field-experiment",
+      "temporal-horizons",
+      "finance",
+      "academic"
     ]
   },
   {
