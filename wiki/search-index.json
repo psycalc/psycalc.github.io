@@ -717,6 +717,48 @@
     ]
   },
   {
+    "title": "Catalog of Scientific Research on Compatibility",
+    "url": "concepts/compatibility-research-catalog-en.html",
+    "lang": "en",
+    "group": "compatibility-research-catalog",
+    "role": "hub",
+    "tags": [
+      "compatibility",
+      "research",
+      "evidence",
+      "catalog",
+      "universal-core"
+    ]
+  },
+  {
+    "title": "Каталог научных исследований совместимости",
+    "url": "concepts/compatibility-research-catalog-ru.html",
+    "lang": "ru",
+    "group": "compatibility-research-catalog",
+    "role": "hub",
+    "tags": [
+      "compatibility",
+      "research",
+      "evidence",
+      "catalog",
+      "universal-core"
+    ]
+  },
+  {
+    "title": "Каталог наукових досліджень сумісності",
+    "url": "concepts/compatibility-research-catalog-uk.html",
+    "lang": "uk",
+    "group": "compatibility-research-catalog",
+    "role": "hub",
+    "tags": [
+      "compatibility",
+      "research",
+      "evidence",
+      "catalog",
+      "universal-core"
+    ]
+  },
+  {
     "title": "Combinatorics of Composite Intertype Structures",
     "url": "concepts/composite-intertype-combinatorics-en.html",
     "lang": "en",
@@ -7552,6 +7594,120 @@
       "community-source",
       "tactical-level",
       "raw-ingestion"
+    ]
+  },
+  {
+    "title": "Compatibility studies: teams and friendship",
+    "url": "sources/compatibility-studies-cooperation-en.html",
+    "lang": "en",
+    "group": "compatibility-studies-cooperation",
+    "role": "source-summary",
+    "tags": [
+      "compatibility",
+      "research",
+      "teams",
+      "friendship"
+    ]
+  },
+  {
+    "title": "Исследования совместимости: команды и дружба",
+    "url": "sources/compatibility-studies-cooperation-ru.html",
+    "lang": "ru",
+    "group": "compatibility-studies-cooperation",
+    "role": "source-summary",
+    "tags": [
+      "compatibility",
+      "research",
+      "teams",
+      "friendship"
+    ]
+  },
+  {
+    "title": "Дослідження сумісності: команди і дружба",
+    "url": "sources/compatibility-studies-cooperation-uk.html",
+    "lang": "uk",
+    "group": "compatibility-studies-cooperation",
+    "role": "source-summary",
+    "tags": [
+      "compatibility",
+      "research",
+      "teams",
+      "friendship"
+    ]
+  },
+  {
+    "title": "Compatibility studies: romantic couples",
+    "url": "sources/compatibility-studies-couples-en.html",
+    "lang": "en",
+    "group": "compatibility-studies-couples",
+    "role": "source-summary",
+    "tags": [
+      "compatibility",
+      "empirical-research",
+      "couples"
+    ]
+  },
+  {
+    "title": "Исследования совместимости: романтические пары",
+    "url": "sources/compatibility-studies-couples-ru.html",
+    "lang": "ru",
+    "group": "compatibility-studies-couples",
+    "role": "source-summary",
+    "tags": [
+      "compatibility",
+      "empirical-research",
+      "couples"
+    ]
+  },
+  {
+    "title": "Дослідження сумісності: романтичні пари",
+    "url": "sources/compatibility-studies-couples-uk.html",
+    "lang": "uk",
+    "group": "compatibility-studies-couples",
+    "role": "source-summary",
+    "tags": [
+      "compatibility",
+      "empirical-research",
+      "couples"
+    ]
+  },
+  {
+    "title": "Compatibility studies: prediction and relationship interventions",
+    "url": "sources/compatibility-studies-prediction-en.html",
+    "lang": "en",
+    "group": "compatibility-studies-prediction",
+    "role": "source-summary",
+    "tags": [
+      "compatibility",
+      "research-catalog",
+      "prediction",
+      "interventions"
+    ]
+  },
+  {
+    "title": "Исследования совместимости: прогнозы и программы помощи парам",
+    "url": "sources/compatibility-studies-prediction-ru.html",
+    "lang": "ru",
+    "group": "compatibility-studies-prediction",
+    "role": "source-summary",
+    "tags": [
+      "compatibility",
+      "research-catalog",
+      "prediction",
+      "interventions"
+    ]
+  },
+  {
+    "title": "Дослідження сумісності: прогнози та програми допомоги парам",
+    "url": "sources/compatibility-studies-prediction-uk.html",
+    "lang": "uk",
+    "group": "compatibility-studies-prediction",
+    "role": "source-summary",
+    "tags": [
+      "compatibility",
+      "research-catalog",
+      "prediction",
+      "interventions"
     ]
   },
   {
