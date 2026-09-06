@@ -105,6 +105,7 @@
 
 .article-layout {
   display: flex;
+  flex-direction: column;
   gap: 32px;
 }
 
@@ -113,7 +114,12 @@
   min-width: 0;
   font-size: 1.05rem;
   line-height: 1.7;
+  max-width: 72ch;
+  overflow-wrap: anywhere;
 }
+
+.article-body p { margin: 0 0 1.1em; }
+.article-body li { margin-bottom: 0.5em; }
 
 .article-body h2 {
   font-size: 1.5rem;
@@ -145,23 +151,25 @@ h3:hover .anchor-link {
 }
 
 .page-toc {
-  flex: 0 0 220px;
-  position: sticky;
-  top: 32px;
-  align-self: flex-start;
+  order: -1;
+  width: 100%;
+  box-sizing: border-box;
   font-size: 0.85rem;
   background: var(--surface-soft);
   padding: 16px;
   border-radius: var(--radius-md);
 }
 
-.page-toc h4 {
+.page-toc summary {
+  cursor: pointer;
+  font-weight: 600;
   margin: 0 0 10px 0;
   font-size: 0.9rem;
   color: var(--primary-dark);
 }
 
 .page-toc ul {
+  columns: 2 16rem;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -394,6 +402,7 @@ th {
     flex-direction: column;
   }
   .wiki-sidebar {
+    flex-basis: auto;
     position: static;
     height: auto;
     border-right: none;

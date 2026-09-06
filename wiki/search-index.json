@@ -7210,6 +7210,45 @@
     ]
   },
   {
+    "title": "AI text style: evidence and editorial limits",
+    "url": "sources/ai-text-style-evidence-en.html",
+    "lang": "en",
+    "group": "ai-text-style-evidence",
+    "role": "source-summary",
+    "tags": [
+      "agents",
+      "methodology",
+      "writing",
+      "source-summary"
+    ]
+  },
+  {
+    "title": "«Нейронность» текста: исследования и границы редактуры",
+    "url": "sources/ai-text-style-evidence-ru.html",
+    "lang": "ru",
+    "group": "ai-text-style-evidence",
+    "role": "source-summary",
+    "tags": [
+      "agents",
+      "methodology",
+      "writing",
+      "source-summary"
+    ]
+  },
+  {
+    "title": "«Нейронність» тексту: дослідження та межі редагування",
+    "url": "sources/ai-text-style-evidence-uk.html",
+    "lang": "uk",
+    "group": "ai-text-style-evidence",
+    "role": "source-summary",
+    "tags": [
+      "agents",
+      "methodology",
+      "writing",
+      "source-summary"
+    ]
+  },
+  {
     "title": "Augustinavičiūtė — Information-Metabolism Foundations for the Aspect Audit",
     "url": "sources/augustinaviciute-information-metabolism-foundations-en.html",
     "lang": "en",

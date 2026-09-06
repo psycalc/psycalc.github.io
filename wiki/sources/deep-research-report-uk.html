@@ -35,18 +35,18 @@
           <div class="sidebar-section">
             <div class="sidebar-heading">Теоретичні концепти</div>
             <ul>
-              <li><a href="../concepts/latent-process-uk.html">Latent Process</a></li>
-              <li><a href="../concepts/four-level-compatibility-architecture-uk.html">Four Levels</a></li>
-              <li><a href="../concepts/temporistics-model-uk.html">Temporistics</a></li>
-              <li><a href="../concepts/psychosophy-functions-uk.html">Psychosophy</a></li>
-              <li><a href="../concepts/socionics-reality-modeling-uk.html">Socionics</a></li>
+              <li><a href="../concepts/latent-process-uk.html">Латентний процес</a></li>
+              <li><a href="../concepts/four-level-compatibility-architecture-uk.html">Чотирирівнева архітектура сумісності</a></li>
+              <li><a href="../concepts/strategic-compatibility-uk.html">Стратегічна сумісність</a></li>
+              <li><a href="../concepts/operational-compatibility-uk.html">Операційна сумісність</a></li>
+              <li><a href="../concepts/tactical-compatibility-uk.html">Тактична сумісність</a></li>
             </ul>
           </div>
           <div class="sidebar-section">
             <div class="sidebar-heading">Словники термінів</div>
             <ul>
-              <li><a href="../glossary-core-uk.html">Glossary Core</a></li>
-              <li><a href="../glossary-extended-uk.html">Glossary Extended</a></li>
+              <li><a href="../glossary-core-uk.html">Основний глосарій</a></li>
+              <li><a href="../glossary-extended-uk.html">Розширений дослідницький глосарій</a></li>
             </ul>
           </div>
         </div>
@@ -61,8 +61,7 @@
 
           <div class="article-layout">
             <div class="article-body">
-              <h1 id="вибір-agent-harnesses-фреймворків-оркестрації-та-пам-яті">Вибір agent harnesses, фреймворків, оркестрації та пам&#x27;яті <a class="anchor-link" href="#вибір-agent-harnesses-фреймворків-оркестрації-та-пам-яті" aria-hidden="true">#</a></h1>
-<h2 id="короткий-висновок">Короткий висновок <a class="anchor-link" href="#короткий-висновок" aria-hidden="true">#</a></h2>
+              <h2 id="короткий-висновок">Короткий висновок <a class="anchor-link" href="#короткий-висновок" aria-hidden="true">#</a></h2>
 <p>Універсального стеку немає. Agent framework організує LLM-виклики й інструменти; workflow orchestrator забезпечує довговічне виконання; serving/runtime відповідає за масштабування; vector/database layer — за дані й пошук. Вибір має починатися з конкретного процесу, вимог до приватності та відмовостійкості, а не з популярності продукту.</p>
 <p>Це технічний орієнтаційний звіт, а не актуальний benchmark. Можливості проєктів змінюються; перед рішенням треба звіряти офіційну документацію й власні вимірювання.</p>
 <h2 id="визначення-та-межі">Визначення та межі <a class="anchor-link" href="#визначення-та-межі" aria-hidden="true">#</a></h2>
@@ -159,11 +158,13 @@
 <li>дослідницький multi-agent: строгі ліміти, trace та evaluation.</li>
 </ul>
 <h3 id="рекомендований-процес-рішення">Рекомендований процес рішення <a class="anchor-link" href="#рекомендований-процес-рішення" aria-hidden="true">#</a></h3>
-<p>1. Описати I/O, стан, authority і failure modes.</p>
-<p>2. Зробити мінімальний reference flow без важкої платформи.</p>
-<p>3. Виміряти якість, затримку, вартість і відновлення.</p>
-<p>4. Додавати окремий шар лише для спостережуваної потреби.</p>
-<p>5. Перевірити migration/exit plan.</p>
+<ol start="1">
+<li>Описати I/O, стан, authority і failure modes.</li>
+<li>Зробити мінімальний reference flow без важкої платформи.</li>
+<li>Виміряти якість, затримку, вартість і відновлення.</li>
+<li>Додавати окремий шар лише для спостережуваної потреби.</li>
+<li>Перевірити migration/exit plan.</li>
+</ol>
 <h3 id="мініматриця-варіантів">Мініматриця варіантів <a class="anchor-link" href="#мініматриця-варіантів" aria-hidden="true">#</a></h3>
 <p>Shortlist є початком випробування, а не рекомендацією купівлі. Порівняння має використовувати однакові дані, моделі й навантаження.</p>
 <h2 id="референсні-архітектури">Референсні архітектури <a class="anchor-link" href="#референсні-архітектури" aria-hidden="true">#</a></h2>
@@ -203,7 +204,7 @@
 <h3 id="що-відкинуто-або-зберігається-лише-історично">Що відкинуто або зберігається лише історично <a class="anchor-link" href="#що-відкинуто-або-зберігається-лише-історично" aria-hidden="true">#</a></h3>
 <p>BWB відкидає подання можливостей ПЗ як свідчень про психологію людини та автоматичне рішення про стосунки за інфраструктурним результатом.</p>
             </div>
-            <nav class="page-toc"><h4>Зміст статті</h4><ul><li class="toc-level-2"><a href="#короткий-висновок">Короткий висновок</a></li><li class="toc-level-2"><a href="#визначення-та-межі">Визначення та межі</a></li><li class="toc-level-2"><a href="#критерії-й-компроміси">Критерії й компроміси</a></li><li class="toc-level-3"><a href="#архітектура-та-відповідальність">Архітектура та відповідальність</a></li><li class="toc-level-3"><a href="#масштабування-затримка-й-throughput">Масштабування, затримка й throughput</a></li><li class="toc-level-3"><a href="#надійність-і-узгодженість">Надійність і узгодженість</a></li><li class="toc-level-3"><a href="#безпека-приватність-і-compliance">Безпека, приватність і compliance</a></li><li class="toc-level-3"><a href="#спостережуваність">Спостережуваність</a></li><li class="toc-level-3"><a href="#розширюваність-і-deployment">Розширюваність і deployment</a></li><li class="toc-level-2"><a href="#порівняння-популярних-проєктів">Порівняння популярних проєктів</a></li><li class="toc-level-3"><a href="#підсумок">Підсумок</a></li><li class="toc-level-3"><a href="#офіційні-посилання">Офіційні посилання</a></li><li class="toc-level-3"><a href="#короткі-нотатки">Короткі нотатки</a></li><li class="toc-level-2"><a href="#вибір-за-сценарієм">Вибір за сценарієм</a></li><li class="toc-level-3"><a href="#практичні-критерії">Практичні критерії</a></li><li class="toc-level-3"><a href="#рекомендований-процес-рішення">Рекомендований процес рішення</a></li><li class="toc-level-3"><a href="#мініматриця-варіантів">Мініматриця варіантів</a></li><li class="toc-level-2"><a href="#референсні-архітектури">Референсні архітектури</a></li><li class="toc-level-3"><a href="#проста-розмова-з-короткою-пам-яттю">Проста розмова з короткою пам&#x27;яттю</a></li><li class="toc-level-3"><a href="#rag-із-довгостроковою-пам-яттю">RAG із довгостроковою пам&#x27;яттю</a></li><li class="toc-level-3"><a href="#multi-agent-workflow">Multi-agent workflow</a></li><li class="toc-level-2"><a href="#продуктивність-вартість-і-benchmarks">Продуктивність, вартість і benchmarks</a></li><li class="toc-level-3"><a href="#де-витрачаються-затримка-й-вартість">Де витрачаються затримка й вартість</a></li><li class="toc-level-3"><a href="#що-шукати-в-benchmark">Що шукати в benchmark</a></li><li class="toc-level-3"><a href="#обов-язкові-випробування">Обов&#x27;язкові випробування</a></li><li class="toc-level-2"><a href="#безпека-compliance-і-міграції">Безпека, compliance і міграції</a></li><li class="toc-level-3"><a href="#практичний-checklist">Практичний checklist</a></li><li class="toc-level-3"><a href="#observability-compliance">Observability/compliance</a></li><li class="toc-level-3"><a href="#interoperability">Interoperability</a></li><li class="toc-level-2"><a href="#короткі-рекомендації">Короткі рекомендації</a></li><li class="toc-level-2"><a href="#оцінка-джерела">Оцінка джерела</a></li><li class="toc-level-3"><a href="#що-стверджує-джерело">Що стверджує джерело</a></li><li class="toc-level-3"><a href="#які-дані-або-свідчення-наведено">Які дані або свідчення наведено</a></li><li class="toc-level-3"><a href="#обмеження">Обмеження</a></li><li class="toc-level-3"><a href="#що-приймає-bwb">Що приймає BWB</a></li><li class="toc-level-3"><a href="#що-лишається-спірним-або-відкритим">Що лишається спірним або відкритим</a></li><li class="toc-level-3"><a href="#що-відкинуто-або-зберігається-лише-історично">Що відкинуто або зберігається лише історично</a></li></ul></nav>
+            <details class="page-toc"><summary>Зміст статті</summary><nav><ul><li class="toc-level-2"><a href="#короткий-висновок">Короткий висновок</a></li><li class="toc-level-2"><a href="#визначення-та-межі">Визначення та межі</a></li><li class="toc-level-2"><a href="#критерії-й-компроміси">Критерії й компроміси</a></li><li class="toc-level-3"><a href="#архітектура-та-відповідальність">Архітектура та відповідальність</a></li><li class="toc-level-3"><a href="#масштабування-затримка-й-throughput">Масштабування, затримка й throughput</a></li><li class="toc-level-3"><a href="#надійність-і-узгодженість">Надійність і узгодженість</a></li><li class="toc-level-3"><a href="#безпека-приватність-і-compliance">Безпека, приватність і compliance</a></li><li class="toc-level-3"><a href="#спостережуваність">Спостережуваність</a></li><li class="toc-level-3"><a href="#розширюваність-і-deployment">Розширюваність і deployment</a></li><li class="toc-level-2"><a href="#порівняння-популярних-проєктів">Порівняння популярних проєктів</a></li><li class="toc-level-3"><a href="#підсумок">Підсумок</a></li><li class="toc-level-3"><a href="#офіційні-посилання">Офіційні посилання</a></li><li class="toc-level-3"><a href="#короткі-нотатки">Короткі нотатки</a></li><li class="toc-level-2"><a href="#вибір-за-сценарієм">Вибір за сценарієм</a></li><li class="toc-level-3"><a href="#практичні-критерії">Практичні критерії</a></li><li class="toc-level-3"><a href="#рекомендований-процес-рішення">Рекомендований процес рішення</a></li><li class="toc-level-3"><a href="#мініматриця-варіантів">Мініматриця варіантів</a></li><li class="toc-level-2"><a href="#референсні-архітектури">Референсні архітектури</a></li><li class="toc-level-3"><a href="#проста-розмова-з-короткою-пам-яттю">Проста розмова з короткою пам&#x27;яттю</a></li><li class="toc-level-3"><a href="#rag-із-довгостроковою-пам-яттю">RAG із довгостроковою пам&#x27;яттю</a></li><li class="toc-level-3"><a href="#multi-agent-workflow">Multi-agent workflow</a></li><li class="toc-level-2"><a href="#продуктивність-вартість-і-benchmarks">Продуктивність, вартість і benchmarks</a></li><li class="toc-level-3"><a href="#де-витрачаються-затримка-й-вартість">Де витрачаються затримка й вартість</a></li><li class="toc-level-3"><a href="#що-шукати-в-benchmark">Що шукати в benchmark</a></li><li class="toc-level-3"><a href="#обов-язкові-випробування">Обов&#x27;язкові випробування</a></li><li class="toc-level-2"><a href="#безпека-compliance-і-міграції">Безпека, compliance і міграції</a></li><li class="toc-level-3"><a href="#практичний-checklist">Практичний checklist</a></li><li class="toc-level-3"><a href="#observability-compliance">Observability/compliance</a></li><li class="toc-level-3"><a href="#interoperability">Interoperability</a></li><li class="toc-level-2"><a href="#короткі-рекомендації">Короткі рекомендації</a></li><li class="toc-level-2"><a href="#оцінка-джерела">Оцінка джерела</a></li><li class="toc-level-3"><a href="#що-стверджує-джерело">Що стверджує джерело</a></li><li class="toc-level-3"><a href="#які-дані-або-свідчення-наведено">Які дані або свідчення наведено</a></li><li class="toc-level-3"><a href="#обмеження">Обмеження</a></li><li class="toc-level-3"><a href="#що-приймає-bwb">Що приймає BWB</a></li><li class="toc-level-3"><a href="#що-лишається-спірним-або-відкритим">Що лишається спірним або відкритим</a></li><li class="toc-level-3"><a href="#що-відкинуто-або-зберігається-лише-історично">Що відкинуто або зберігається лише історично</a></li></ul></nav></details>
           </div>
         </article>
       </main>

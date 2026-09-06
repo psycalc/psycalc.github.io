@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>«Нейронность» текста: исследования и границы редактуры — Before We Build · База знаний</title>
+    <meta name="theme-color" content="#74451f" />
+    <link rel="manifest" href="../../manifest.webmanifest" />
+    <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../../assets/icon.svg" />
+    <link rel="stylesheet" href="../../assets/site.css" />
+    <link rel="stylesheet" href="../wiki.css" />
+  </head>
+  <body class="wiki-body">
+    <header class="hero tests-hero">
+      <nav class="nav" aria-label="Основна навігація">
+        <a class="brand" href="../../index.html"><span class="ichthys-mark" aria-label="ΙΧΘΥΣ">ΙΧΘΥΣ</span><b>Before We Build</b></a>
+        <div class="nav-links">
+          <a href="../../index.html">Тесты</a>
+          <a href="../../relations-calculator.html">Калькулятор</a>
+          <a href="../index.html" class="active">База знаний</a>
+          <div class="lang-switch-peer"><a href="../sources/ai-text-style-evidence-uk.html">UK</a> <a href="../sources/ai-text-style-evidence-en.html">EN</a> <a href="../sources/ai-text-style-evidence-ru.html" class="active">RU</a></div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="wiki-container">
+      <aside class="wiki-sidebar">
+        <div class="search-box">
+          <input type="search" id="wikiSearchInput" placeholder="Поиск по базе знаний..." aria-label="Search" />
+          <div id="searchResults" class="search-dropdown" hidden></div>
+        </div>
+        <div class="sidebar-nav">
+          <a href="../index.html" class="sidebar-hub-link">📚 Главная Wiki</a>
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Теоретические концепты</div>
+            <ul>
+              <li><a href="../concepts/latent-process-ru.html">Латентный процесс</a></li>
+              <li><a href="../concepts/four-level-compatibility-architecture-ru.html">Четырёхуровневая архитектура совместимости</a></li>
+              <li><a href="../concepts/strategic-compatibility-ru.html">Стратегическая совместимость</a></li>
+              <li><a href="../concepts/operational-compatibility-ru.html">Операционная совместимость</a></li>
+              <li><a href="../concepts/tactical-compatibility-ru.html">Тактическая совместимость</a></li>
+            </ul>
+          </div>
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Словари терминов</div>
+            <ul>
+              <li><a href="../glossary-core-ru.html">Основной глоссарий</a></li>
+              <li><a href="../glossary-extended-ru.html">Расширенный исследовательский глоссарий</a></li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+
+      <main class="wiki-content">
+        <article class="wiki-article">
+          <header class="article-header">
+            <div class="article-meta-top"><span class="badge badge-role">source-summary</span> <span class="badge badge-version">v1</span> <span class="badge badge-status">active</span></div>
+            <h1>«Нейронность» текста: исследования и границы редактуры</h1>
+          </header>
+
+          <div class="article-layout">
+            <div class="article-body">
+              <p><a class="wiki-link" href="../sources/ai-text-style-evidence-en.html">English</a> · Русский · <a class="wiki-link" href="../sources/ai-text-style-evidence-uk.html">Українська</a></p>
+<h2 id="обзор">Обзор <a class="anchor-link" href="#обзор" aria-hidden="true">#</a></h2>
+<p>Текст может казаться шаблонным из-за повторяющихся переходов, расплывчатых утверждений или примеров, которые мало объясняют. Это редакционная проблема, которую нужно рассматривать в контексте. BWB отделяет такие недостатки от утверждений о том, кто или что написал текст.</p>
+<h2 id="что-утверждают-источники">Что утверждают источники <a class="anchor-link" href="#что-утверждают-источники" aria-hidden="true">#</a></h2>
+<ul>
+<li><a href="https://aclanthology.org/2024.acl-long.674/">Dugan и соавторы, RAID (2024)</a>: двенадцать проверенных детекторов испытывали трудности при смене моделей, настроек генерации или редактировании.</li>
+<li><a href="https://arxiv.org/abs/2304.02819">Liang и соавторы (2023), авторская версия</a>: детекторы ошибочно помечали тексты исследованных авторов, для которых английский не родной.</li>
+<li><a href="https://aclanthology.org/2026.lrec-1.142/">Miletic и Falk (2026)</a>: правки LLM содержали более сложные слова и меньше лексического разнообразия; однако двадцать экспертов в пилоте в среднем оценили их как более понятные и интересные.</li>
+<li><a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-4.pdf">NIST AI 100-4 (ноябрь 2024)</a>, §§3.2.2.4, 4.2–4.2.2: переносимость результатов, языки и короткие тексты ограничивают детекцию; проверка должна соответствовать предполагаемым условиям применения.</li>
+</ul>
+<h2 id="какие-свидетельства-приведены">Какие свидетельства приведены <a class="anchor-link" href="#какие-свидетельства-приведены" aria-hidden="true">#</a></h2>
+<p>Реестр источников фиксирует использованные статьи и отчёт. Пункты выше передают их выводы; описанная ниже редакторская роль — решение BWB, а не метод, проверенный этими публикациями.</p>
+<h2 id="ограничения">Ограничения <a class="anchor-link" href="#ограничения" aria-hidden="true">#</a></h2>
+<p>RAID не доказывает, что каждый детектор всегда бесполезен. Проценты из работы Liang нельзя переносить на русский и украинский. Пилот Miletic и Falk не устанавливает универсальные предпочтения читателей. NIST не сертифицирует универсальный детектор.</p>
+<h2 id="что-принимает-bwb">Что принимает BWB <a class="anchor-link" href="#что-принимает-bwb" aria-hidden="true">#</a></h2>
+<p>BWB определяет <strong>naturalness-style-reviewer</strong> как роль агента в редакционной коллегии, а не специалиста-человека. Он находит конкретные фрагменты с повторными пустыми переходами, расплывчатыми обобщениями, шаблонными противопоставлениями, неестественными кальками или неубедительными примерами. Он объясняет, что мешает чтению, и предлагает конкретную правку.</p>
+<p>Роль сохраняет точность фактов, источники, неопределённость, необходимые термины и совпадение смысла в EN/RU/UK. Более гладкая фраза не должна превращать гипотезу в факт. Правило проекта: <strong>редакционный недостаток не доказывает авторство ИИ</strong>.</p>
+<h2 id="что-остаётся-открытым">Что остаётся открытым <a class="anchor-link" href="#что-остаётся-открытым" aria-hidden="true">#</a></h2>
+<p>Помогает ли эта роль реальным читателям BWB, ещё нужно проверить. Рецензии должны сравнивать конкретные фрагменты и учитывать обратную связь читателей. Мнение агента не измеряет реакцию аудитории.</p>
+<h2 id="что-отвергнуто">Что отвергнуто <a class="anchor-link" href="#что-отвергнуто" aria-hidden="true">#</a></h2>
+<p>Роль не назначает «процент нейронности», не удостоверяет человеческое авторство и не подгоняет текст под обход детекторов. Она не считает любой стиль, связанный с ИИ, плохим и не добавляет ошибок для подражания человеку.</p>
+<h2 id="следующее-чтение">Следующее чтение <a class="anchor-link" href="#следующее-чтение" aria-hidden="true">#</a></h2>
+<p>Продолжите с <a class="wiki-link" href="../sources/scientific-narrative-intelligence-layer-ru.html">Слой научной нарративной аналитики (SNIL)</a> и <a class="wiki-link" href="../concepts/epistemic-status-and-inference-limits-ru.html">Эпистемический статус и пределы вывода</a>.</p>
+            </div>
+            <details class="page-toc"><summary>Содержание статьи</summary><nav><ul><li class="toc-level-2"><a href="#обзор">Обзор</a></li><li class="toc-level-2"><a href="#что-утверждают-источники">Что утверждают источники</a></li><li class="toc-level-2"><a href="#какие-свидетельства-приведены">Какие свидетельства приведены</a></li><li class="toc-level-2"><a href="#ограничения">Ограничения</a></li><li class="toc-level-2"><a href="#что-принимает-bwb">Что принимает BWB</a></li><li class="toc-level-2"><a href="#что-остаётся-открытым">Что остаётся открытым</a></li><li class="toc-level-2"><a href="#что-отвергнуто">Что отвергнуто</a></li><li class="toc-level-2"><a href="#следующее-чтение">Следующее чтение</a></li></ul></nav></details>
+          </div>
+        </article>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <a href="../../index.html">← К тестам Before We Build</a> · Before We Build
+    </footer>
+
+    <script src="../wiki-search.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('../../sw.js');
+        });
+      }
+    </script>
+  </body>
+</html>
